@@ -236,21 +236,15 @@
 
         <div class="audio-container">
             <p style="margin-bottom: 10px; font-weight: bold; color: #ff4d6d;">🎵 أغنيتنا المفضلة:</p>
-            <!-- أغنية رومانسية شغالة أونلاين ومضمونة 100% -->
             <audio id="love-song" controls loop preload="auto">
                 <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-sky-111030.mp3" type="audio/mpeg">
             </audio>
         </div>
 
         <div class="center-wrapper">
-            <h2 class="section-header">👩‍❤️‍👨 ذكرياتنا وحكاياتنا سوا</h2>
+            <h2 class="section-header">👑 ذكرياتنا وملكة قلبي (الصور وفيديوهاتنا)</h2>
         </div>
-        <div class="gallery-grid" id="couple-gallery"></div>
-
-        <div class="center-wrapper">
-            <h2 class="section-header">👑 أميرتي وملكة قلبي (صوركِ وفيديوهاتكِ)</h2>
-        </div>
-        <div class="gallery-grid" id="solo-gallery"></div>
+        <div class="gallery-grid" id="main-gallery"></div>
 
         <div class="message-box">
             <h2>💌 اكتبيلي رسالة</h2>
@@ -284,19 +278,93 @@
         }
         setInterval(updateLoveCounter, 1000);
 
-        const bgImages = [
-            "images/0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG",
-            "images/10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG",
-            "images/167731ce-6526-40c0-a7bd-9955c54c5359.JPG",
-            "images/IMG_8466.jpg"
+        // قائمة الصور الموجودة فعلياً في مجلدك (بدون أي نقصان)
+        const exactFiles = [
+            "0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG",
+            "10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG",
+            "167731ce-6526-40c0-a7bd-9955c54c5359.JPG",
+            "1b85a8b3-5ccc-423c-82b1-1382c68adcb5.JPG",
+            "1dcf911c-350a-480a-85cb-e92dd78ecf0d 2.JPG",
+            "1dd610a2-511c-46f4-9105-87bdb3d871e2 2.JPG",
+            "2DDB1201-F69D-49E6-9561-98DE1DF2B04E 2.JPG",
+            "2abc4b2c-e5e0-45b8-bfdd-179755ecb04c.JPG",
+            "2f3d283b-158a-4064-a55d-7d12cda182af 2.JPG",
+            "32E63936-9702-47F8-9987-22AC52C44CFC 2.JPG",
+            "4139183E-4665-43ED-A61E-5AC7902CD79F 2.JPG",
+            "4cf9c57a-75a6-47e8-9525-dbef0d55f14f.JPG",
+            "55dfe29b-314c-40ca-b1d4-35dc47aa420a 2.JPG",
+            "5d7d4cc1-6db9-4992-b509-e9dfdc87ef67 2.JPG",
+            "5ea61ee0-8685-4ef4-be1d-24f77c9f6c03 2.JPG",
+            "67ba5ff2-a9d4-4e09-b65c-cebe38c1005f.JPG",
+            "71D8C3C9-0A07-465F-9756-5639F0A7B0CD 2.JPG",
+            "891ce01b-4078-4022-9d99-8e7d99cefb60 2.JPG",
+            "91a0371e-19c4-463f-96f0-2f06697f5f48 2.JPG",
+            "9d650f7f-676b-40ce-9dae-3c0fdfb477ef.JPG",
+            "9e434ac1-99fa-4665-8c41-a659c44c58f7 2.JPG",
+            "9ee0c8aa-8d27-4fa1-a208-8358f222fa2e 2.JPG",
+            "D0C506FC-8EC6-4010-B838-565E5E5C8D3B.JPG",
+            "DB162C07-D8BC-4485-BE39-FB00429EAF65 2.JPG",
+            "DC215074-3B76-4E32-A1D8-D540C7D56146 2.jpg",
+            "E94A03B2-0987-4354-9AD5-2DB4C81AD70D 2.jpg",
+            "IMG_8352 2.JPG",
+            "IMG_8466.jpg",
+            "IMG_8475 2.jpg",
+            "IMG_9455 2.PNG",
+            "ca2f7853-8a7e-4024-aa64-20991bd657ad.JPG",
+            "d17fe48b-de40-4902-b93e-c3ed1004ce62 2.JPG",
+            "d63a7234-57ef-4e13-8604-f8f892081fb2.JPG",
+            "db8e7d2f-6035-491a-8c46-9cad1d5fb603.jpg",
+            "dd16dbb9-3f33-4d28-8e4b-3b8dd16eaa44.JPG",
+            "f757cfb5-9a60-4399-9088-9984a4584340.JPG",
+            "f7e809b9-c958-4ddb-8b12-651015f8661e 2.JPG",
+            "f8214cdb-5508-47ba-a5cc-40653262cef0 2.JPG",
+            "love 1.MP4",
+            "love 2.JPG",
+            "v2.MP4"
         ];
-        let currentBgIndex = 0;
 
+        let bgImagesList = [];
+
+        function buildGalleryItems() {
+            let items = [];
+            
+            exactFiles.forEach(filename => {
+                let lower = filename.toLowerCase();
+                let isVid = lower.endsWith('.mp4');
+                items.push({
+                    type: isVid ? "video" : "image",
+                    filename: filename,
+                    caption: isVid ? "🎥 فيديو من ذكرياتنا الجميلة ❤️" : "أجمل الذكريات واللحظات سوا ✨"
+                });
+
+                if (!isVid && bgImagesList.length < 5) {
+                    bgImagesList.push(filename);
+                }
+            });
+
+            // تتبع الفيديوهات الجديدة من v1 لحد v20 تلقائياً
+            for(let i=1; i<=20; i++) {
+                ['.mp4', '.MP4', '.MOV'].forEach(ext => {
+                    items.push({ type: "video", filename: `v${i}${ext}`, caption: "🎥 فيديو جديد مضاف لذكرياتنا ✨", isAuto: true });
+                });
+            }
+
+            // تتبع الصور الجديدة من ph1 لحد ph100 تلقائياً
+            for(let i=1; i<=100; i++) {
+                ['.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG'].forEach(ext => {
+                    items.push({ type: "image", filename: `ph${i}${ext}`, caption: "صورة جديدة لأحلى بنوتة في الكون 💖", isAuto: true });
+                });
+            }
+
+            return items;
+        }
+
+        let currentBgIndex = 0;
         function changeBackground() {
             const bgContainer = document.getElementById('bg-slideshow');
-            if (bgContainer && bgImages.length > 0) {
-                bgContainer.style.backgroundImage = `url('images/${encodeURIComponent(bgImages[currentBgIndex])}')`;
-                currentBgIndex = (currentBgIndex + 1) % bgImages.length;
+            if (bgContainer && bgImagesList.length > 0) {
+                bgContainer.style.backgroundImage = `url('images/${encodeURIComponent(bgImagesList[currentBgIndex])}')`;
+                currentBgIndex = (currentBgIndex + 1) % bgImagesList.length;
             }
         }
         setInterval(changeBackground, 4500);
@@ -333,50 +401,12 @@
             }, 350);
         }
 
-        // قائمة الصور المشتركة (ذكرياتنا)
-        const coupleMedia = [
-            { src: "0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG", caption: "كل صورة لينا سوا بتبين قد إيه إحنا بنكمل بعض ❤️" },
-            { src: "2f3d283b-158a-4064-a55d-7d12cda182af 2.JPG", caption: "أجمل اللحظات هي اللي بتكوني فيها جنبي وفي حضني ✨" },
-            { src: "891ce01b-4078-4022-9d99-8e7d99cefb60 2.JPG", caption: "ضحكتنا سوا بتسوى الدنيا وما فيها 💖" },
-            { src: "ca2f7853-8a7e-4024-aa64-20991bd657ad.JPG", caption: "حكايتنا أجمل حكاية اتكتبت بحب ورضا 🌸" },
-            { src: "IMG_8466.jpg", caption: "كل خطوة بناخدها سوا هي بداية لراحة بال وسعادة 🌹" },
-            { src: "f7e809b9-c958-4ddb-8b12-651015f8661e 2.JPG", caption: "ربنا يديم وجودنا سند وظهر لبعض العمر كله ❤️" }
-        ];
-
-        // قائمة الصور والفيديوهات الفردية (شاملة كل صورك + الفيديوهات القديمة والجديدة)
-        const soloMedia = [
-            { type: "image", src: "10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG", caption: "جمالك ملهوش أي بديل يا سكر دنيتي ✨" },
-            { type: "image", src: "167731ce-6526-40c0-a7bd-9955c54c5359.JPG", caption: "أنقى وأرق بنوتة شافتها عيني 💖" },
-            { type: "image", src: "2abc4b2c-e5e0-45b8-bfdd-179755ecb04c.JPG", caption: "ضحكتك بتنور في قلبي ألف شمعة 🌸" },
-            { type: "image", src: "55dfe29b-314c-40ca-b1d4-35dc47aa420a 2.JPG", caption: "ملكة متوجة في قلبي وفي نظري ❤️" },
-            { type: "image", src: "D0C506FC-8EC6-4010-B838-565E5E5C8D3B.JPG", caption: "أميرة قلبي ونور عيوني 🌹" },
-            { type: "image", src: "IMG_9455 2.PNG", caption: "كل تفصيلة فيكي بتخليني أعشقك أكتر ✨" },
-            { type: "video", src: "love 1.MP4", caption: "🎥 فيديو لأجمل وأحلى لحظة عشتها معاكي ❤️" },
-            { type: "video", src: "v4.MP4", caption: "🎥 فيديو لملكة قلبي وسكر حياتي ❤️" },
-            { type: "video", src: "v1.MP4", caption: "🎥 فيديو مميز لذكرياتنا الجميلة ✨" },
-            { type: "video", src: "v2.MP4", caption: "🎥 لقطة تحفة من أحلى أوقاتنا 💖" },
-            { type: "video", src: "v3.MP4", caption: "🎥 أحلى ضحكة وأجمل صوت رومانسي 🌹" }
-        ];
-
-        // 🔄 إضافة تتبع تلقائي لأكتر من 40 صورة وفيديو (من new1 لحد new40 بصيغ مختلفة) عشان تضمن ظهور أي حاجة تترفع
-        const extensions = ['.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG', '.mp4', '.MP4'];
-        for(let i=1; i<=40; i++) {
-            extensions.forEach(ext => {
-                let isVid = (ext.toLowerCase() === '.mp4');
-                soloMedia.push({
-                    type: isVid ? "video" : "image",
-                    src: `new${i}${ext}`,
-                    caption: isVid ? "🎥 فيديو جديد مضاف لذكرياتنا ✨" : "صورة جديدة لأحلى بنوتة في الكون ✨",
-                    isAuto: true
-                });
-            });
-        }
-
-        function renderGallery(items, containerId) {
-            const container = document.getElementById(containerId);
+        function renderGallery() {
+            const container = document.getElementById('main-gallery');
             container.innerHTML = '';
+            const allItems = buildGalleryItems();
 
-            items.forEach(item => {
+            allItems.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'photo-card';
 
@@ -384,18 +414,14 @@
                 mediaHolder.className = 'media-holder';
 
                 let mediaElem;
-                const type = item.type || "image";
-                const fullSrc = `images/${item.src}`;
+                const fullSrc = `images/${item.filename}`;
 
-                if (type === 'image') {
+                if (item.type === 'image') {
                     mediaElem = document.createElement('img');
                     mediaElem.src = fullSrc;
                     mediaElem.loading = "lazy";
-                    
                     if (item.isAuto) {
-                        mediaElem.onerror = function() {
-                            card.remove(); // لو الملف التلقائي مش مرفوع، بيتم إخفاؤه بهدوء من غير كارد فارغ
-                        };
+                        mediaElem.onerror = function() { card.remove(); };
                     }
                 } else {
                     mediaElem = document.createElement('video');
@@ -404,11 +430,8 @@
                     mediaElem.setAttribute('playsinline', '');
                     mediaElem.setAttribute('webkit-playsinline', '');
                     mediaElem.preload = "metadata";
-
                     if (item.isAuto) {
-                        mediaElem.onerror = function() {
-                            card.remove();
-                        };
+                        mediaElem.onerror = function() { card.remove(); };
                     }
                 }
 
@@ -422,7 +445,7 @@
 
                 card.onclick = (e) => {
                     if (e.target.tagName !== 'VIDEO') {
-                        openLightbox(fullSrc, type, item.caption);
+                        openLightbox(fullSrc, item.type, item.caption);
                     }
                 };
 
@@ -430,8 +453,7 @@
             });
         }
 
-        renderGallery(coupleMedia, 'couple-gallery');
-        renderGallery(soloMedia, 'solo-gallery');
+        renderGallery();
 
         function openLightbox(src, type, caption) {
             const lightbox = document.getElementById('lightbox');
