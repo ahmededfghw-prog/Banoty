@@ -6,24 +6,49 @@
     <title>عالمنا الخاص ❤️✨</title>
     <style>
         :root {
-            --bg-color: #fff0f5;
             --primary-color: #ff4d6d;
             --accent-color: #c9184a;
-            --card-bg: #ffffff;
-            --text-color: #590d22;
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --text-color: #4a0e17;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
         body {
-            background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            background-color: #1a000c;
         }
 
-        /* 🔒 1. شاشة القفل بكلمة السر */
+        /* 🖼️ 1. خلفية متغيرة تلقائياً من الصور والألوان */
+        #bg-slideshow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 2s ease-in-out;
+            filter: blur(8px) brightness(0.55);
+            transform: scale(1.05);
+        }
+
+        #bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, rgba(255, 117, 140, 0.3), rgba(199, 24, 74, 0.4));
+            animation: colorShift 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes colorShift {
+            0% { background: rgba(255, 77, 109, 0.25); }
+            50% { background: rgba(128, 15, 47, 0.35); }
+            100% { background: rgba(255, 182, 193, 0.3); }
+        }
+
+        /* 🔒 2. شاشة القفل */
         #lock-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -49,252 +74,193 @@
             border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        .lock-box h2 { margin-bottom: 15px; font-size: 1.7rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-
+        .lock-box h2 { margin-bottom: 15px; font-size: 1.7rem; }
         .lock-box input {
-            width: 100%;
-            padding: 14px;
-            border-radius: 25px;
-            border: none;
-            text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            outline: none;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%; padding: 14px; border-radius: 25px; border: none;
+            text-align: center; font-size: 1.1rem; margin-bottom: 15px; outline: none;
         }
-
         .lock-box button {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.5);
-            transition: 0.3s;
+            background: var(--primary-color); color: white; border: none;
+            padding: 12px 35px; border-radius: 25px; font-size: 1.1rem;
+            cursor: pointer; font-weight: bold; transition: 0.3s;
         }
-
         .lock-box button:hover { transform: scale(1.05); }
 
-        /* 🦋 2. مؤثرات وتساقط القلوب والفراشات */
+        /* 🦋 3. مؤثرات القلوب والفراشات */
         .floating-effect {
-            position: fixed;
-            top: -10vh;
-            font-size: 1.6rem;
-            user-select: none;
-            pointer-events: none;
-            animation: fall linear infinite;
-            z-index: 100;
+            position: fixed; top: -10vh; font-size: 1.6rem; user-select: none;
+            pointer-events: none; animation: fall linear infinite; z-index: 100;
         }
-
         @keyframes fall {
             0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 1; }
-            50% { transform: translateY(50vh) rotate(180deg) scale(1.2); }
             100% { transform: translateY(105vh) rotate(360deg) scale(0.8); opacity: 0; }
         }
 
-        /* 💖 3. المحتوى الرئيسي */
+        /* 💖 4. المحتوى الرئيسي */
         #main-content {
             display: none;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
             animation: fadeIn 1s ease-in-out;
         }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        header {
+        header { text-align: center; margin: 25px 0; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; color: #fff; }
+
+        /* ⏱️ تنسيق كروت عداد الحب */
+        .love-counter-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 25px 15px;
+            border-radius: 25px;
             text-align: center;
-            margin: 25px 0 35px 0;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.6);
         }
 
-        header h1 {
-            color: var(--primary-color);
-            font-size: 2.3rem;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+        .love-counter-box h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
         }
 
-        /* مشغل الصوت والأغنية */
+        #counter-display {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .time-card {
+            background: linear-gradient(135deg, #ff4d6d, #c9184a);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 16px;
+            min-width: 75px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-card span {
+            font-size: 1.6rem;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        .time-card label {
+            font-size: 0.85rem;
+            margin-top: 2px;
+            opacity: 0.9;
+        }
+
+        .counter-quote {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ff4d6d;
+            margin-top: 10px;
+        }
+
+        /* مشغل الصوت */
         .audio-container {
             background: var(--card-bg);
-            padding: 18px;
+            backdrop-filter: blur(10px);
+            padding: 15px;
             border-radius: 50px;
-            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.15);
             text-align: center;
             margin-bottom: 40px;
-            border: 2px solid #ffe5ec;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
-
         audio { width: 100%; max-width: 420px; height: 38px; }
 
-        .section-title {
+        /* عناوين الأقسام */
+        .section-header {
             text-align: center;
-            margin: 40px 0 25px 0;
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            position: relative;
+            margin: 45px 0 25px 0;
+            background: rgba(255, 77, 109, 0.85);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 1.5rem;
         }
+        .center-wrapper { text-align: center; }
 
-        /* 💌 4. قسم أوراق ورسائل الحب (Love Cards) */
-        .love-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-
-        .paper-card {
-            background: #fff8f0;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            border-right: 5px solid var(--primary-color);
-            position: relative;
-            transform: rotate(-1deg);
-            transition: 0.3s;
-        }
-
-        .paper-card:nth-child(even) { transform: rotate(1deg); }
-
-        .paper-card:hover {
-            transform: rotate(0deg) translateY(-8px);
-            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.2);
-        }
-
-        .paper-card h3 { color: var(--accent-color); margin-bottom: 10px; font-size: 1.2rem; }
-        .paper-card p { font-size: 0.98rem; line-height: 1.6; color: #4a0e17; }
-
-        /* 📸 5. معرض الصور المعزز بالمؤثرات والكلام */
+        /* 📸 شبكة معرض الصور والفيديو */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 22px;
+            margin-bottom: 40px;
         }
 
         .photo-card {
             background: var(--card-bg);
+            backdrop-filter: blur(8px);
             padding: 12px;
             border-radius: 18px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.35s ease;
             cursor: pointer;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border: 1px solid rgba(255,255,255,0.6);
         }
+        .photo-card:hover { transform: translateY(-7px) scale(1.02); box-shadow: 0 12px 25px rgba(255, 77, 109, 0.3); }
 
-        .photo-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.25);
-        }
+        .media-holder { overflow: hidden; border-radius: 12px; height: 260px; }
+        .photo-card img, .photo-card video { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
 
-        .media-holder {
-            overflow: hidden;
-            border-radius: 12px;
-            position: relative;
-        }
+        .caption { margin-top: 10px; font-size: 0.95rem; font-weight: 600; color: var(--text-color); line-height: 1.4; }
 
-        .photo-card img, .photo-card video {
-            width: 100%;
-            height: 270px;
-            object-fit: cover;
-            border-radius: 12px;
-            transition: transform 0.5s ease;
-        }
-
-        .photo-card:hover img { transform: scale(1.08); }
-
-        .caption {
-            margin-top: 12px;
-            font-size: 0.92rem;
-            font-weight: 600;
-            color: var(--text-color);
-            line-height: 1.4;
-            padding: 5px 2px;
-        }
-
-        /* 🔍 Lightbox لتكبير الصور عند النقر */
+        /* 🔍 Lightbox لتكبير الصور */
         #lightbox {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 10000;
-            padding: 20px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.88); display: none;
+            justify-content: center; align-items: center; flex-direction: column;
+            z-index: 10000; padding: 20px;
         }
+        #lightbox img, #lightbox video { max-width: 90%; max-height: 75vh; border-radius: 15px; }
+        #lightbox-caption { color: white; margin-top: 15px; font-size: 1.2rem; text-align: center; }
 
-        #lightbox img, #lightbox video {
-            max-width: 90%;
-            max-height: 75vh;
-            border-radius: 15px;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-        }
-
-        #lightbox-caption {
-            color: white;
-            margin-top: 15px;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-
-        /* 📬 6. صندوق إرسال الرسائل */
+        /* 📬 صندوق الرسائل */
         .message-box {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 22px;
-            box-shadow: 0 6px 25px rgba(255, 77, 109, 0.15);
-            text-align: center;
-            margin-bottom: 40px;
-            border: 1px solid #ffe5ec;
+            backdrop-filter: blur(10px);
+            padding: 30px; border-radius: 22px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            text-align: center; margin-bottom: 40px;
         }
-
-        .message-box h2 { color: var(--primary-color); margin-bottom: 10px; }
-
         textarea {
-            width: 100%;
-            padding: 15px;
-            border-radius: 14px;
-            border: 2px solid #ffccd5;
-            font-size: 1rem;
-            outline: none;
-            resize: none;
-            margin-bottom: 18px;
-            transition: 0.3s;
+            width: 100%; padding: 15px; border-radius: 14px;
+            border: 2px solid #ffccd5; font-size: 1rem; outline: none;
+            resize: none; margin-bottom: 18px;
         }
-
-        textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 10px rgba(255, 77, 109, 0.2); }
-
         .send-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px 40px;
-            border-radius: 30px;
-            font-size: 1.05rem;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.35);
-            transition: 0.3s;
+            background: var(--primary-color); color: white; border: none;
+            padding: 14px 40px; border-radius: 30px; font-size: 1.05rem;
+            font-weight: bold; cursor: pointer; transition: 0.3s;
         }
-
         .send-btn:hover { transform: scale(1.05); }
 
-        footer { text-align: center; font-size: 0.95rem; color: #a4133c; padding: 25px 0; }
+        footer { text-align: center; font-size: 0.95rem; color: white; padding: 25px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-    <!-- 🔒 شاشة كلمة السر -->
+    <!-- 🖼️ خلفية متحركة متغيرة -->
+    <div id="bg-slideshow"></div>
+    <div id="bg-overlay"></div>
+
+    <!-- 🔒 شاشة القفل -->
     <div id="lock-screen">
         <div class="lock-box">
             <h2>🔒 عالمنا الخاص</h2>
@@ -305,7 +271,7 @@
         </div>
     </div>
 
-    <!-- 🔍 نافذة تكبير الصور (Lightbox) -->
+    <!-- 🔍 نافذة تكبير الصور -->
     <div id="lightbox" onclick="closeLightbox()">
         <div id="lightbox-media"></div>
         <div id="lightbox-caption"></div>
@@ -315,41 +281,41 @@
     <div id="main-content">
         
         <header>
-            <h1>أجمل ذكرياتنا سوا ❤️✨</h1>
-            <p>مكاننا الخاص.. كل تفصيلة هنا صُنعت بحب من أجلكِ فقط</p>
+            <h1>أجمل عالم وأحلى ذكريات ❤️✨</h1>
+            <p>كل تفصيلة هنا صُنعت بحب عشاني وعشانك</p>
         </header>
+
+        <!-- ⏱️ عداد أيام الحب التفاعلي -->
+        <div class="love-counter-box">
+            <h3>💖 مع بعض بقالنا:</h3>
+            <div id="counter-display">
+                <div class="time-card"><span id="days">0</span><label>يوم</label></div>
+                <div class="time-card"><span id="hours">0</span><label>ساعة</label></div>
+                <div class="time-card"><span id="minutes">0</span><label>دقيقة</label></div>
+                <div class="time-card"><span id="seconds">0</span><label>ثانية</label></div>
+            </div>
+            <p class="counter-quote">"26 أغسطس 2024.. اليوم اللي بدأت فيه أحلى وأجمل حكاية في حياتي ❤️"</p>
+        </div>
 
         <!-- مشغل الصوت -->
         <div class="audio-container">
             <p style="margin-bottom: 10px; font-weight: bold; color: #ff4d6d;">🎵 أغنيتنا المفضلة:</p>
-            <audio id="love-song" controls loop>
+            <audio id="love-song" controls loop preload="auto">
                 <source src="song.mp3" type="audio/mpeg">
-                متصفحك لا يدعم مشغل الصوت.
             </audio>
         </div>
 
-        <!-- 💌 قسم أوراق ورسائل الحب -->
-        <h2 class="section-title">💌 أوراق غرامية</h2>
-        <div class="love-cards-grid">
-            <div class="paper-card">
-                <h3>📌 حبيبك بيقولك:</h3>
-                <p>"وجودك في حياتي هو أجمل حاجة حصلتلي، كل ثانية معاكي بتبقى ذكرى مش ممكن أنساها ❤️"</p>
-            </div>
-            <div class="paper-card">
-                <h3>✨ وعد مني ليكِ:</h3>
-                <p>"هفضل دايماً جنبِك وسندِك، وأعمل كل اللي أقدر عليه عشان أشوف الضحكة دي دايماً على وشِك."</p>
-            </div>
-            <div class="paper-card">
-                <h3>🌸 سر صغير:</h3>
-                <p>"كل صورة لينا سوا وراها حكاية وفرحة كبييييرة في قلبي مايعلمهاش غير ربنا 💖"</p>
-            </div>
+        <!-- 👩‍❤️‍👨 1. قسم صورنا سوا -->
+        <div class="center-wrapper">
+            <h2 class="section-header">👩‍❤️‍👨 ذكرياتنا وحكاياتنا سوا</h2>
         </div>
+        <div class="gallery-grid" id="couple-gallery"></div>
 
-        <!-- 📸 معرض الصور والفيديو -->
-        <h2 class="section-title">📸 صورنا وذكرياتنا الجميلة</h2>
-        <div class="gallery-grid" id="gallery">
-            <!-- سيتم توليد الصور والكلام والتحركات بالسكربت تلقائياً -->
+        <!-- 👑 2. قسم صورها وفيديوهاتها الخاصة -->
+        <div class="center-wrapper">
+            <h2 class="section-header">👑 أميرتي وملكة قلبي (صوركِ وفيديوهاتكِ)</h2>
         </div>
+        <div class="gallery-grid" id="solo-gallery"></div>
 
         <!-- 📬 صندوق إرسال الرسائل بتلجرام -->
         <div class="message-box">
@@ -365,8 +331,44 @@
     </div>
 
     <script>
-        // 🔑 1. كلمة السر الجديدة
         const SECRET_PASS = "حمووودى";
+
+        // ⏱️ حساب عداد الحب التلقائي من 26/8/2024
+        const startDate = new Date("2024-08-26T00:00:00");
+
+        function updateLoveCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+        setInterval(updateLoveCounter, 1000);
+
+        // 🖼️ قائمة صور الخلفية المتغيرة
+        const bgImages = [
+            "images/0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG",
+            "images/10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG",
+            "images/167731ce-6526-40c0-a7bd-9955c54c5359.JPG",
+            "images/IMG_8466.jpg"
+        ];
+        let currentBgIndex = 0;
+
+        function changeBackground() {
+            const bgContainer = document.getElementById('bg-slideshow');
+            if (bgContainer && bgImages.length > 0) {
+                bgContainer.style.backgroundImage = `url('${encodeURI(bgImages[currentBgIndex])}')`;
+                currentBgIndex = (currentBgIndex + 1) % bgImages.length;
+            }
+        }
+        setInterval(changeBackground, 4500);
 
         function checkPassword() {
             const input = document.getElementById('pass-input').value.trim();
@@ -374,16 +376,19 @@
                 document.getElementById('lock-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 
-                document.getElementById('love-song').play().catch(() => {});
+                const song = document.getElementById('love-song');
+                song.play().catch(e => console.log("صوت:", e));
+
+                updateLoveCounter();
+                changeBackground();
                 startEffects();
             } else {
                 document.getElementById('error-msg').style.display = 'block';
             }
         }
 
-        // 🦋 2. مؤثرات تساقط القلوب والفراشات
         function startEffects() {
-            const icons = ['❤️', '💖', '🦋', '✨', '🌸', '💌', '🌹'];
+            const icons = ['❤️', '💖', '🦋', '✨', '🌸', '🌹'];
             setInterval(() => {
                 const item = document.createElement('div');
                 item.classList.add('floating-effect');
@@ -391,97 +396,92 @@
                 item.style.left = Math.random() * 100 + 'vw';
                 item.style.animationDuration = (Math.random() * 3 + 3) + 's';
                 document.body.appendChild(item);
-
                 setTimeout(() => item.remove(), 6000);
-            }, 300);
+            }, 350);
         }
 
-        // 🖼️ 3. قائمة الصور والوسائط مع كلام حب مخصص لكل صورة
-        const mediaList = [
-            { type: "image", src: "0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG", caption: "ضحكتك دي هي اللي بتنور دنيتي كلها ❤️" },
-            { type: "image", src: "10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG", caption: "كل لحظة جنبك بتبقى أحلى ذكرى ✨" },
-            { type: "image", src: "167731ce-6526-40c0-a7bd-9955c54c5359.JPG", caption: "أنقى وأجمل قلب في الدنيا دي كلها 💖" },
-            { type: "image", src: "1b85a8b3-5ccc-423c-82b1-1382c68adcb5.JPG", caption: "وجودك معايا بيخليني في قمة سعادتي 🌸" },
-            { type: "image", src: "1dcf911c-350a-480a-85cb-e92dd78ecf0d 2.JPG", caption: "عيونك فيها سحر ملوش مثيل 💫" },
-            { type: "image", src: "1dd610a2-511c-46f4-9105-87bdb3d871e2 2.JPG", caption: "ربنا يديمك في حياتي يا أغلى ما أملك ❤️" },
-            { type: "image", src: "2DDB1201-F69D-49E6-9561-98DE1DF2B04E 2.JPG", caption: "حبيبتي وبنوتي وكل دنيتي ✨" },
-            { type: "image", src: "2abc4b2c-e5e0-45b8-bfdd-179755ecb04c.JPG", caption: "كل يوم بيعدي بحبك أكتر من اللي قبله 🌹" },
-            { type: "image", src: "2f3d283b-158a-4064-a55d-7d12cda182af 2.JPG", caption: "أحلى وأجمل ذكريات هي اللي سوا مع بعض 💌" },
-            { type: "image", src: "32E63936-9702-47F8-9987-22AC52C44CFC 2.JPG", caption: "أنتِ المشاعر الحلوة وكل الحاجات التميمة 💖" },
-            { type: "image", src: "4139183E-4665-43ED-A61E-5AC7902CD79F 2.JPG", caption: "جمالك ملوش وصف ولا مقارنة ✨" },
-            { type: "image", src: "4cf9c57a-75a6-47e8-9525-dbef0d55f14f.JPG", caption: "معاكي بحس إن الدنيا كلها ملكي ❤️" },
-            { type: "image", src: "55dfe29b-314c-40ca-b1d4-35dc47aa420a 2.JPG", caption: "أجمل بنوتة في الكون كله 🌸" },
-            { type: "image", src: "5d7d4cc1-6db9-4992-b509-e9dfdc87ef67 2.JPG", caption: "الضحكة الحلوة اللي بتهون عليا أي حاجة 💖" },
-            { type: "image", src: "5ea61ee0-8685-4ef4-be1d-24f77c9f6c03 2.JPG", caption: "كل الصور حلوة بس دي ليها معزة خاصة ✨" },
-            { type: "image", src: "67ba5ff2-a9d4-4e09-b65c-cebe38c1005f.JPG", caption: "راحة بالي وسعادتي دايماً بين إيديكي ❤️" },
-            { type: "image", src: "71D8C3C9-0A07-465F-9756-5639F0A7B0CD 2.JPG", caption: "سر سعادتي وكل تفاصيلي الحلوة 🌹" },
-            { type: "image", src: "891ce01b-4078-4022-9d99-8e7d99cefb60 2.JPG", caption: "أحلى يوم وأجمل لحظة سوا ✨" },
-            { type: "image", src: "91a0371e-19c4-463f-96f0-2f06697f5f48 2.JPG", caption: "أنعم وأرق إنسانة شفتها في حياتي 💖" },
-            { type: "image", src: "9d650f7f-676b-40ce-9dae-3c0fdfb477ef.JPG", caption: "حبي ليكي ملوش نهاية ولا حدود ❤️" },
-            { type: "image", src: "9e434ac1-99fa-4665-8c41-a659c44c58f7 2.JPG", caption: "عالمنا الجميل الخاص بينا وبس ✨" },
-            { type: "image", src: "9ee0c8aa-8d27-4fa1-a208-8358f222fa2e 2.JPG", caption: "كل ثانية جنبك بتسوى الدنيا 🌸" },
-            { type: "image", src: "D0C506FC-8EC6-4010-B838-565E5E5C8D3B.JPG", caption: "قمر منور دايماً في كل أوقاتك 💖" },
-            { type: "image", src: "DB162C07-D8BC-4485-BE39-FB00429EAF65 2.JPG", caption: "العشق والأمان وسندي الغالي ❤️" },
-            { type: "image", src: "DC215074-3B76-4E32-A1D8-D540C7D56146 2.jpg", caption: "أغلى هدية من ربنا ليا ✨" },
-            { type: "image", src: "E94A03B2-0987-4354-9AD5-2DB4C81AD70D 2.jpg", caption: "كل نظرة منك بحس فيها بالحب كله 🌹" },
-            { type: "image", src: "IMG_8352 2.JPG", caption: "جمال الطبيعة والتفاصيل العفوية ✨" },
-            { type: "image", src: "IMG_8466.jpg", caption: "الصورة دي فيها كمية دفا ومشاعر كبييرة ❤️" },
-            { type: "image", src: "IMG_8475 2.jpg", caption: "نظرتك وضحكتك هيفضلوا أحلى حاجة 💖" },
-            { type: "image", src: "IMG_9455 2.PNG", caption: "أميرتي الحلوة اللي ملهاش زي 🌸" },
-            { type: "image", src: "ca2f7853-8a7e-4024-aa64-20991bd657ad.JPG", caption: "حكاية حبنا اللي بتكبر كل يوم ✨" },
-            { type: "image", src: "d17fe48b-de40-4902-b93e-c3ed1004ce62 2.JPG", caption: "دمك الخفيف وضحكتك سر فرحتي ❤️" },
-            { type: "image", src: "d63a7234-57ef-4e13-8604-f8f892081fb2.JPG", caption: "ملكة قلبي ومصدر طافتي الإيجابية 💖" },
-            { type: "image", src: "db8e7d2f-6035-491a-8c46-9cad1d5fb603.jpg", caption: "بحبك وبموت في كل تفاصيلك 🌹" },
-            { type: "image", src: "dd16dbb9-3f33-4d28-8e4b-3b8dd16eaa44.JPG", caption: "ربنا يخليكي ليا وميحرمنيش منك أبداً ✨" },
-            { type: "image", src: "f757cfb5-9a60-4399-9088-9984a4584340.JPG", caption: "صورة ذكرية تحفة متتنسيش ❤️" },
-            { type: "image", src: "f7e809b9-c958-4ddb-8b12-651015f8661e 2.JPG", caption: "كل خطوة سوا بتبقى أسهل وأحلى 🌸" },
-            { type: "image", src: "f8214cdb-5508-47ba-a5cc-40653262cef0 2.JPG", caption: "الختام المسك لأجمل ألبوم صور لينا 💖" },
-            { type: "video", src: "love 1.MP4", caption: "🎥 فيديو ذكرياتنا الخاصة والمفضلة ❤️" }
+        // 👩‍❤️‍👨 1. قسم صورنا سوا
+        const coupleMedia = [
+            { src: "0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG", caption: "كل صورة لينا سوا بتبين قد إيه إحنا بنكمل بعض ❤️" },
+            { src: "2f3d283b-158a-4064-a55d-7d12cda182af 2.JPG", caption: "أجمل اللحظات هي اللي بتكوني فيها جنبي وفي حضني ✨" },
+            { src: "891ce01b-4078-4022-9d99-8e7d99cefb60 2.JPG", caption: "ضحكتنا سوا بتسوى الدنيا وما فيها 💖" },
+            { src: "ca2f7853-8a7e-4024-aa64-20991bd657ad.JPG", caption: "حكايتنا أجمل حكاية اتكتبت بحب ورضا 🌸" },
+            { src: "IMG_8466.jpg", caption: "كل خطوة بناخدها سوا هي بداية لراحة بال وسعادة 🌹" },
+            { src: "f7e809b9-c958-4ddb-8b12-651015f8661e 2.JPG", caption: "ربنا يديم وجودنا سند وظهر لبعض العمر كله ❤️" }
         ];
 
-        const gallery = document.getElementById('gallery');
+        // 👑 2. قسم صورها وفيديوهاتها الخاصة
+        const soloMedia = [
+            { type: "image", src: "10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG", caption: "جمالك ملهوش أي بديل يا سكر دنيتي ✨" },
+            { type: "image", src: "167731ce-6526-40c0-a7bd-9955c54c5359.JPG", caption: "أنقى وأرق بنوتة شافتها عيني 💖" },
+            { type: "image", src: "2abc4b2c-e5e0-45b8-bfdd-179755ecb04c.JPG", caption: "ضحكتك بتنور في قلبي ألف شمعة 🌸" },
+            { type: "image", src: "55dfe29b-314c-40ca-b1d4-35dc47aa420a 2.JPG", caption: "ملكة متوجة في قلبي وفي نظري ❤️" },
+            { type: "image", src: "D0C506FC-8EC6-4010-B838-565E5E5C8D3B.JPG", caption: "أميرة قلبي ونور عيوني 🌹" },
+            { type: "image", src: "IMG_9455 2.PNG", caption: "كل تفصيلة فيكي بتخليني أعشقك أكتر ✨" },
+            { type: "video", src: "love 1.MP4", caption: "🎥 فيديو لأجمل وأحلى لحظة عشتها معاكي ❤️" },
+            { type: "video", src: "v2.mp4", caption: "🎥 فيديو جديد لملكة قلبي وسكر حياتي ❤️" }
+        ];
 
-        // بناء معرض الصور والتحركات
-        mediaList.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'photo-card';
-
-            const mediaHolder = document.createElement('div');
-            mediaHolder.className = 'media-holder';
-
-            let mediaElem;
-            const encodedSrc = `images/${encodeURIComponent(item.src)}`;
-
-            if (item.type === 'image') {
-                mediaElem = document.createElement('img');
-                mediaElem.src = encodedSrc;
-                mediaElem.loading = "lazy";
-            } else {
-                mediaElem = document.createElement('video');
-                mediaElem.src = encodedSrc;
-                mediaElem.controls = true;
+        // 🔄 إضافة الفيديوهات والصور الجديدة تلقائياً
+        for(let v=1; v<=10; v++) {
+            if(v !== 2) { // تم إضافة v2 يدويًا بالأعلى
+                soloMedia.push({ type: "video", src: `v${v}.mp4`, caption: "🎥 فيديو جديد لملكة قلبي وحبيبتي ❤️", isAuto: true });
             }
+        }
+        for(let i=1; i<=30; i++) {
+            soloMedia.push({ type: "image", src: `new${i}.jpg`, caption: "صورة جديدة لأحلى بنوتة في الكون ✨", isAuto: true });
+            soloMedia.push({ type: "image", src: `new${i}.JPG`, caption: "صورة جديدة لأحلى بنوتة في الكون ✨", isAuto: true });
+        }
 
-            mediaHolder.appendChild(mediaElem);
-            card.appendChild(mediaHolder);
+        // بناء المعارض
+        function renderGallery(items, containerId) {
+            const container = document.getElementById(containerId);
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'photo-card';
 
-            // إضافة العبارة الرومانسية تحت الصورة
-            const caption = document.createElement('div');
-            caption.className = 'caption';
-            caption.innerText = item.caption;
-            card.appendChild(caption);
+                const mediaHolder = document.createElement('div');
+                mediaHolder.className = 'media-holder';
 
-            // تكبير عند الضغط
-            card.onclick = (e) => {
-                if (e.target.tagName !== 'VIDEO') {
-                    openLightbox(encodedSrc, item.type, item.caption);
+                let mediaElem;
+                const type = item.type || "image";
+                const encodedSrc = `images/${encodeURIComponent(item.src)}`;
+
+                if (type === 'image') {
+                    mediaElem = document.createElement('img');
+                    mediaElem.src = encodedSrc;
+                    mediaElem.loading = "lazy";
+                } else {
+                    mediaElem = document.createElement('video');
+                    mediaElem.src = encodedSrc;
+                    mediaElem.controls = true;
                 }
-            };
 
-            gallery.appendChild(card);
-        });
+                if (item.isAuto) {
+                    mediaElem.onerror = () => card.remove();
+                }
 
-        // 4. خاصية تكبير الصور عند النقر (Lightbox)
+                mediaHolder.appendChild(mediaElem);
+                card.appendChild(mediaHolder);
+
+                const caption = document.createElement('div');
+                caption.className = 'caption';
+                caption.innerText = item.caption;
+                card.appendChild(caption);
+
+                card.onclick = (e) => {
+                    if (e.target.tagName !== 'VIDEO') {
+                        openLightbox(encodedSrc, type, item.caption);
+                    }
+                };
+
+                container.appendChild(card);
+            });
+        }
+
+        renderGallery(coupleMedia, 'couple-gallery');
+        renderGallery(soloMedia, 'solo-gallery');
+
         function openLightbox(src, type, caption) {
             const lightbox = document.getElementById('lightbox');
             const mediaContainer = document.getElementById('lightbox-media');
@@ -493,7 +493,6 @@
             } else {
                 mediaContainer.innerHTML = `<video src="${src}" controls autoplay></video>`;
             }
-
             captionElem.innerText = caption;
             lightbox.style.display = 'flex';
         }
@@ -502,15 +501,14 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // 📬 5. إرسال الرسالة إلى تلجرام
+        // إرسال الرسالة لتلجرام
         document.getElementById('love-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const msg = document.getElementById('love-message').value;
-
             const botToken = "8624749284:AAEMvDKtk_N5QR0Iiq3E2DTo5ErKb_dt0fM";
             const chatId = "1658368856";
 
-            const text = `💌 رسالة حب جديدة من حبيبك في الموقع:\n\n"${msg}"`;
+            const text = `💌 رسالة حب جديدة من الموقع:\n\n"${msg}"`;
             const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
 
             fetch(url)
@@ -519,11 +517,9 @@
                     if (data.ok) {
                         alert("وصلتني رسالتك يا حبيبتي! ❤️✨");
                         document.getElementById('love-message').value = '';
-                    } else {
-                        alert("حدث خطأ بسيط في الإرسال.");
-                    }
+                    } else { alert("حدث خطأ بسيط."); }
                 })
-                .catch(() => alert("تعذر الاتصال بالشبكة."));
+                .catch(() => alert("تعذر الاتصال."));
         });
     </script>
 </body>
