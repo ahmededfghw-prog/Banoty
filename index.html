@@ -22,7 +22,6 @@
             background-color: #1a000c;
         }
 
-        /* 🖼️ 1. خلفية متغيرة تلقائياً من الصور والألوان */
         #bg-slideshow {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -48,7 +47,6 @@
             100% { background: rgba(255, 182, 193, 0.3); }
         }
 
-        /* 🔒 2. شاشة القفل */
         #lock-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -86,7 +84,6 @@
         }
         .lock-box button:hover { transform: scale(1.05); }
 
-        /* 🦋 3. مؤثرات القلوب والفراشات */
         .floating-effect {
             position: fixed; top: -10vh; font-size: 1.6rem; user-select: none;
             pointer-events: none; animation: fall linear infinite; z-index: 100;
@@ -96,7 +93,6 @@
             100% { transform: translateY(105vh) rotate(360deg) scale(0.8); opacity: 0; }
         }
 
-        /* 💖 4. المحتوى الرئيسي */
         #main-content {
             display: none;
             max-width: 1100px;
@@ -109,7 +105,6 @@
         header { text-align: center; margin: 25px 0; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
         header h1 { font-size: 2.5rem; margin-bottom: 10px; color: #fff; }
 
-        /* ⏱️ تنسيق كروت عداد الحب */
         .love-counter-box {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -121,52 +116,22 @@
             border: 1px solid rgba(255,255,255,0.6);
         }
 
-        .love-counter-box h3 {
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
+        .love-counter-box h3 { color: var(--accent-color); margin-bottom: 15px; font-size: 1.4rem; }
 
         #counter-display {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
+            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 15px;
         }
 
         .time-card {
             background: linear-gradient(135deg, #ff4d6d, #c9184a);
-            color: white;
-            padding: 12px 18px;
-            border-radius: 16px;
-            min-width: 75px;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: white; padding: 12px 18px; border-radius: 16px; min-width: 75px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3); display: flex; flex-direction: column; align-items: center;
         }
 
-        .time-card span {
-            font-size: 1.6rem;
-            font-weight: bold;
-            font-family: monospace;
-        }
+        .time-card span { font-size: 1.6rem; font-weight: bold; font-family: monospace; }
+        .time-card label { font-size: 0.85rem; margin-top: 2px; opacity: 0.9; }
+        .counter-quote { font-size: 1rem; font-weight: 600; color: #ff4d6d; margin-top: 10px; }
 
-        .time-card label {
-            font-size: 0.85rem;
-            margin-top: 2px;
-            opacity: 0.9;
-        }
-
-        .counter-quote {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ff4d6d;
-            margin-top: 10px;
-        }
-
-        /* مشغل الصوت */
         .audio-container {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -178,50 +143,33 @@
         }
         audio { width: 100%; max-width: 420px; height: 38px; }
 
-        /* عناوين الأقسام */
         .section-header {
-            text-align: center;
-            margin: 45px 0 25px 0;
-            background: rgba(255, 77, 109, 0.85);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            font-size: 1.5rem;
+            text-align: center; margin: 45px 0 25px 0;
+            background: rgba(255, 77, 109, 0.85); color: white;
+            padding: 12px 25px; border-radius: 30px; display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-size: 1.5rem;
         }
         .center-wrapper { text-align: center; }
 
-        /* 📸 شبكة معرض الصور والفيديو */
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 22px;
-            margin-bottom: 40px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 22px; margin-bottom: 40px;
         }
 
         .photo-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            padding: 12px;
-            border-radius: 18px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-            text-align: center;
-            transition: all 0.35s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: var(--card-bg); backdrop-filter: blur(8px);
+            padding: 12px; border-radius: 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            text-align: center; transition: all 0.35s ease; cursor: pointer;
+            display: flex; flex-direction: column; justify-content: space-between;
             border: 1px solid rgba(255,255,255,0.6);
         }
         .photo-card:hover { transform: translateY(-7px) scale(1.02); box-shadow: 0 12px 25px rgba(255, 77, 109, 0.3); }
 
-        .media-holder { overflow: hidden; border-radius: 12px; height: 260px; }
+        .media-holder { overflow: hidden; border-radius: 12px; height: 260px; background: #000; }
         .photo-card img, .photo-card video { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
 
         .caption { margin-top: 10px; font-size: 0.95rem; font-weight: 600; color: var(--text-color); line-height: 1.4; }
 
-        /* 🔍 Lightbox لتكبير الصور */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.88); display: none;
@@ -231,23 +179,18 @@
         #lightbox img, #lightbox video { max-width: 90%; max-height: 75vh; border-radius: 15px; }
         #lightbox-caption { color: white; margin-top: 15px; font-size: 1.2rem; text-align: center; }
 
-        /* 📬 صندوق الرسائل */
         .message-box {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 30px; border-radius: 22px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            background: var(--card-bg); backdrop-filter: blur(10px);
+            padding: 30px; border-radius: 22px; box-shadow: 0 6px 25px rgba(0,0,0,0.15);
             text-align: center; margin-bottom: 40px;
         }
         textarea {
             width: 100%; padding: 15px; border-radius: 14px;
-            border: 2px solid #ffccd5; font-size: 1rem; outline: none;
-            resize: none; margin-bottom: 18px;
+            border: 2px solid #ffccd5; font-size: 1rem; outline: none; resize: none; margin-bottom: 18px;
         }
         .send-btn {
             background: var(--primary-color); color: white; border: none;
-            padding: 14px 40px; border-radius: 30px; font-size: 1.05rem;
-            font-weight: bold; cursor: pointer; transition: 0.3s;
+            padding: 14px 40px; border-radius: 30px; font-size: 1.05rem; font-weight: bold; cursor: pointer; transition: 0.3s;
         }
         .send-btn:hover { transform: scale(1.05); }
 
@@ -256,11 +199,9 @@
 </head>
 <body>
 
-    <!-- 🖼️ خلفية متحركة متغيرة -->
     <div id="bg-slideshow"></div>
     <div id="bg-overlay"></div>
 
-    <!-- 🔒 شاشة القفل -->
     <div id="lock-screen">
         <div class="lock-box">
             <h2>🔒 عالمنا الخاص</h2>
@@ -271,21 +212,17 @@
         </div>
     </div>
 
-    <!-- 🔍 نافذة تكبير الصور -->
     <div id="lightbox" onclick="closeLightbox()">
         <div id="lightbox-media"></div>
         <div id="lightbox-caption"></div>
     </div>
 
-    <!-- 💖 المحتوى الرئيسي -->
     <div id="main-content">
-        
         <header>
             <h1>أجمل عالم وأحلى ذكريات ❤️✨</h1>
             <p>كل تفصيلة هنا صُنعت بحب عشاني وعشانك</p>
         </header>
 
-        <!-- ⏱️ عداد أيام الحب التفاعلي -->
         <div class="love-counter-box">
             <h3>💖 مع بعض بقالنا:</h3>
             <div id="counter-display">
@@ -297,27 +234,24 @@
             <p class="counter-quote">"26 أغسطس 2024.. اليوم اللي بدأت فيه أحلى وأجمل حكاية في حياتي ❤️"</p>
         </div>
 
-        <!-- مشغل الصوت -->
         <div class="audio-container">
             <p style="margin-bottom: 10px; font-weight: bold; color: #ff4d6d;">🎵 أغنيتنا المفضلة:</p>
             <audio id="love-song" controls loop preload="auto">
                 <source src="song.mp3" type="audio/mpeg">
+                <source src="images/song.mp3" type="audio/mpeg">
             </audio>
         </div>
 
-        <!-- 👩‍❤️‍👨 1. قسم صورنا سوا -->
         <div class="center-wrapper">
             <h2 class="section-header">👩‍❤️‍👨 ذكرياتنا وحكاياتنا سوا</h2>
         </div>
         <div class="gallery-grid" id="couple-gallery"></div>
 
-        <!-- 👑 2. قسم صورها وفيديوهاتها الخاصة -->
         <div class="center-wrapper">
             <h2 class="section-header">👑 أميرتي وملكة قلبي (صوركِ وفيديوهاتكِ)</h2>
         </div>
         <div class="gallery-grid" id="solo-gallery"></div>
 
-        <!-- 📬 صندوق إرسال الرسائل بتلجرام -->
         <div class="message-box">
             <h2>💌 اكتبيلي رسالة</h2>
             <p style="color: #800f2f; margin-bottom: 15px; font-size: 0.95rem;">أي رسالة تكتبيها هنا هتوصلي على التلجرام فوراً ❤️</p>
@@ -333,13 +267,11 @@
     <script>
         const SECRET_PASS = "حمووودى";
 
-        // ⏱️ حساب عداد الحب التلقائي من 26/8/2024
         const startDate = new Date("2024-08-26T00:00:00");
 
         function updateLoveCounter() {
             const now = new Date();
             const diff = now - startDate;
-
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / 1000 / 60) % 60);
@@ -352,7 +284,6 @@
         }
         setInterval(updateLoveCounter, 1000);
 
-        // 🖼️ قائمة صور الخلفية المتغيرة
         const bgImages = [
             "images/0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG",
             "images/10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG",
@@ -376,8 +307,11 @@
                 document.getElementById('lock-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 
+                // تشغيل الأغنية فور الضغط على الكروم
                 const song = document.getElementById('love-song');
-                song.play().catch(e => console.log("صوت:", e));
+                if(song) {
+                    song.play().catch(e => console.log("الصوت محظور في كروم:", e));
+                }
 
                 updateLoveCounter();
                 changeBackground();
@@ -400,7 +334,6 @@
             }, 350);
         }
 
-        // 👩‍❤️‍👨 1. قسم صورنا سوا
         const coupleMedia = [
             { src: "0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG", caption: "كل صورة لينا سوا بتبين قد إيه إحنا بنكمل بعض ❤️" },
             { src: "2f3d283b-158a-4064-a55d-7d12cda182af 2.JPG", caption: "أجمل اللحظات هي اللي بتكوني فيها جنبي وفي حضني ✨" },
@@ -410,7 +343,6 @@
             { src: "f7e809b9-c958-4ddb-8b12-651015f8661e 2.JPG", caption: "ربنا يديم وجودنا سند وظهر لبعض العمر كله ❤️" }
         ];
 
-        // 👑 2. قسم صورها وفيديوهاتها الخاصة
         const soloMedia = [
             { type: "image", src: "10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG", caption: "جمالك ملهوش أي بديل يا سكر دنيتي ✨" },
             { type: "image", src: "167731ce-6526-40c0-a7bd-9955c54c5359.JPG", caption: "أنقى وأرق بنوتة شافتها عيني 💖" },
@@ -422,9 +354,8 @@
             { type: "video", src: "v2.mp4", caption: "🎥 فيديو جديد لملكة قلبي وسكر حياتي ❤️" }
         ];
 
-        // 🔄 إضافة الفيديوهات والصور الجديدة تلقائياً
         for(let v=1; v<=10; v++) {
-            if(v !== 2) { // تم إضافة v2 يدويًا بالأعلى
+            if(v !== 2) {
                 soloMedia.push({ type: "video", src: `v${v}.mp4`, caption: "🎥 فيديو جديد لملكة قلبي وحبيبتي ❤️", isAuto: true });
             }
         }
@@ -433,7 +364,6 @@
             soloMedia.push({ type: "image", src: `new${i}.JPG`, caption: "صورة جديدة لأحلى بنوتة في الكون ✨", isAuto: true });
         }
 
-        // بناء المعارض
         function renderGallery(items, containerId) {
             const container = document.getElementById(containerId);
             items.forEach(item => {
@@ -455,6 +385,9 @@
                     mediaElem = document.createElement('video');
                     mediaElem.src = encodedSrc;
                     mediaElem.controls = true;
+                    mediaElem.setAttribute('playsinline', '');
+                    mediaElem.setAttribute('webkit-playsinline', '');
+                    mediaElem.preload = "metadata";
                 }
 
                 if (item.isAuto) {
@@ -491,7 +424,7 @@
             if (type === 'image') {
                 mediaContainer.innerHTML = `<img src="${src}">`;
             } else {
-                mediaContainer.innerHTML = `<video src="${src}" controls autoplay></video>`;
+                mediaContainer.innerHTML = `<video src="${src}" controls autoplay playsinline webkit-playsinline></video>`;
             }
             captionElem.innerText = caption;
             lightbox.style.display = 'flex';
@@ -501,7 +434,6 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // إرسال الرسالة لتلجرام
         document.getElementById('love-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const msg = document.getElementById('love-message').value;
