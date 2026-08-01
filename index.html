@@ -236,11 +236,9 @@
 
         <div class="audio-container">
             <p style="margin-bottom: 10px; font-weight: bold; color: #ff4d6d;">🎵 أغنيتنا المفضلة:</p>
+            <!-- أغنية رومانسية شغالة أونلاين ومضمونة 100% -->
             <audio id="love-song" controls loop preload="auto">
-                <source src="song.mp3" type="audio/mpeg">
-                <source src="song.MP3" type="audio/mpeg">
-                <source src="images/song.mp3" type="audio/mpeg">
-                <source src="images/song.MP3" type="audio/mpeg">
+                <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-sky-111030.mp3" type="audio/mpeg">
             </audio>
         </div>
 
@@ -297,7 +295,7 @@
         function changeBackground() {
             const bgContainer = document.getElementById('bg-slideshow');
             if (bgContainer && bgImages.length > 0) {
-                bgContainer.style.backgroundImage = `url('${encodeURI(bgImages[currentBgIndex])}')`;
+                bgContainer.style.backgroundImage = `url('images/${encodeURIComponent(bgImages[currentBgIndex])}')`;
                 currentBgIndex = (currentBgIndex + 1) % bgImages.length;
             }
         }
@@ -311,7 +309,7 @@
                 
                 const song = document.getElementById('love-song');
                 if(song) {
-                    song.play().catch(e => console.log("الصوت محظور في كروم:", e));
+                    song.play().catch(e => console.log("الصوت محظور:", e));
                 }
 
                 updateLoveCounter();
@@ -335,6 +333,7 @@
             }, 350);
         }
 
+        // قائمة الصور المشتركة (ذكرياتنا)
         const coupleMedia = [
             { src: "0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG", caption: "كل صورة لينا سوا بتبين قد إيه إحنا بنكمل بعض ❤️" },
             { src: "2f3d283b-158a-4064-a55d-7d12cda182af 2.JPG", caption: "أجمل اللحظات هي اللي بتكوني فيها جنبي وفي حضني ✨" },
@@ -344,6 +343,7 @@
             { src: "f7e809b9-c958-4ddb-8b12-651015f8661e 2.JPG", caption: "ربنا يديم وجودنا سند وظهر لبعض العمر كله ❤️" }
         ];
 
+        // قائمة الصور والفيديوهات الفردية (شاملة كل صورك + الفيديوهات القديمة والجديدة)
         const soloMedia = [
             { type: "image", src: "10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG", caption: "جمالك ملهوش أي بديل يا سكر دنيتي ✨" },
             { type: "image", src: "167731ce-6526-40c0-a7bd-9955c54c5359.JPG", caption: "أنقى وأرق بنوتة شافتها عيني 💖" },
@@ -351,21 +351,30 @@
             { type: "image", src: "55dfe29b-314c-40ca-b1d4-35dc47aa420a 2.JPG", caption: "ملكة متوجة في قلبي وفي نظري ❤️" },
             { type: "image", src: "D0C506FC-8EC6-4010-B838-565E5E5C8D3B.JPG", caption: "أميرة قلبي ونور عيوني 🌹" },
             { type: "image", src: "IMG_9455 2.PNG", caption: "كل تفصيلة فيكي بتخليني أعشقك أكتر ✨" },
-            { type: "video", src: "love 1.MP4", caption: "🎥 فيديو لأجمل وأحلى لحظة عشتها معاكي ❤️" }
+            { type: "video", src: "love 1.MP4", caption: "🎥 فيديو لأجمل وأحلى لحظة عشتها معاكي ❤️" },
+            { type: "video", src: "v4.MP4", caption: "🎥 فيديو لملكة قلبي وسكر حياتي ❤️" },
+            { type: "video", src: "v1.MP4", caption: "🎥 فيديو مميز لذكرياتنا الجميلة ✨" },
+            { type: "video", src: "v2.MP4", caption: "🎥 لقطة تحفة من أحلى أوقاتنا 💖" },
+            { type: "video", src: "v3.MP4", caption: "🎥 أحلى ضحكة وأجمل صوت رومانسي 🌹" }
         ];
 
-        // 🔄 إضافة الفيديوهات تلقائياً ودعم الحروف الكبيرة والصغيرة (v1 حتى v10)
-        for(let v=1; v<=10; v++) {
-            soloMedia.push({ type: "video", srcBase: `v${v}`, caption: "🎥 فيديو جديد لملكة قلبي وحبيبتي ❤️", isAuto: true });
-        }
-
-        // 🔄 إضافة الصور تلقائياً ودعم الحروف الكبيرة والصغيرة (new1 حتى new30)
-        for(let i=1; i<=30; i++) {
-            soloMedia.push({ type: "image", srcBase: `new${i}`, caption: "صورة جديدة لأحلى بنوتة في الكون ✨", isAuto: true });
+        // 🔄 إضافة تتبع تلقائي لأكتر من 40 صورة وفيديو (من new1 لحد new40 بصيغ مختلفة) عشان تضمن ظهور أي حاجة تترفع
+        const extensions = ['.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG', '.mp4', '.MP4'];
+        for(let i=1; i<=40; i++) {
+            extensions.forEach(ext => {
+                let isVid = (ext.toLowerCase() === '.mp4');
+                soloMedia.push({
+                    type: isVid ? "video" : "image",
+                    src: `new${i}${ext}`,
+                    caption: isVid ? "🎥 فيديو جديد مضاف لذكرياتنا ✨" : "صورة جديدة لأحلى بنوتة في الكون ✨",
+                    isAuto: true
+                });
+            });
         }
 
         function renderGallery(items, containerId) {
             const container = document.getElementById(containerId);
+            container.innerHTML = '';
 
             items.forEach(item => {
                 const card = document.createElement('div');
@@ -376,38 +385,31 @@
 
                 let mediaElem;
                 const type = item.type || "image";
+                const fullSrc = `images/${item.src}`;
 
                 if (type === 'image') {
                     mediaElem = document.createElement('img');
+                    mediaElem.src = fullSrc;
                     mediaElem.loading = "lazy";
+                    
+                    if (item.isAuto) {
+                        mediaElem.onerror = function() {
+                            card.remove(); // لو الملف التلقائي مش مرفوع، بيتم إخفاؤه بهدوء من غير كارد فارغ
+                        };
+                    }
                 } else {
                     mediaElem = document.createElement('video');
+                    mediaElem.src = fullSrc;
                     mediaElem.controls = true;
                     mediaElem.setAttribute('playsinline', '');
                     mediaElem.setAttribute('webkit-playsinline', '');
                     mediaElem.preload = "metadata";
-                }
 
-                if (item.isAuto) {
-                    // تجربة الامتدادات (كابيتال وسمول) تلقائياً للملفات الجديدة
-                    const extensions = type === 'video' ? ['.mp4', '.MP4', '.mov', '.MOV'] : ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG'];
-                    let currentExtIndex = 0;
-
-                    function tryNextSource() {
-                        if (currentExtIndex < extensions.length) {
-                            const fullSrc = `images/${encodeURIComponent(item.srcBase + extensions[currentExtIndex])}`;
-                            mediaElem.src = fullSrc;
-                            currentExtIndex++;
-                        } else {
-                            card.remove(); // إخفاء البطاقة إذا لم يوجد الملف بأي امتداد
-                        }
+                    if (item.isAuto) {
+                        mediaElem.onerror = function() {
+                            card.remove();
+                        };
                     }
-
-                    mediaElem.onerror = tryNextSource;
-                    tryNextSource();
-                } else {
-                    // للملفات اليدوية المكتوبة مسبقاً
-                    mediaElem.src = `images/${encodeURIComponent(item.src)}`;
                 }
 
                 mediaHolder.appendChild(mediaElem);
@@ -420,7 +422,7 @@
 
                 card.onclick = (e) => {
                     if (e.target.tagName !== 'VIDEO') {
-                        openLightbox(mediaElem.src, type, item.caption);
+                        openLightbox(fullSrc, type, item.caption);
                     }
                 };
 
