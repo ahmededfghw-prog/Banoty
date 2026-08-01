@@ -238,7 +238,9 @@
             <p style="margin-bottom: 10px; font-weight: bold; color: #ff4d6d;">🎵 أغنيتنا المفضلة:</p>
             <audio id="love-song" controls loop preload="auto">
                 <source src="song.mp3" type="audio/mpeg">
+                <source src="song.MP3" type="audio/mpeg">
                 <source src="images/song.mp3" type="audio/mpeg">
+                <source src="images/song.MP3" type="audio/mpeg">
             </audio>
         </div>
 
@@ -307,7 +309,6 @@
                 document.getElementById('lock-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 
-                // تشغيل الأغنية فور الضغط على الكروم
                 const song = document.getElementById('love-song');
                 if(song) {
                     song.play().catch(e => console.log("الصوت محظور في كروم:", e));
@@ -350,22 +351,22 @@
             { type: "image", src: "55dfe29b-314c-40ca-b1d4-35dc47aa420a 2.JPG", caption: "ملكة متوجة في قلبي وفي نظري ❤️" },
             { type: "image", src: "D0C506FC-8EC6-4010-B838-565E5E5C8D3B.JPG", caption: "أميرة قلبي ونور عيوني 🌹" },
             { type: "image", src: "IMG_9455 2.PNG", caption: "كل تفصيلة فيكي بتخليني أعشقك أكتر ✨" },
-            { type: "video", src: "love 1.MP4", caption: "🎥 فيديو لأجمل وأحلى لحظة عشتها معاكي ❤️" },
-            { type: "video", src: "v2.mp4", caption: "🎥 فيديو جديد لملكة قلبي وسكر حياتي ❤️" }
+            { type: "video", src: "love 1.MP4", caption: "🎥 فيديو لأجمل وأحلى لحظة عشتها معاكي ❤️" }
         ];
 
+        // 🔄 إضافة الفيديوهات تلقائياً ودعم الحروف الكبيرة والصغيرة (v1 حتى v10)
         for(let v=1; v<=10; v++) {
-            if(v !== 2) {
-                soloMedia.push({ type: "video", src: `v${v}.mp4`, caption: "🎥 فيديو جديد لملكة قلبي وحبيبتي ❤️", isAuto: true });
-            }
+            soloMedia.push({ type: "video", srcBase: `v${v}`, caption: "🎥 فيديو جديد لملكة قلبي وحبيبتي ❤️", isAuto: true });
         }
+
+        // 🔄 إضافة الصور تلقائياً ودعم الحروف الكبيرة والصغيرة (new1 حتى new30)
         for(let i=1; i<=30; i++) {
-            soloMedia.push({ type: "image", src: `new${i}.jpg`, caption: "صورة جديدة لأحلى بنوتة في الكون ✨", isAuto: true });
-            soloMedia.push({ type: "image", src: `new${i}.JPG`, caption: "صورة جديدة لأحلى بنوتة في الكون ✨", isAuto: true });
+            soloMedia.push({ type: "image", srcBase: `new${i}`, caption: "صورة جديدة لأحلى بنوتة في الكون ✨", isAuto: true });
         }
 
         function renderGallery(items, containerId) {
             const container = document.getElementById(containerId);
+
             items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'photo-card';
@@ -375,15 +376,12 @@
 
                 let mediaElem;
                 const type = item.type || "image";
-                const encodedSrc = `images/${encodeURIComponent(item.src)}`;
 
                 if (type === 'image') {
                     mediaElem = document.createElement('img');
-                    mediaElem.src = encodedSrc;
                     mediaElem.loading = "lazy";
                 } else {
                     mediaElem = document.createElement('video');
-                    mediaElem.src = encodedSrc;
                     mediaElem.controls = true;
                     mediaElem.setAttribute('playsinline', '');
                     mediaElem.setAttribute('webkit-playsinline', '');
@@ -391,7 +389,25 @@
                 }
 
                 if (item.isAuto) {
-                    mediaElem.onerror = () => card.remove();
+                    // تجربة الامتدادات (كابيتال وسمول) تلقائياً للملفات الجديدة
+                    const extensions = type === 'video' ? ['.mp4', '.MP4', '.mov', '.MOV'] : ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG'];
+                    let currentExtIndex = 0;
+
+                    function tryNextSource() {
+                        if (currentExtIndex < extensions.length) {
+                            const fullSrc = `images/${encodeURIComponent(item.srcBase + extensions[currentExtIndex])}`;
+                            mediaElem.src = fullSrc;
+                            currentExtIndex++;
+                        } else {
+                            card.remove(); // إخفاء البطاقة إذا لم يوجد الملف بأي امتداد
+                        }
+                    }
+
+                    mediaElem.onerror = tryNextSource;
+                    tryNextSource();
+                } else {
+                    // للملفات اليدوية المكتوبة مسبقاً
+                    mediaElem.src = `images/${encodeURIComponent(item.src)}`;
                 }
 
                 mediaHolder.appendChild(mediaElem);
@@ -404,7 +420,7 @@
 
                 card.onclick = (e) => {
                     if (e.target.tagName !== 'VIDEO') {
-                        openLightbox(encodedSrc, type, item.caption);
+                        openLightbox(mediaElem.src, type, item.caption);
                     }
                 };
 
