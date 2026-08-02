@@ -1,1600 +1,4599 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>مملكة بسبوستي 💜</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#070711">
+
+<title>Banoty ❤️ | مملكة حبنا</title>
 
 <style>
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Tahoma,Arial,sans-serif;
-}
+/* =========================================================
+   COLORS
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
 
 :root{
-    --purple:#9b5cff;
-    --purple2:#6f2cff;
-    --cyan:#00e5ff;
-    --pink:#ff5ccf;
-    --black:#05030a;
-    --glass:rgba(255,255,255,.075);
-    --border:rgba(155,92,255,.45);
+
+    --bg:#05050a;
+    --bg2:#0b0714;
+
+    --purple:#8b5cf6;
+    --purple2:#c084fc;
+    --cyan:#22d3ee;
+    --cyan2:#67e8f9;
+
+    --pink:#f0abfc;
+
     --text:#ffffff;
-    --soft:#d9caff;
+    --muted:#c9c4d4;
+
+    --card:rgba(255,255,255,.055);
+    --card2:rgba(255,255,255,.085);
+
+    --border:rgba(139,92,246,.30);
+
+    --shadow:
+        0 20px 70px rgba(0,0,0,.55);
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+    padding:0;
+
 }
 
 html{
+
     scroll-behavior:smooth;
+
 }
 
 body{
+
     min-height:100vh;
+
     color:var(--text);
-    background:
-        radial-gradient(circle at 20% 20%,rgba(111,44,255,.25),transparent 30%),
-        radial-gradient(circle at 80% 10%,rgba(0,229,255,.15),transparent 25%),
-        radial-gradient(circle at 50% 90%,rgba(255,92,207,.13),transparent 30%),
-        #05030a;
+
+    font-family:'Cairo',sans-serif;
+
     overflow-x:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(139,92,246,.22),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 85% 30%,
+            rgba(34,211,238,.13),
+            transparent 28%
+        ),
+
+        linear-gradient(
+            135deg,
+            #030308,
+            #0c0717 50%,
+            #020308
+        );
+
+    transition:
+        background-image .8s ease;
+
 }
 
-/* خلفية ضوئية */
 
 body::before{
+
     content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-2;
-    background:
-        linear-gradient(120deg,
-        rgba(155,92,255,.05),
-        rgba(0,229,255,.04),
-        rgba(255,92,207,.04));
-}
 
-/* النجوم */
-
-.stars{
     position:fixed;
+
     inset:0;
+
     pointer-events:none;
+
     z-index:-1;
-    overflow:hidden;
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(139,92,246,.13) 1px,
+            transparent 1.5px
+        ),
+
+        radial-gradient(
+            circle,
+            rgba(34,211,238,.09) 1px,
+            transparent 1.5px
+        );
+
+    background-size:
+        90px 90px,
+        130px 130px;
+
+    animation:
+        stars 25s linear infinite;
+
 }
 
-.star{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    box-shadow:0 0 10px white;
-    animation:twinkle 3s infinite alternate;
-}
 
-@keyframes twinkle{
-    from{opacity:.15;transform:scale(.7);}
-    to{opacity:1;transform:scale(1.5);}
-}
+@keyframes stars{
 
-/* شاشة الدخول */
-
-#loginScreen{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-
-    background:
-        radial-gradient(circle at center,
-        rgba(111,44,255,.25),
-        rgba(0,0,0,.96) 65%);
-}
-
-.loginBox{
-    width:min(430px,95%);
-    padding:38px 25px;
-    text-align:center;
-
-    background:rgba(10,7,18,.72);
-    border:1px solid rgba(155,92,255,.6);
-    border-radius:30px;
-
-    box-shadow:
-        0 0 50px rgba(111,44,255,.35),
-        inset 0 0 40px rgba(0,229,255,.04);
-
-    backdrop-filter:blur(20px);
-}
-
-.loginHeart{
-    font-size:65px;
-    animation:heartBeat 1.5s infinite;
-}
-
-@keyframes heartBeat{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.15);}
-}
-
-.loginBox h1{
-    margin:15px 0 8px;
-    color:#d6b8ff;
-    text-shadow:0 0 20px rgba(155,92,255,.8);
-}
-
-.loginBox p{
-    color:#bdefff;
-    line-height:1.8;
-    margin-bottom:22px;
-}
-
-.password{
-    width:100%;
-    padding:15px;
-    border-radius:15px;
-    border:1px solid rgba(0,229,255,.6);
-    background:rgba(255,255,255,.06);
-    color:white;
-    outline:none;
-    text-align:center;
-    font-size:17px;
-    margin-bottom:15px;
-}
-
-.password:focus{
-    box-shadow:0 0 20px rgba(0,229,255,.25);
-}
-
-.enterBtn{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:15px;
-    cursor:pointer;
-
-    color:white;
-    font-weight:bold;
-    font-size:17px;
-
-    background:linear-gradient(90deg,
-        var(--purple2),
-        var(--purple),
-        var(--cyan));
-
-    box-shadow:0 0 25px rgba(155,92,255,.3);
-}
-
-.enterBtn:active{
-    transform:scale(.97);
-}
-
-#error{
-    display:none;
-    color:#ff7070;
-    margin-top:12px;
-}
-
-/* المحتوى */
-
-#site{
-    display:none;
-    max-width:1200px;
-    margin:auto;
-    padding:15px;
-}
-
-/* الهيدر */
-
-.hero{
-    text-align:center;
-    padding:55px 15px 35px;
-}
-
-.badge{
-    display:inline-block;
-    padding:8px 17px;
-    border-radius:50px;
-    border:1px solid rgba(0,229,255,.4);
-    background:rgba(0,229,255,.06);
-    color:#a9f7ff;
-    margin-bottom:15px;
-}
-
-.hero h1{
-    font-size:clamp(32px,7vw,65px);
-    line-height:1.2;
-
-    background:linear-gradient(
-        90deg,
-        #ffffff,
-        #c49aff,
-        #00e5ff,
-        #ff8be0
-    );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-
-    text-shadow:0 0 30px rgba(155,92,255,.25);
-}
-
-.hero p{
-    margin-top:18px;
-    color:#d9caff;
-    font-size:18px;
-    line-height:2;
-}
-
-/* أزرار التنقل */
-
-.nav{
-    position:sticky;
-    top:10px;
-    z-index:100;
-
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-
-    margin-bottom:25px;
-    padding:10px;
-
-    background:rgba(5,3,10,.68);
-    border:1px solid rgba(155,92,255,.3);
-    border-radius:20px;
-
-    backdrop-filter:blur(18px);
-}
-
-.nav button{
-    border:1px solid rgba(155,92,255,.35);
-    background:rgba(255,255,255,.05);
-    color:#eee;
-    padding:9px 13px;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-.nav button:hover{
-    background:rgba(155,92,255,.2);
-}
-
-/* الزجاج */
-
-.glass{
-    background:var(--glass);
-    border:1px solid var(--border);
-    border-radius:28px;
-    padding:28px;
-    margin-bottom:28px;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.3),
-        inset 0 0 30px rgba(155,92,255,.025);
-
-    backdrop-filter:blur(18px);
-}
-
-.sectionTitle{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.sectionTitle h2{
-    color:#d6b8ff;
-    font-size:28px;
-}
-
-.sectionTitle p{
-    color:#9fefff;
-    margin-top:8px;
-}
-
-/* الشريط العلوي */
-
-.slider{
-    position:relative;
-    overflow:hidden;
-    min-height:360px;
-    padding:0;
-}
-
-.slider img{
-    width:100%;
-    height:430px;
-    object-fit:cover;
-    display:block;
-    transition:opacity .5s;
-}
-
-.sliderOverlay{
-    position:absolute;
-    inset:auto 0 0 0;
-    padding:35px 20px 25px;
-
-    background:linear-gradient(
-        transparent,
-        rgba(0,0,0,.9)
-    );
-
-    text-align:center;
-}
-
-.sliderOverlay h2{
-    color:white;
-    font-size:25px;
-}
-
-.sliderOverlay p{
-    color:#dfcaff;
-    margin-top:7px;
-}
-
-/* نقاط السلايدر */
-
-.dots{
-    position:absolute;
-    bottom:10px;
-    left:50%;
-    transform:translateX(-50%);
-    display:flex;
-    gap:6px;
-}
-
-.dot{
-    width:7px;
-    height:7px;
-    background:#aaa;
-    border-radius:50%;
-}
-
-.dot.active{
-    background:var(--cyan);
-    box-shadow:0 0 10px var(--cyan);
-}
-
-/* رسائل الحب */
-
-.quoteBox{
-    text-align:center;
-    min-height:130px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-#quote{
-    font-size:23px;
-    color:#f0ddff;
-    line-height:2;
-    animation:quoteIn .6s;
-}
-
-@keyframes quoteIn{
     from{
-        opacity:0;
-        transform:translateY(15px);
+        background-position:0 0,0 0;
     }
+
     to{
-        opacity:1;
-        transform:translateY(0);
+        background-position:0 500px,500px 300px;
     }
+
 }
 
-/* العداد */
 
-.counter{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:12px;
+.hidden{
+
+    display:none!important;
+
 }
 
-.counterItem{
-    padding:20px 8px;
-    text-align:center;
 
-    border-radius:18px;
+/* =========================================================
+   FLOATING LOVE EFFECTS
+========================================================= */
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(155,92,255,.15),
-            rgba(0,229,255,.05)
-        );
+.love-particle{
 
-    border:1px solid rgba(155,92,255,.3);
-}
-
-.counterItem strong{
-    display:block;
-    color:#bfa0ff;
-    font-size:27px;
-}
-
-.counterItem span{
-    color:#bdefff;
-    font-size:13px;
-}
-
-/* شبكة الصور والفيديو */
-
-.mediaGrid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-}
-
-.mediaCard{
-    overflow:hidden;
-    border-radius:25px;
-    padding:10px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(155,92,255,.18),
-            rgba(0,229,255,.07)
-        );
-
-    border:2px solid rgba(155,92,255,.38);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.35),
-        0 0 20px rgba(111,44,255,.08);
-
-    transition:.35s;
-}
-
-.mediaCard:hover{
-    transform:translateY(-6px);
-    border-color:rgba(0,229,255,.7);
-    box-shadow:0 20px 45px rgba(0,229,255,.13);
-}
-
-.mediaCard img,
-.mediaCard video{
-    width:100%;
-    height:280px;
-    object-fit:cover;
-    border-radius:18px;
-    display:block;
-    cursor:pointer;
-}
-
-.mediaCard video{
-    background:#000;
-}
-
-.mediaText{
-    padding:15px 8px 10px;
-    text-align:center;
-}
-
-.mediaText h3{
-    color:#d3b5ff;
-    margin-bottom:7px;
-}
-
-.mediaText p{
-    color:#c7f9ff;
-    line-height:1.8;
-    font-size:14px;
-}
-
-/* قسم المشاعر */
-
-.feelings{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-    gap:12px;
-}
-
-.feelingBtn{
-    border:1px solid rgba(155,92,255,.4);
-    border-radius:18px;
-    padding:18px 8px;
-    color:white;
-    cursor:pointer;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(111,44,255,.2),
-            rgba(0,229,255,.07)
-        );
-
-    transition:.25s;
-}
-
-.feelingBtn:hover{
-    transform:translateY(-4px);
-    border-color:var(--cyan);
-}
-
-.feelingIcon{
-    display:block;
-    font-size:30px;
-    margin-bottom:7px;
-}
-
-.feelingMessage{
-    margin-top:20px;
-    min-height:90px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    padding:20px;
-
-    border-radius:20px;
-
-    background:rgba(0,0,0,.25);
-    border:1px solid rgba(0,229,255,.2);
-
-    color:#e7d8ff;
-    line-height:2;
-    font-size:18px;
-}
-
-/* زر المفاجأة */
-
-.surprise{
-    text-align:center;
-}
-
-.surprise button{
-    padding:15px 30px;
-    border:none;
-    border-radius:50px;
-
-    background:linear-gradient(
-        90deg,
-        #6f2cff,
-        #ff5ccf,
-        #00e5ff
-    );
-
-    color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-
-    box-shadow:0 0 30px rgba(155,92,255,.3);
-}
-
-#surpriseText{
-    margin-top:20px;
-    color:#e4d3ff;
-    font-size:19px;
-    line-height:2;
-}
-
-/* اللعبة */
-
-.game{
-    text-align:center;
-}
-
-.game button{
-    margin:5px;
-    padding:12px 18px;
-    border-radius:14px;
-    border:1px solid rgba(155,92,255,.4);
-    background:rgba(155,92,255,.12);
-    color:white;
-    cursor:pointer;
-}
-
-#gameResult{
-    margin-top:15px;
-    color:#bdf8ff;
-}
-
-/* الرسائل */
-
-textarea{
-    width:100%;
-    min-height:130px;
-
-    resize:vertical;
-
-    background:rgba(0,0,0,.25);
-    color:white;
-
-    border:1px solid rgba(155,92,255,.45);
-    border-radius:18px;
-
-    padding:15px;
-    outline:none;
-}
-
-.saveBtn{
-    margin-top:12px;
-    padding:12px 22px;
-    border:0;
-    border-radius:14px;
-    cursor:pointer;
-    color:white;
-    background:linear-gradient(90deg,#6f2cff,#00aeca);
-}
-
-.saved{
-    margin-top:20px;
-}
-
-.savedItem{
-    padding:12px;
-    margin-bottom:10px;
-
-    border-radius:15px;
-    background:rgba(255,255,255,.05);
-    border-right:3px solid var(--cyan);
-
-    color:#ddd;
-}
-
-/* الموسيقى */
-
-.musicPlayer{
     position:fixed;
-    bottom:15px;
-    left:15px;
-    right:15px;
 
-    z-index:500;
+    z-index:999999;
 
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    padding:12px 15px;
-
-    background:rgba(5,3,10,.78);
-    border:1px solid rgba(155,92,255,.4);
-    border-radius:20px;
-
-    backdrop-filter:blur(20px);
-}
-
-.musicIcon{
-    font-size:27px;
-}
-
-.musicInfo{
-    flex:1;
-}
-
-.musicInfo strong{
-    display:block;
-    color:#dfcaff;
-}
-
-.musicInfo small{
-    color:#8eefff;
-}
-
-.musicPlayer button{
-    border:0;
-    border-radius:50%;
-    width:42px;
-    height:42px;
-    cursor:pointer;
-    color:white;
-    background:linear-gradient(135deg,#6f2cff,#00aeca);
-}
-
-/* القلوب والفراشات */
-
-.floating{
-    position:fixed;
     pointer-events:none;
-    z-index:9998;
-    animation:floatUp 2.5s ease-out forwards;
-    font-size:25px;
+
+    font-size:22px;
+
+    animation:
+        particleUp 2.8s ease-out forwards;
+
+    filter:
+        drop-shadow(
+            0 0 10px rgba(192,132,252,.7)
+        );
+
 }
 
-@keyframes floatUp{
+
+@keyframes particleUp{
+
     0%{
+
+        opacity:0;
+
+        transform:
+            translateY(20px)
+            scale(.4)
+            rotate(0deg);
+
+    }
+
+    15%{
+
         opacity:1;
-        transform:translate(0,0) scale(.7) rotate(0);
+
     }
 
     100%{
+
         opacity:0;
+
         transform:
-            translate(
-                var(--x),
-                -180px
-            )
-            scale(1.4)
-            rotate(25deg);
+            translateY(-230px)
+            translateX(var(--move))
+            scale(1.5)
+            rotate(35deg);
+
     }
+
 }
 
-/* رسالة منبثقة */
 
-.toast{
+/* =========================================================
+   LOGIN
+========================================================= */
+
+#login-screen{
+
     position:fixed;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%) translateY(-120px);
+
+    inset:0;
 
     z-index:99999;
 
-    max-width:90%;
-    padding:15px 22px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(139,92,246,.20),
+            transparent 42%
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(34,211,238,.12),
+            transparent 30%
+        ),
+
+        #030308;
+
+}
+
+
+.login-card{
+
+    width:min(430px,100%);
+
+    padding:42px 28px;
+
+    text-align:center;
+
+    border:
+
+        1px solid
+        rgba(139,92,246,.45);
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139,92,246,.10),
+            rgba(34,211,238,.035)
+        );
+
+    backdrop-filter:blur(25px);
+
+    box-shadow:
+        0 0 80px rgba(139,92,246,.12),
+        var(--shadow);
+
+}
+
+
+.login-heart{
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:43px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(139,92,246,.30),
+            rgba(34,211,238,.13)
+        );
+
+    border:
+        1px solid
+        rgba(34,211,238,.35);
+
+    box-shadow:
+        0 0 45px
+        rgba(139,92,246,.28);
+
+    animation:pulse 2.5s infinite;
+
+}
+
+
+@keyframes pulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.07);
+    }
+
+}
+
+
+.login-card h1{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:34px;
+
+    color:var(--purple2);
+
+    margin-bottom:8px;
+
+    text-shadow:
+        0 0 25px
+        rgba(192,132,252,.25);
+
+}
+
+
+.login-card p{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+
+.password-wrap{
+
+    position:relative;
+
+}
+
+
+.password-wrap input{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    border-radius:14px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.35);
+
+    background:
+        rgba(255,255,255,.055);
+
+    color:white;
+
+    outline:none;
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-family:inherit;
+
+}
+
+
+.password-wrap input:focus{
+
+    border-color:var(--cyan);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(34,211,238,.08);
+
+}
+
+
+.enter-btn{
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:15px;
+
+    border:0;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:800;
+
+    font-family:inherit;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--purple),
+            #6d28d9,
+            var(--cyan)
+        );
+
+    box-shadow:
+        0 12px 35px
+        rgba(139,92,246,.25);
+
+    transition:.25s;
+
+}
+
+
+.enter-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+.login-error{
+
+    color:#f0abfc;
+
+    margin-top:12px;
+
+    min-height:20px;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+#main-content{
+
+    display:none;
+
+}
+
+
+.container{
+
+    width:min(
+        1120px,
+        calc(100% - 28px)
+    );
+
+    margin:auto;
+
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    border-bottom:
+        1px solid
+        rgba(139,92,246,.16);
+
+    background:
+        rgba(3,3,8,.74);
+
+    backdrop-filter:blur(20px);
+
+}
+
+
+.topbar-inner{
+
+    min-height:68px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+
+.logo{
+
+    font-family:'Playfair Display',serif;
+
+    color:var(--purple2);
+
+    font-size:23px;
+
+    text-shadow:
+        0 0 20px
+        rgba(192,132,252,.25);
+
+}
+
+
+.logo span{
+
+    color:var(--cyan2);
+
+}
+
+
+.music-mini{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 12px;
+
+    border:
+        1px solid
+        rgba(34,211,238,.20);
+
+    border-radius:50px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+
+.music-mini button{
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--cyan2);
+
+    cursor:pointer;
+
+    font-size:17px;
+
+}
+
+
+/* =========================================================
+   MEMORY SLIDER
+========================================================= */
+
+.memory-slider{
+
+    position:relative;
+
+    width:100%;
+
+    height:280px;
+
+    overflow:hidden;
+
+    border-bottom:
+        1px solid
+        rgba(139,92,246,.18);
+
+    background:#030308;
+
+}
+
+
+.memory-slide{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    transition:
+        opacity 1.2s ease;
+
+}
+
+
+.memory-slide.active{
+
+    opacity:1;
+
+}
+
+
+.memory-slide img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    filter:
+        brightness(.55)
+        saturate(1.15);
+
+}
+
+
+.memory-slide::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            rgba(3,3,8,.15),
+            rgba(3,3,8,.92)
+        );
+
+}
+
+
+.memory-slide-text{
+
+    position:absolute;
+
+    z-index:2;
+
+    bottom:30px;
+
+    left:20px;
+
+    right:20px;
+
+    text-align:center;
+
+}
+
+
+.memory-slide-text h3{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:28px;
+
+    color:white;
+
+    text-shadow:
+        0 4px 20px black;
+
+}
+
+
+.memory-slide-text p{
+
+    margin-top:5px;
+
+    color:var(--cyan2);
+
+    font-size:13px;
+
+}
+
+
+.slider-dots{
+
+    position:absolute;
+
+    z-index:5;
+
+    bottom:12px;
+
+    left:0;
+
+    right:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:6px;
+
+}
+
+
+.slider-dot{
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.35);
+
+    transition:.3s;
+
+}
+
+
+.slider-dot.active{
+
+    width:22px;
+
+    border-radius:20px;
+
+    background:var(--cyan);
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    position:relative;
+
+    min-height:650px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(139,92,246,.18),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(3,3,8,.96)
+        );
+
+}
+
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:850px;
+
+}
+
+
+.hero-small{
+
+    color:var(--cyan2);
+
+    font-size:14px;
+
+    letter-spacing:3px;
+
+    margin-bottom:18px;
+
+}
+
+
+.hero h1{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:
+        clamp(44px,9vw,82px);
+
+    line-height:1.05;
+
+    color:#fff;
+
+    text-shadow:
+        0 10px 40px rgba(0,0,0,.7);
+
+}
+
+
+.hero h1 span{
+
+    color:var(--purple2);
+
+}
+
+
+.hero-sub{
+
+    max-width:680px;
+
+    margin:25px auto;
+
+    color:var(--muted);
+
+    font-size:17px;
+
+    line-height:2;
+
+}
+
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+
+.hero-btn{
+
+    padding:13px 24px;
+
+    border-radius:50px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.30);
+
+    background:
+        rgba(255,255,255,.045);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+
+.hero-btn:hover{
+
+    transform:translateY(-2px);
+
+    border-color:var(--cyan);
+
+}
+
+
+.hero-btn.primary{
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--purple),
+            #6d28d9,
+            #0891b2
+        );
+
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section{
+
+    margin:45px 0;
+
+}
+
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+
+.section-title .eyebrow{
+
+    color:var(--cyan2);
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+}
+
+
+.section-title h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:34px;
+
+    margin-top:7px;
+
+    color:white;
+
+}
+
+
+.section-title p{
+
+    color:var(--muted);
+
+    margin-top:8px;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote-card{
+
+    padding:45px 25px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        rgba(139,92,246,.28);
+
+    border-radius:25px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(139,92,246,.08),
+            rgba(34,211,238,.025)
+        );
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.quote-mark{
+
+    color:var(--cyan);
+
+    font-family:Georgia,serif;
+
+    font-size:60px;
+
+    line-height:.5;
+
+}
+
+
+#quote-display{
+
+    min-height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:var(--purple2);
+
+    font-size:22px;
+
+    font-weight:700;
+
+    line-height:1.8;
+
+    transition:.5s;
+
+}
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+.counter-card{
+
+    padding:30px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.28);
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.counter-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(6,1fr);
+
+    gap:12px;
+
+}
+
+
+.counter-item{
+
+    padding:20px 8px;
+
+    text-align:center;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139,92,246,.09),
+            rgba(34,211,238,.035)
+        );
+
+    border:
+        1px solid
+        rgba(34,211,238,.13);
+
+}
+
+
+.counter-number{
+
+    color:var(--cyan2);
+
+    font-size:28px;
+
+    font-weight:800;
+
+}
+
+
+.counter-label{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+.music-card{
+
+    padding:25px;
+
+    border-radius:25px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.30);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.10),
+            rgba(34,211,238,.035)
+        );
+
+}
+
+
+.music-player{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+.album{
+
+    width:85px;
+
+    height:85px;
+
+    flex:none;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:35px;
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            var(--purple),
+            #6d28d9,
+            var(--cyan)
+        );
+
+    box-shadow:
+        0 10px 35px
+        rgba(139,92,246,.25);
+
+    animation:
+        musicGlow 2s infinite;
+
+}
+
+
+@keyframes musicGlow{
+
+    0%,100%{
+        box-shadow:
+            0 10px 35px
+            rgba(139,92,246,.20);
+    }
+
+    50%{
+        box-shadow:
+            0 10px 45px
+            rgba(34,211,238,.30);
+    }
+
+}
+
+
+.music-info{
+
+    flex:1;
+
+}
+
+
+.music-info h3{
+
+    color:var(--purple2);
+
+    margin-bottom:5px;
+
+}
+
+
+.music-info p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+audio{
+
+    width:100%;
+
+    margin-top:15px;
+
+}
+
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+.media-toolbar{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:22px;
+
+}
+
+
+.filter-btn{
+
+    padding:9px 18px;
+
+    border-radius:50px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.22);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+
+.filter-btn.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.25),
+            rgba(34,211,238,.12)
+        );
+
+    color:var(--cyan2);
+
+    border-color:
+        rgba(34,211,238,.40);
+
+}
+
+
+.media-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:22px;
+
+}
+
+
+.media-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    border:
+        2px solid
+        rgba(139,92,246,.30);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139,92,246,.07),
+            rgba(34,211,238,.025)
+        );
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.38);
+
+    transition:
+        transform .3s,
+        border-color .3s,
+        box-shadow .3s;
+
+}
+
+
+.media-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(34,211,238,.55);
+
+    box-shadow:
+        0 20px 55px
+        rgba(34,211,238,.10);
+
+}
+
+
+.media-card img,
+.media-card video{
+
+    display:block;
+
+    width:100%;
+
+    height:300px;
+
+    object-fit:cover;
+
+    background:#020208;
+
+}
+
+
+.media-card img{
+
+    cursor:pointer;
+
+    transition:.5s;
+
+}
+
+
+.media-card img:hover{
+
+    transform:scale(1.035);
+
+}
+
+
+.media-info{
+
+    padding:17px;
+
+    text-align:center;
+
+}
+
+
+.media-type{
+
+    color:var(--cyan2);
+
+    font-size:11px;
+
+    margin-bottom:8px;
+
+}
+
+
+.media-love-text{
+
+    color:var(--purple2);
+
+    font-size:14px;
+
+    font-weight:700;
+
+    line-height:1.8;
+
+}
+
+
+.media-file-name{
+
+    color:#777184;
+
+    font-size:10px;
+
+    margin-top:7px;
+
+}
+
+
+.media-loading,
+.empty-state{
+
+    grid-column:1/-1;
+
+    padding:45px;
+
+    text-align:center;
+
+    border:
+        1px dashed
+        rgba(139,92,246,.30);
+
+    border-radius:20px;
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   MOOD SECTION
+========================================================= */
+
+.mood-card{
+
+    padding:30px;
+
+    border:
+        1px solid
+        rgba(34,211,238,.22);
+
+    border-radius:25px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(139,92,246,.09),
+            rgba(34,211,238,.035)
+        );
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.mood-buttons{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+
+.mood-btn{
+
+    padding:18px 10px;
+
+    border-radius:17px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.22);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+
+.mood-btn:hover{
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--cyan);
+
+    background:
+        rgba(34,211,238,.08);
+
+}
+
+
+.mood-message{
+
+    margin-top:22px;
+
+    min-height:100px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:20px;
 
     border-radius:18px;
 
-    background:rgba(10,5,20,.9);
-    border:1px solid rgba(155,92,255,.6);
+    color:var(--purple2);
 
-    color:#eee;
-    text-align:center;
-    line-height:1.7;
+    font-size:17px;
 
-    box-shadow:0 0 30px rgba(111,44,255,.25);
+    font-weight:700;
 
-    transition:.5s;
+    line-height:2;
+
+    background:
+        rgba(0,0,0,.20);
+
+    border:
+        1px solid
+        rgba(192,132,252,.15);
+
+    transition:.4s;
+
 }
 
-.toast.show{
-    transform:translateX(-50%) translateY(0);
+
+/* =========================================================
+   LETTER
+========================================================= */
+
+.letter{
+
+    padding:40px 30px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.28);
+
+    border-radius:25px;
+
+    background:
+
+        linear-gradient(
+            rgba(139,92,246,.055),
+            rgba(34,211,238,.018)
+        );
+
+    box-shadow:var(--shadow);
+
 }
 
-/* الفوتر */
+
+.letter h3{
+
+    color:var(--purple2);
+
+    font-family:'Playfair Display',serif;
+
+    font-size:28px;
+
+    margin-bottom:18px;
+
+}
+
+
+.letter p{
+
+    color:var(--muted);
+
+    line-height:2.1;
+
+    font-size:15px;
+
+}
+
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+.note-card{
+
+    padding:25px;
+
+    border-radius:25px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.28);
+
+    background:
+        rgba(255,255,255,.035);
+
+}
+
+
+textarea{
+
+    width:100%;
+
+    min-height:130px;
+
+    padding:15px;
+
+    resize:vertical;
+
+    border-radius:15px;
+
+    outline:none;
+
+    color:white;
+
+    background:
+        rgba(0,0,0,.30);
+
+    border:
+        1px solid
+        rgba(34,211,238,.20);
+
+    font-family:inherit;
+
+    font-size:15px;
+
+}
+
+
+.save-btn{
+
+    margin-top:12px;
+
+    border:0;
+
+    border-radius:12px;
+
+    padding:12px 22px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--cyan)
+        );
+
+    color:white;
+
+    font-family:inherit;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.saved-list{
+
+    margin-top:20px;
+
+    display:grid;
+
+    gap:10px;
+
+}
+
+
+.saved-message{
+
+    padding:13px;
+
+    border-radius:12px;
+
+    background:
+        rgba(139,92,246,.07);
+
+    border:
+        1px solid
+        rgba(139,92,246,.14);
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
+
+    padding:55px 15px 35px;
+
     text-align:center;
-    padding:50px 10px 110px;
-    color:#a99bbd;
-    line-height:2;
-}
 
-footer strong{
-    color:#d4b4ff;
-}
+    color:#777184;
 
-/* الموبايل */
-
-@media(max-width:800px){
-
-    .counter{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .slider img{
-        height:330px;
-    }
+    font-size:13px;
 
 }
 
-@media(max-width:500px){
 
-    #site{
-        padding:9px;
+.footer-heart{
+
+    color:var(--cyan2);
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+#lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99998;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.94);
+
+}
+
+
+#lightbox img{
+
+    max-width:95vw;
+
+    max-height:88vh;
+
+    object-fit:contain;
+
+    border-radius:15px;
+
+    border:
+        2px solid
+        rgba(139,92,246,.40);
+
+    box-shadow:
+        0 0 60px
+        rgba(139,92,246,.20);
+
+}
+
+
+.close-lightbox{
+
+    position:absolute;
+
+    top:20px;
+
+    left:20px;
+
+    width:45px;
+
+    height:45px;
+
+    border:
+        1px solid
+        rgba(34,211,238,.25);
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:
+        translateX(-50%)
+        translateY(100px);
+
+    z-index:100000;
+
+    padding:12px 20px;
+
+    border-radius:50px;
+
+    background:
+        #0d0a18;
+
+    border:
+        1px solid
+        rgba(34,211,238,.35);
+
+    color:var(--cyan2);
+
+    font-size:13px;
+
+    transition:.35s;
+
+}
+
+
+#toast.show{
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:850px){
+
+    .counter-grid{
+
+        grid-template-columns:
+            repeat(3,1fr);
+
     }
 
-    .glass{
-        padding:18px;
-        border-radius:22px;
+    .media-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
-    .counter{
-        grid-template-columns:repeat(2,1fr);
+    .mood-buttons{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
-    .mediaGrid{
-        grid-template-columns:1fr;
+}
+
+
+@media(max-width:560px){
+
+    .container{
+
+        width:
+            min(
+                100% - 20px,
+                1120px
+            );
+
     }
 
-    .mediaCard img,
-    .mediaCard video{
-        height:300px;
+    .memory-slider{
+
+        height:220px;
+
     }
 
-    #quote{
-        font-size:18px;
+    .memory-slide-text h3{
+
+        font-size:21px;
+
     }
 
     .hero{
-        padding-top:35px;
+
+        min-height:580px;
+
     }
+
+    .hero h1{
+
+        font-size:45px;
+
+    }
+
+    .hero-sub{
+
+        font-size:14px;
+
+    }
+
+    .counter-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .media-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .media-card img,
+    .media-card video{
+
+        height:290px;
+
+    }
+
+    .music-player{
+
+        align-items:flex-start;
+
+    }
+
+    .album{
+
+        width:65px;
+
+        height:65px;
+
+        font-size:26px;
+
+    }
+
+    #quote-display{
+
+        font-size:18px;
+
+    }
+
+    .letter{
+
+        padding:28px 20px;
+
+    }
+
+    .mood-buttons{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *{
+
+        animation-duration:.01ms!important;
+
+        animation-iteration-count:1!important;
+
+        transition-duration:.01ms!important;
+
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- نجوم الخلفية -->
-<div class="stars" id="stars"></div>
 
-<!-- شاشة الدخول -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
-<div id="loginScreen">
+<div id="login-screen">
 
-    <div class="loginBox">
+    <div class="login-card">
 
-        <div class="loginHeart">💜</div>
-
-        <h1>مملكة بسبوستي</h1>
-
-        <p>
-            مكان صغير صنعه حمووودى<br>
-            مخصوص عشان أجمل إنسانة في الدنيا ❤️
-        </p>
-
-        <input
-            id="password"
-            class="password"
-            type="password"
-            placeholder="اكتبي كلمة السر ❤️"
-        >
-
-        <button class="enterBtn" onclick="enterLove()">
-            دخول إلى مملكة الحب 💜
-        </button>
-
-        <div id="error">
-            كلمة السر غير صحيحة يا بسبوستي 🥺
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- الموقع -->
-
-<div id="site">
-
-    <!-- الهيدر -->
-
-    <header class="hero">
-
-        <div class="badge">
-            💜 مكان لا يدخله إلا قلبك
+        <div class="login-heart">
+            ❤️
         </div>
 
         <h1>
-            مملكة بسبوستي
+            مملكة حبنا
         </h1>
 
         <p>
-            هنا كل صورة ذكرى...<br>
-            وكل كلمة إحساس...<br>
-            وكل ثانية بتقولك إنك غالية عند حمووودى ❤️
+
+            مساحة صغيرة صنعت خصيصًا للذكريات الجميلة...
+
+            <br>
+
+            أدخلي كلمة السر لفتح الهدية ❤️
+
         </p>
 
-    </header>
 
+        <div class="password-wrap">
 
-    <!-- التنقل -->
-
-    <nav class="nav">
-
-        <button onclick="scrollToId('memories')">
-            🖼️ صورنا
-        </button>
-
-        <button onclick="scrollToId('videos')">
-            🎬 فيديوهاتنا
-        </button>
-
-        <button onclick="scrollToId('feelings')">
-            💌 مشاعرك
-        </button>
-
-        <button onclick="scrollToId('counter')">
-            ⏳ وقتنا
-        </button>
-
-        <button onclick="scrollToId('messages')">
-            📝 رسالتك
-        </button>
-
-    </nav>
-
-
-    <!-- شريط الصور -->
-
-    <section class="glass slider" id="slider">
-
-        <img id="sliderImage" src="" alt="ذكرياتنا">
-
-        <div class="sliderOverlay">
-
-            <h2 id="sliderTitle">
-                أجمل ذكرياتنا ❤️
-            </h2>
-
-            <p id="sliderText">
-                كل صورة هنا لها مكان خاص في قلبي...
-            </p>
+            <input
+                id="password-input"
+                type="password"
+                placeholder="كلمة السر"
+                autocomplete="off"
+                onkeydown="
+                    if(event.key==='Enter')
+                    checkPassword()
+                "
+            >
 
         </div>
 
-        <div class="dots" id="dots"></div>
-
-    </section>
-
-
-    <!-- رسالة حب متغيرة -->
-
-    <section class="glass quoteBox">
-
-        <div id="quote">
-            أنتِ أجمل شيء حدث في حياتي يا بسبوستي 💜
-        </div>
-
-    </section>
-
-
-    <!-- عداد الحب -->
-
-    <section class="glass" id="counter">
-
-        <div class="sectionTitle">
-
-            <h2>
-                ⏳ الوقت اللي جمع قلوبنا
-            </h2>
-
-            <p>
-                من يوم 26 / 8 / 2024 ❤️
-            </p>
-
-        </div>
-
-        <div class="counter">
-
-            <div class="counterItem">
-                <strong id="years">0</strong>
-                <span>سنوات</span>
-            </div>
-
-            <div class="counterItem">
-                <strong id="months">0</strong>
-                <span>أشهر</span>
-            </div>
-
-            <div class="counterItem">
-                <strong id="days">0</strong>
-                <span>أيام</span>
-            </div>
-
-            <div class="counterItem">
-                <strong id="hours">0</strong>
-                <span>ساعات</span>
-            </div>
-
-            <div class="counterItem">
-                <strong id="minutes">0</strong>
-                <span>دقائق</span>
-            </div>
-
-            <div class="counterItem">
-                <strong id="seconds">0</strong>
-                <span>ثواني</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- الصور -->
-
-    <section class="glass" id="memories">
-
-        <div class="sectionTitle">
-
-            <h2>
-                🖼️ معرض ذكرياتنا
-            </h2>
-
-            <p>
-                كل صورة هنا بتحكي حكاية من حكاياتنا ❤️
-            </p>
-
-        </div>
-
-        <div
-            class="mediaGrid"
-            id="imagesGrid"
-        >
-
-            <p style="text-align:center">
-                جاري تحميل الصور... 💜
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- الفيديوهات -->
-
-    <section class="glass" id="videos">
-
-        <div class="sectionTitle">
-
-            <h2>
-                🎬 لحظاتنا المصورة
-            </h2>
-
-            <p>
-                لحظات تتحرك قدام عينيك وتفكرنا بأجمل الأيام ❤️
-            </p>
-
-        </div>
-
-        <div
-            class="mediaGrid"
-            id="videosGrid"
-        >
-
-            <p style="text-align:center">
-                جاري تحميل الفيديوهات... 💜
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- المشاعر -->
-
-    <section class="glass" id="feelings">
-
-        <div class="sectionTitle">
-
-            <h2>
-                💌 حاسة بإيه دلوقتي؟
-            </h2>
-
-            <p>
-                اختاري إحساسك وأنا عندي رسالة مخصوص ليكي ❤️
-            </p>
-
-        </div>
-
-        <div class="feelings">
-
-            <button class="feelingBtn"
-                onclick="showFeeling('sad')">
-
-                <span class="feelingIcon">🥺</span>
-                زعلانة
-            </button>
-
-            <button class="feelingBtn"
-                onclick="showFeeling('miss')">
-
-                <span class="feelingIcon">💔</span>
-                وحشني
-            </button>
-
-            <button class="feelingBtn"
-                onclick="showFeeling('angry')">
-
-                <span class="feelingIcon">😤</span>
-                متضايقة
-            </button>
-
-            <button class="feelingBtn"
-                onclick="showFeeling('mad')">
-
-                <span class="feelingIcon">😡</span>
-                غضبانة
-            </button>
-
-            <button class="feelingBtn"
-                onclick="showFeeling('need')">
-
-                <span class="feelingIcon">🫂</span>
-                محتاجة حضن
-            </button>
-
-            <button class="feelingBtn"
-                onclick="showFeeling('happy')">
-
-                <span class="feelingIcon">🥰</span>
-                مبسوطة
-            </button>
-
-            <button class="feelingBtn"
-                onclick="showFeeling('love')">
-
-                <span class="feelingIcon">❤️</span>
-                بحبه
-            </button>
-
-            <button class="feelingBtn"
-                onclick="showFeeling('missme')">
-
-                <span class="feelingIcon">💜</span>
-                وحشانى
-            </button>
-
-        </div>
-
-        <div
-            class="feelingMessage"
-            id="feelingMessage"
-        >
-            اختاري إحساسك يا بسبوستي ❤️
-        </div>
-
-    </section>
-
-
-    <!-- مفاجأة -->
-
-    <section class="glass surprise">
-
-        <div class="sectionTitle">
-
-            <h2>
-                🎁 عندي حاجة ليكي
-            </h2>
-
-            <p>
-                اضغطي وشوفي المفاجأة...
-            </p>
-
-        </div>
-
-        <button onclick="surprise()">
-            افتحي المفاجأة 💜
-        </button>
-
-        <div id="surpriseText"></div>
-
-    </section>
-
-
-    <!-- لعبة -->
-
-    <section class="glass game">
-
-        <div class="sectionTitle">
-
-            <h2>
-                🎮 نلعب شوية؟
-            </h2>
-
-            <p>
-                حجر ورقة مقص... بس النتيجة الحقيقية إنك دايمًا كسبانة ❤️
-            </p>
-
-        </div>
-
-        <button onclick="playGame('حجر')">
-            🪨 حجر
-        </button>
-
-        <button onclick="playGame('ورقة')">
-            📄 ورقة
-        </button>
-
-        <button onclick="playGame('مقص')">
-            ✂️ مقص
-        </button>
-
-        <div id="gameResult">
-            اختاري حاجة نبدأ اللعب 😍
-        </div>
-
-    </section>
-
-
-    <!-- الرسائل -->
-
-    <section class="glass" id="messages">
-
-        <div class="sectionTitle">
-
-            <h2>
-                📝 سيبيلي رسالة
-            </h2>
-
-            <p>
-                أي حاجة في قلبك اكتبيها هنا ❤️
-            </p>
-
-        </div>
-
-        <textarea
-            id="messageInput"
-            placeholder="اكتبي اللي نفسك تقوليه لحمووودى..."
-        ></textarea>
 
         <button
-            class="saveBtn"
-            onclick="saveMessage()"
+            class="enter-btn"
+            onclick="checkPassword()"
         >
-            حفظ الرسالة 💜
+
+            دخول إلى عالمنا ❤️
+
         </button>
 
+
         <div
-            class="saved"
-            id="savedMessages"
+            id="login-error"
+            class="login-error"
         ></div>
 
-    </section>
+    </div>
+
+</div>
 
 
-    <!-- رسالة أخيرة -->
 
-    <section class="glass">
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-        <div class="sectionTitle">
+<div id="main-content">
 
-            <h2>
-                🌙 قبل ما تمشي...
-            </h2>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+    <div class="container topbar-inner">
+
+        <div class="logo">
+
+            Banoty
+            <span>♥</span>
 
         </div>
 
-        <p style="
-            text-align:center;
-            color:#e1d1ff;
-            line-height:2.2;
-            font-size:18px;
-        ">
 
-            لو في يوم الدنيا ضايقتك،
-            افتكري إن في حد نفسه يشوفك دايمًا مبسوطة. 💜
+        <div class="music-mini">
 
-            <br><br>
+            <button
+                onclick="toggleMusic()"
+                id="music-mini-btn"
+            >
+                ▶
+            </button>
 
-            ولو زعلتي،
-            افتكري إن فيه مكان هنا مستنيكِ.
+            <span id="music-mini-text">
+                الموسيقى متوقفة
+            </span>
 
-            <br><br>
+        </div>
 
-            ولو وحشك حد،
-            افتكري إن أجمل الذكريات عمرها ما بتروح. ❤️
+    </div>
 
-            <br><br>
+</div>
 
-            وبغض النظر عن أي حاجة حصلت أو هتحصل...
-            وجودك كان وسيظل له مكان جميل في القلب. 🦋
+
+
+<!-- =====================================================
+     MEMORY SLIDER
+===================================================== -->
+
+<div
+    class="memory-slider"
+    id="memory-slider"
+>
+
+    <div
+        id="slider-container"
+    ></div>
+
+
+    <div
+        class="slider-dots"
+        id="slider-dots"
+    ></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+
+            AHMED × BASBOSTY
+
+        </div>
+
+
+        <h1>
+
+            حكاية حب
+
+            <br>
+
+            <span>
+                لا تنتهي ❤️
+            </span>
+
+        </h1>
+
+
+        <p class="hero-sub">
+
+            هنا ليست مجرد صور وفيديوهات...
+
+            هنا ذكريات، مشاعر، ضحكات، لحظات،
+            وكلمات صغيرة يمكنها أن تجعل يومكِ أجمل.
+
+            <br>
+
+            مهما كان شعوركِ الآن...
+
+            <strong>
+                هنا دائمًا شيء ينتظركِ ❤️
+            </strong>
 
         </p>
 
-    </section>
+
+        <div class="hero-buttons">
+
+            <button
+                class="hero-btn primary"
+                onclick="
+                    scrollToSection('memories')
+                "
+            >
+
+                اكتشفي ذكرياتنا
+
+            </button>
 
 
-    <footer>
+            <button
+                class="hero-btn"
+                onclick="
+                    scrollToSection('mood')
+                "
+            >
 
-        <strong>
-            صُنع بحب ❤️ من حمووودى لبسبوستي
-        </strong>
+                أنا حاسّة بإيه؟ 💜
 
-        <br>
-
-        كل صورة... كل كلمة... كل لحظة هنا معمولة مخصوص ليكي 💜
-
-    </footer>
-
-</div>
+            </button>
 
 
-<!-- مشغل الموسيقى -->
+            <button
+                class="hero-btn"
+                onclick="
+                    scrollToSection('letter')
+                "
+            >
 
-<div class="musicPlayer">
+                رسالة لكِ
 
-    <div class="musicIcon">
-        🎵
+            </button>
+
+        </div>
+
     </div>
 
-    <div class="musicInfo">
+</header>
 
-        <strong>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     QUOTE
+===================================================== -->
+
+<section>
+
+    <div class="quote-card">
+
+        <div class="quote-mark">
+            “
+        </div>
+
+
+        <div id="quote-display">
+
+            أنتِ أجمل جزء في حكايتي ❤️
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COUNTER
+===================================================== -->
+
+<section id="counter">
+
+    <div class="section-title">
+
+        <div class="eyebrow">
+            OUR STORY
+        </div>
+
+        <h2>
+            من أول يوم في الحكاية
+        </h2>
+
+        <p>
+            26 / 08 / 2024
+        </p>
+
+    </div>
+
+
+    <div class="counter-card">
+
+        <div class="counter-grid">
+
+
+            <div class="counter-item">
+
+                <div
+                    class="counter-number"
+                    id="years"
+                >
+                    0
+                </div>
+
+                <div class="counter-label">
+                    سنوات
+                </div>
+
+            </div>
+
+
+            <div class="counter-item">
+
+                <div
+                    class="counter-number"
+                    id="months"
+                >
+                    0
+                </div>
+
+                <div class="counter-label">
+                    أشهر
+                </div>
+
+            </div>
+
+
+            <div class="counter-item">
+
+                <div
+                    class="counter-number"
+                    id="days"
+                >
+                    0
+                </div>
+
+                <div class="counter-label">
+                    أيام
+                </div>
+
+            </div>
+
+
+            <div class="counter-item">
+
+                <div
+                    class="counter-number"
+                    id="hours"
+                >
+                    0
+                </div>
+
+                <div class="counter-label">
+                    ساعات
+                </div>
+
+            </div>
+
+
+            <div class="counter-item">
+
+                <div
+                    class="counter-number"
+                    id="minutes"
+                >
+                    0
+                </div>
+
+                <div class="counter-label">
+                    دقائق
+                </div>
+
+            </div>
+
+
+            <div class="counter-item">
+
+                <div
+                    class="counter-number"
+                    id="seconds"
+                >
+                    0
+                </div>
+
+                <div class="counter-label">
+                    ثواني
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<section id="music-section">
+
+
+    <div class="section-title">
+
+        <div class="eyebrow">
+            OUR SONG
+        </div>
+
+        <h2>
             أغنيتنا ❤️
-        </strong>
+        </h2>
 
-        <small id="musicStatus">
-            جاري تجهيز الموسيقى...
-        </small>
+        <p>
+            الموسيقى الموجودة داخل مجلد music تظهر هنا تلقائيًا
+        </p>
 
     </div>
 
-    <button onclick="toggleMusic()" id="musicBtn">
-        ▶
-    </button>
+
+    <div class="music-card">
+
+
+        <div class="music-player">
+
+
+            <div class="album">
+                ♫
+            </div>
+
+
+            <div class="music-info">
+
+                <h3
+                    id="current-song-name"
+                >
+                    جاري البحث عن الموسيقى...
+                </h3>
+
+
+                <p
+                    id="music-status"
+                >
+                    يتم تحميل الأغاني من GitHub
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <audio
+            id="main-audio"
+            controls
+            preload="metadata"
+        ></audio>
+
+
+        <div
+            id="music-list"
+            style="margin-top:15px;"
+        ></div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MOOD
+===================================================== -->
+
+<section id="mood">
+
+
+    <div class="section-title">
+
+        <div class="eyebrow">
+            JUST FOR YOU
+        </div>
+
+        <h2>
+            حاسّة بإيه دلوقتي؟ 💜
+        </h2>
+
+        <p>
+            اختاري إحساسكِ وشوفي الرسالة اللي مستنياكِ
+        </p>
+
+    </div>
+
+
+    <div class="mood-card">
+
+
+        <div class="mood-buttons">
+
+
+            <button
+                class="mood-btn"
+                onclick="
+                    showMood('sad')
+                "
+            >
+                😔 أنا حزينة
+            </button>
+
+
+            <button
+                class="mood-btn"
+                onclick="
+                    showMood('angry')
+                "
+            >
+                😠 أنا زعلانة
+            </button>
+
+
+            <button
+                class="mood-btn"
+                onclick="
+                    showMood('miss')
+                "
+            >
+                🥺 وحشني
+            </button>
+
+
+            <button
+                class="mood-btn"
+                onclick="
+                    showMood('happy')
+                "
+            >
+                🥰 أنا مبسوطة
+            </button>
+
+
+            <button
+                class="mood-btn"
+                onclick="
+                    showMood('fromme')
+                "
+            >
+                💔 زعلانة مني
+            </button>
+
+
+            <button
+                class="mood-btn"
+                onclick="
+                    showMood('hug')
+                "
+            >
+                🤍 محتاجة حضن
+            </button>
+
+
+        </div>
+
+
+        <div
+            class="mood-message"
+            id="mood-message"
+        >
+
+            اختاري إحساسكِ...
+            وأنا هقولكِ حاجة من قلبي ❤️
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MEMORIES
+===================================================== -->
+
+<section id="memories">
+
+
+    <div class="section-title">
+
+        <div class="eyebrow">
+            OUR MEMORIES
+        </div>
+
+        <h2>
+            ذكرياتنا ❤️
+        </h2>
+
+        <p>
+            الموقع يقرأ كل الصور والفيديوهات تلقائيًا
+        </p>
+
+    </div>
+
+
+    <div class="media-toolbar">
+
+
+        <button
+            class="filter-btn active"
+            onclick="
+                filterMedia('all',this)
+            "
+        >
+            الكل
+        </button>
+
+
+        <button
+            class="filter-btn"
+            onclick="
+                filterMedia('image',this)
+            "
+        >
+            الصور
+        </button>
+
+
+        <button
+            class="filter-btn"
+            onclick="
+                filterMedia('video',this)
+            "
+        >
+            الفيديوهات
+        </button>
+
+
+    </div>
+
+
+    <div
+        id="media-grid"
+        class="media-grid"
+    >
+
+        <div class="media-loading">
+
+            ❤️ جاري تحميل الذكريات...
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     LETTER
+===================================================== -->
+
+<section id="letter">
+
+
+    <div class="section-title">
+
+        <div class="eyebrow">
+            A LETTER FOR YOU
+        </div>
+
+        <h2>
+            رسالة من القلب
+        </h2>
+
+    </div>
+
+
+    <div class="letter">
+
+
+        <h3>
+            إلى بسبوستى ❤️
+        </h3>
+
+
+        <p>
+
+            يمكن الكلمات أحيانًا لا تعرف كيف تصف كل المشاعر،
+            لكن يكفيني أنكِ تعرفين أن وجودكِ ترك في حياتي
+            ذكريات لن أنساها.
+
+            <br><br>
+
+            كل صورة هنا تحمل لحظة،
+            وكل لحظة تحمل شعورًا،
+            وكل شعور يذكرني بأن بعض الأشخاص
+            لا يكونون مجرد أشخاص عابرين في حياتنا،
+            بل يصبحون جزءًا من الحكاية.
+
+            <br><br>
+
+            لو في يوم صحيتي مش مبسوطة،
+            افتكري إن فيه شخص كان نفسه دائمًا يشوف
+            ابتسامتكِ قبل أي شيء.
+
+            <br><br>
+
+            ولو الدنيا ضايقتكِ،
+            افتكري إنكِ تستحقي كلامًا جميلًا،
+            وراحة، وأيامًا تشبه قلبكِ.
+
+            <br><br>
+
+            ولو وحشتكِ الذكريات،
+            تعالي هنا...
+            شوفي الصور،
+            اسمعي الأغنية،
+            واقرئي الكلام.
+
+            <br><br>
+
+            من حمووودى إلى بسبوستى...
+
+            <br>
+
+            ❤️ دائمًا لكِ مكان خاص في القلب.
+
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     NOTES
+===================================================== -->
+
+<section>
+
+
+    <div class="section-title">
+
+        <div class="eyebrow">
+            YOUR WORDS
+        </div>
+
+        <h2>
+            اكتبي شيئًا لي
+        </h2>
+
+        <p>
+            الرسائل تحفظ على هذا الجهاز فقط
+        </p>
+
+    </div>
+
+
+    <div class="note-card">
+
+
+        <textarea
+            id="note-input"
+            placeholder="اكتبي رسالتك هنا..."
+        ></textarea>
+
+
+        <button
+            class="save-btn"
+            onclick="saveMessage()"
+        >
+            حفظ الرسالة ❤️
+        </button>
+
+
+        <div
+            id="saved-list"
+            class="saved-list"
+        ></div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-heart">
+        ♥
+    </div>
+
+    صُنعت هذه الصفحة بكل حب
+
+    <br>
+
+    Ahmed × Basbosty
+
+</footer>
+
 
 </div>
 
-<audio
-    id="music"
-    loop
-    preload="auto"
->
-    <source
-        src="music/song.mp3"
-        type="audio/mpeg"
-    >
-</audio>
 
 
-<!-- رسالة منبثقة -->
+<!-- =====================================================
+     LIGHTBOX
+===================================================== -->
 
 <div
-    class="toast"
-    id="toast"
-></div>
+    id="lightbox"
+    onclick="closeLightbox(event)"
+>
+
+    <button
+        class="close-lightbox"
+        onclick="closeLightbox()"
+    >
+        ×
+    </button>
+
+
+    <img
+        id="lightbox-image"
+        src=""
+        alt="memory"
+    >
+
+</div>
+
+
+
+<div id="toast"></div>
+
 
 
 <script>
 
-/* ================================
-   الإعدادات
-================================ */
 
-const PASSWORD = "حمووودى";
+/* =========================================================
+   GITHUB
+========================================================= */
 
-const START_DATE =
-    new Date("2024-08-26T00:00:00");
+const GITHUB_USER =
+    "ahmededfghw-prog";
 
+const GITHUB_REPO =
+    "Banoty";
 
-/* ================================
-   نجوم الخلفية
-================================ */
-
-function createStars(){
-
-    const container =
-        document.getElementById("stars");
-
-    for(let i=0;i<80;i++){
-
-        const star =
-            document.createElement("div");
-
-        star.className="star";
-
-        star.style.left =
-            Math.random()*100+"%";
-
-        star.style.top =
-            Math.random()*100+"%";
-
-        star.style.animationDelay =
-            Math.random()*3+"s";
-
-        container.appendChild(star);
-    }
-}
-
-createStars();
+const GITHUB_BRANCH =
+    "main";
 
 
-/* ================================
-   دخول الموقع
-================================ */
+const GITHUB_API_BASE =
+    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents`;
 
-async function enterLove(){
+
+const RAW_BASE =
+    `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
+
+
+
+/* =========================================================
+   EXTENSIONS
+========================================================= */
+
+const IMAGE_EXTENSIONS = [
+
+    "jpg",
+    "jpeg",
+    "png",
+    "webp",
+    "gif",
+    "bmp",
+    "svg"
+
+];
+
+
+const VIDEO_EXTENSIONS = [
+
+    "mp4",
+    "webm",
+    "mov",
+    "m4v",
+    "ogg"
+
+];
+
+
+const AUDIO_EXTENSIONS = [
+
+    "mp3",
+    "wav",
+    "ogg",
+    "m4a",
+    "aac",
+    "webm"
+
+];
+
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let allMedia = [];
+
+let allMusic = [];
+
+let currentMusicIndex = 0;
+
+let backgroundImages = [];
+
+let backgroundIndex = 0;
+
+let backgroundTimer = null;
+
+let sliderIndex = 0;
+
+let sliderTimer = null;
+
+
+
+/* =========================================================
+   LOVE QUOTES
+========================================================= */
+
+const loveQuotes = [
+
+    "أنتِ أجمل جزء في حكايتي ❤️",
+
+    "بعض الأشخاص يصبحون وطنًا للقلب.",
+
+    "كل ذكرى جميلة معكِ تستحق أن تعيش إلى الأبد.",
+
+    "وجودكِ جعل للأيام معنى أجمل.",
+
+    "هناك أشخاص لا يكفيهم مكان في الذاكرة، لأن مكانهم الحقيقي في القلب.",
+
+    "ضحكتكِ من أجمل الأشياء التي يمكن أن يسمعها قلبي.",
+
+    "لو عاد بي الزمن سأختار أن أعيش هذه الذكريات من جديد.",
+
+    "بسبوستى... لكِ في القلب مكان لا يشبه أي مكان.",
+
+    "كل صورة هنا تحمل قصة صغيرة من حكايتنا.",
+
+    "الحب أحيانًا يكون في أبسط التفاصيل.",
+
+    "أتمنى أن يكون في أيامكِ دائمًا شيء يجعلكِ تبتسمين.",
+
+    "وجودكِ وحده قادر على تغيير شكل يوم كامل.",
+
+    "أنتِ ذكرى جميلة أتمنى ألا تنتهي.",
+
+    "في كل مرة أتذكر فيها الأيام الجميلة أبتسم.",
+
+    "هناك كلام كثير لا يقال... لكنه موجود في القلب."
+
+];
+
+
+
+/* =========================================================
+   MEDIA LOVE TEXT
+========================================================= */
+
+const mediaLoveTexts = [
+
+    "لحظة صغيرة... لكن مكانها كبير في القلب ❤️",
+
+    "الصورة دي تستحق أن تفضل ذكرى للأبد 💜",
+
+    "كل ما أشوف اللحظة دي أبتسم من قلبي.",
+
+    "هنا واحدة من الذكريات التي لا تُنسى.",
+
+    "تفصيلة صغيرة من حكاية كبيرة ❤️",
+
+    "يا أجمل ذكرى... يا أجمل وقت.",
+
+    "بعض الصور لا تحتاج كلامًا، لأنها تحكي وحدها.",
+
+    "لو للذكريات قلب... كانت الصورة دي هتتكلم.",
+
+    "لحظة من الزمن، لكنها ما زالت جميلة.",
+
+    "أتمنى أن تظل هذه الابتسامة موجودة دائمًا.",
+
+    "ذكرى جميلة لشخص أجمل ❤️",
+
+    "هنا جزء من حكايتنا."
+
+];
+
+
+
+/* =========================================================
+   MOOD MESSAGES
+========================================================= */
+
+const moodMessages = {
+
+
+    sad: [
+
+        "لو أنتِ حزينة دلوقتي، افتكري إن الحزن مهما طال بيعدي... وإنتِ تستحقي أيامًا أجمل من أي يوم وحش ❤️",
+
+        "تعالي خدي نفس عميق... وسيبي الدنيا كلها شوية. أهم حاجة دلوقتي إنك تكوني بخير 💜",
+
+        "مش لازم تكوني قوية طول الوقت. عادي تتعبي وعادي تحزني... بس متنسيش إنك غالية جدًا 🤍"
+
+    ],
+
+
+    angry: [
+
+        "لو أنتِ زعلانة، خدي وقتك واهدي... أنا أهم حاجة عندي إن قلبك يرتاح ❤️",
+
+        "حتى وأنتِ زعلانة، أنتِ غالية. مفيش زعل يقدر يغير مكانك في القلب 💜",
+
+        "اهدي يا بسبوستى... الدنيا مش مستاهلة تاخد من قلبك راحته 🤍"
+
+    ],
+
+
+    miss: [
+
+        "لو وحشكِ حد... افتكري إن بعض الأشخاص مهما بعدوا تفضل ذكراهم قريبة جدًا من القلب ❤️",
+
+        "يمكن المسافات تبعد الناس، لكن الذكريات الجميلة لا تعرف المسافات.",
+
+        "لو الذكريات وحشتكِ، افتحي الصور... يمكن ابتسامة صغيرة ترجع لكِ."
+
+    ],
+
+
+    happy: [
+
+        "يا رب ضحكتكِ تفضل موجودة طول الوقت، لأن أجمل نسخة منكِ هي وأنتِ مبسوطة ❤️",
+
+        "طالما أنتِ مبسوطة، يبقى اليوم كسبان 🥰",
+
+        "احتفظي باللحظة دي... الأيام الحلوة تستحق أن نتذكرها."
+
+    ],
+
+
+    fromme: [
+
+        "لو أنتِ زعلانة مني، أنا مش هطلب منكِ تنسي زعلك بسرعة... بس أتمنى تديني فرصة أصلح اللي ضايقكِ ❤️",
+
+        "مش قصدي أكون سبب في زعلكِ... وأتمنى دائمًا أكون سبب في ابتسامتكِ.",
+
+        "لو جرحتكِ بكلمة أو تصرف، آسف من قلبي... رضاكِ أهم عندي من أي نقاش."
+
+    ],
+
+
+    hug: [
+
+        "تعالي هنا 🤍 اعتبري الشاشة دي حضن كبير لحد ما الدنيا تهدى.",
+
+        "حضن طويل من غير كلام... لأن أحيانًا الحضن بيقول كل حاجة ❤️",
+
+        "مفيش كلام كفاية أحيانًا... بس فيه حضن يقول: أنا هنا."
+
+    ]
+
+};
+
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function checkPassword(){
 
     const input =
-        document.getElementById("password");
+        document
+        .getElementById("password-input")
+        .value
+        .trim();
+
 
     const error =
-        document.getElementById("error");
+        document
+        .getElementById("login-error");
 
-    if(input.value.trim() !== PASSWORD){
 
-        error.style.display="block";
+    if(input === "حمووودى"){
 
-        createLoveParticles(
-            window.innerWidth/2,
-            window.innerHeight/2,
-            8
-        );
+        document
+        .getElementById("login-screen")
+        .style.display = "none";
 
-        return;
+
+        document
+        .getElementById("main-content")
+        .style.display = "block";
+
+
+        createLoveParticles();
+
+        startSite();
+
+
+    }else{
+
+        error.textContent =
+            "كلمة السر غير صحيحة، حاولي مرة أخرى ❤️";
+
+
+        document
+        .getElementById("password-input")
+        .value = "";
+
+
     }
 
-    error.style.display="none";
-
-    document.getElementById("loginScreen")
-        .style.display="none";
-
-    document.getElementById("site")
-        .style.display="block";
+}
 
 
-    /*
-       مهم جدًا:
 
-       يتم تشغيل الموسيقى هنا مباشرة
-       بعد ضغط المستخدم على زر الدخول.
-    */
+/* =========================================================
+   START
+========================================================= */
 
-    const music =
-        document.getElementById("music");
-
-    try{
-
-        await music.play();
-
-        document.getElementById("musicStatus")
-            .textContent="تعمل الآن ❤️";
-
-        document.getElementById("musicBtn")
-            .textContent="⏸";
-
-    }catch(error){
-
-        document.getElementById("musicStatus")
-            .textContent=
-            "اضغطي ▶ لتشغيل الأغنية";
-
-        document.getElementById("musicBtn")
-            .textContent="▶";
-
-        console.log(
-            "تعذر التشغيل التلقائي:",
-            error
-        );
-    }
-
+async function startSite(){
 
     updateCounter();
 
-    loadMessages();
+    setInterval(
+        updateCounter,
+        1000
+    );
 
-    loadMedia();
 
     rotateQuote();
 
-    showToast(
-        "أهلاً بأجمل بسبوستي في مملكتها الخاصة 💜"
+    setInterval(
+        rotateQuote,
+        4500
     );
 
-    createLoveParticles(
-        window.innerWidth/2,
-        window.innerHeight/2,
-        20
-    );
+
+    loadSavedMessages();
+
+
+    await loadAllMedia();
+
+
+    await loadMusic();
+
+
+    startSlider();
+
 }
 
 
-/* السماح بزر Enter */
 
-document
-.getElementById("password")
-.addEventListener(
-    "keydown",
-    function(e){
+/* =========================================================
+   GET FOLDER
+========================================================= */
 
-        if(e.key==="Enter"){
-            enterLove();
+async function getFolderContents(folder){
+
+    const url =
+        `${GITHUB_API_BASE}/${folder}?ref=${GITHUB_BRANCH}`;
+
+
+    try{
+
+        const response =
+            await fetch(
+                url,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                `GitHub API error: ${response.status}`
+            );
+
         }
 
+
+        const data =
+            await response.json();
+
+
+        if(!Array.isArray(data)){
+
+            return [];
+
+        }
+
+
+        return data;
+
+
+    }catch(error){
+
+        console.error(error);
+
+        return [];
+
     }
-);
+
+}
 
 
-/* ================================
-   الموسيقى
-================================ */
 
-const music =
-    document.getElementById("music");
+/* =========================================================
+   EXTENSION
+========================================================= */
+
+function getExtension(filename){
+
+    const parts =
+        filename.split(".");
+
+
+    if(parts.length < 2){
+
+        return "";
+
+    }
+
+
+    return parts
+        .pop()
+        .toLowerCase();
+
+}
+
+
+
+/* =========================================================
+   LOAD MEDIA
+========================================================= */
+
+async function loadAllMedia(){
+
+    const container =
+        document
+        .getElementById("media-grid");
+
+
+    container.innerHTML =
+
+        `<div class="media-loading">
+            ❤️ جاري البحث عن الصور والفيديوهات...
+        </div>`;
+
+
+    const [
+        images,
+        videos
+    ] = await Promise.all([
+
+        getFolderContents("images"),
+
+        getFolderContents("videos")
+
+    ]);
+
+
+    allMedia = [];
+
+
+    images.forEach(file=>{
+
+        const ext =
+            getExtension(file.name);
+
+
+        if(
+            IMAGE_EXTENSIONS
+            .includes(ext)
+        ){
+
+            allMedia.push({
+
+                type:"image",
+
+                name:file.name,
+
+                url:
+                    file.download_url ||
+                    `${RAW_BASE}/images/${encodeURIComponent(file.name)}`
+
+            });
+
+        }
+
+    });
+
+
+    videos.forEach(file=>{
+
+        const ext =
+            getExtension(file.name);
+
+
+        if(
+            VIDEO_EXTENSIONS
+            .includes(ext)
+        ){
+
+            allMedia.push({
+
+                type:"video",
+
+                name:file.name,
+
+                url:
+                    file.download_url ||
+                    `${RAW_BASE}/videos/${encodeURIComponent(file.name)}`
+
+            });
+
+        }
+
+    });
+
+
+    renderMedia("all");
+
+
+    buildSlider();
+
+}
+
+
+
+/* =========================================================
+   MEDIA TEXT
+========================================================= */
+
+function getRandomLoveText(){
+
+    return mediaLoveTexts[
+        Math.floor(
+            Math.random()
+            *
+            mediaLoveTexts.length
+        )
+    ];
+
+}
+
+
+
+/* =========================================================
+   RENDER MEDIA
+========================================================= */
+
+function renderMedia(
+    filter="all"
+){
+
+    const container =
+        document
+        .getElementById("media-grid");
+
+
+    container.innerHTML = "";
+
+
+    let items =
+        allMedia;
+
+
+    if(filter !== "all"){
+
+        items =
+            allMedia.filter(
+                item =>
+                    item.type === filter
+            );
+
+    }
+
+
+    if(items.length === 0){
+
+        container.innerHTML =
+
+            `<div class="empty-state">
+
+                لا توجد ملفات من هذا النوع حاليًا ❤️
+
+            </div>`;
+
+        return;
+
+    }
+
+
+    backgroundImages = [];
+
+
+    items.forEach(
+        (item,index)=>{
+
+
+        const card =
+            document
+            .createElement("article");
+
+
+        card.className =
+            "media-card";
+
+
+        const info =
+            document
+            .createElement("div");
+
+
+        info.className =
+            "media-info";
+
+
+        const typeText =
+            item.type === "image"
+            ? "صورة من ذكرياتنا"
+            : "فيديو من ذكرياتنا";
+
+
+        const loveText =
+            getRandomLoveText();
+
+
+        info.innerHTML = `
+
+            <div class="media-type">
+
+                ${typeText}
+
+            </div>
+
+
+            <div class="media-love-text">
+
+                ${loveText}
+
+            </div>
+
+
+            <div class="media-file-name">
+
+                ${escapeHTML(item.name)}
+
+            </div>
+
+        `;
+
+
+        if(
+            item.type === "image"
+        ){
+
+            const img =
+                document
+                .createElement("img");
+
+
+            img.src =
+                item.url;
+
+
+            img.alt =
+                "ذكرى جميلة";
+
+
+            img.loading =
+                "lazy";
+
+
+            img.onclick = ()=>{
+
+                openLightbox(
+                    item.url
+                );
+
+
+                setSiteBackground(
+                    item.url
+                );
+
+
+                createLoveParticles();
+
+            };
+
+
+            card.appendChild(img);
+
+
+            backgroundImages.push(
+                item.url
+            );
+
+
+        }else{
+
+
+            const video =
+                document
+                .createElement("video");
+
+
+            video.src =
+                item.url;
+
+
+            video.controls =
+                true;
+
+
+            video.preload =
+                "metadata";
+
+
+            video.playsInline =
+                true;
+
+
+            video.setAttribute(
+                "webkit-playsinline",
+                ""
+            );
+
+
+            card.appendChild(
+                video
+            );
+
+
+        }
+
+
+        card.appendChild(
+            info
+        );
+
+
+        container.appendChild(
+            card
+        );
+
+
+    });
+
+
+    startBackgroundRotation();
+
+}
+
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterMedia(
+    type,
+    button
+){
+
+    document
+        .querySelectorAll(
+            ".filter-btn"
+        )
+        .forEach(
+            btn =>
+                btn.classList
+                .remove("active")
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderMedia(
+        type
+    );
+
+
+    createLoveParticles();
+
+}
+
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+function setSiteBackground(
+    url
+){
+
+    document.body.style.backgroundImage =
+
+        `linear-gradient(
+            rgba(3,3,8,.84),
+            rgba(3,3,8,.96)
+        ),
+        url("${url}")`;
+
+
+    document.body.style.backgroundSize =
+        "cover";
+
+
+    document.body.style.backgroundAttachment =
+        "fixed";
+
+
+    document.body.style.backgroundPosition =
+        "center";
+
+}
+
+
+
+function startBackgroundRotation(){
+
+    if(backgroundTimer){
+
+        clearInterval(
+            backgroundTimer
+        );
+
+    }
+
+
+    if(
+        backgroundImages.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    backgroundIndex =
+        0;
+
+
+    setSiteBackground(
+        backgroundImages[0]
+    );
+
+
+    if(
+        backgroundImages.length <= 1
+    ){
+
+        return;
+
+    }
+
+
+    backgroundTimer =
+
+        setInterval(
+            ()=>{
+
+                backgroundIndex =
+
+                    (
+                        backgroundIndex + 1
+                    )
+                    %
+                    backgroundImages.length;
+
+
+                setSiteBackground(
+                    backgroundImages[
+                        backgroundIndex
+                    ]
+                );
+
+
+            },
+            10000
+        );
+
+}
+
+
+
+/* =========================================================
+   MEMORY SLIDER
+========================================================= */
+
+function buildSlider(){
+
+    const container =
+        document
+        .getElementById(
+            "slider-container"
+        );
+
+
+    const dots =
+        document
+        .getElementById(
+            "slider-dots"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    dots.innerHTML =
+        "";
+
+
+    const images =
+        allMedia.filter(
+            item =>
+                item.type === "image"
+        );
+
+
+    if(images.length === 0){
+
+        container.innerHTML = `
+
+            <div
+                class="memory-slide active"
+                style="
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                "
+            >
+
+                <div
+                    style="
+                        text-align:center;
+                        color:#c084fc;
+                    "
+                >
+
+                    ❤️
+
+                    <br>
+
+                    أضف صورك داخل مجلد images
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    images.forEach(
+        (item,index)=>{
+
+
+        const slide =
+            document
+            .createElement("div");
+
+
+        slide.className =
+            "memory-slide";
+
+
+        if(index === 0){
+
+            slide.classList.add(
+                "active"
+            );
+
+        }
+
+
+        slide.innerHTML = `
+
+            <img
+                src="${item.url}"
+                alt="memory"
+            >
+
+
+            <div
+                class="memory-slide-text"
+            >
+
+                <h3>
+                    ${getRandomLoveText()}
+                </h3>
+
+                <p>
+                    ذكرى من حكايتنا ❤️
+                </p>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(
+            slide
+        );
+
+
+        const dot =
+            document
+            .createElement("span");
+
+
+        dot.className =
+            "slider-dot";
+
+
+        if(index === 0){
+
+            dot.classList.add(
+                "active"
+            );
+
+        }
+
+
+        dots.appendChild(
+            dot
+        );
+
+
+    });
+
+
+    sliderIndex =
+        0;
+
+
+    startSlider();
+
+}
+
+
+
+function startSlider(){
+
+    if(sliderTimer){
+
+        clearInterval(
+            sliderTimer
+        );
+
+    }
+
+
+    const slides =
+        document
+        .querySelectorAll(
+            ".memory-slide"
+        );
+
+
+    const dots =
+        document
+        .querySelectorAll(
+            ".slider-dot"
+        );
+
+
+    if(slides.length <= 1){
+
+        return;
+
+    }
+
+
+    sliderTimer =
+
+        setInterval(
+            ()=>{
+
+
+                slides[
+                    sliderIndex
+                ].classList.remove(
+                    "active"
+                );
+
+
+                if(dots[sliderIndex]){
+
+                    dots[
+                        sliderIndex
+                    ].classList.remove(
+                        "active"
+                    );
+
+                }
+
+
+                sliderIndex =
+
+                    (
+                        sliderIndex + 1
+                    )
+                    %
+                    slides.length;
+
+
+                slides[
+                    sliderIndex
+                ].classList.add(
+                    "active"
+                );
+
+
+                if(dots[sliderIndex]){
+
+                    dots[
+                        sliderIndex
+                    ].classList.add(
+                        "active"
+                    );
+
+                }
+
+
+            },
+            3000
+        );
+
+}
+
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+async function loadMusic(){
+
+    const audio =
+        document
+        .getElementById(
+            "main-audio"
+        );
+
+
+    const name =
+        document
+        .getElementById(
+            "current-song-name"
+        );
+
+
+    const status =
+        document
+        .getElementById(
+            "music-status"
+        );
+
+
+    const list =
+        document
+        .getElementById(
+            "music-list"
+        );
+
+
+    const files =
+        await getFolderContents(
+            "music"
+        );
+
+
+    allMusic =
+        files.filter(
+            file=>{
+
+                const ext =
+                    getExtension(
+                        file.name
+                    );
+
+
+                return AUDIO_EXTENSIONS
+                    .includes(ext);
+
+            }
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    if(allMusic.length === 0){
+
+        name.textContent =
+            "لم يتم العثور على موسيقى";
+
+
+        status.textContent =
+            "ضع ملف MP3 داخل مجلد music";
+
+
+        return;
+
+    }
+
+
+    currentMusicIndex =
+        0;
+
+
+    showMusic(
+        0
+    );
+
+
+    allMusic.forEach(
+        (song,index)=>{
+
+
+        const button =
+            document
+            .createElement(
+                "button"
+            );
+
+
+        button.textContent =
+            `♫ ${song.name}`;
+
+
+        button.style.cssText = `
+
+            display:block;
+
+            width:100%;
+
+            margin-top:7px;
+
+            padding:10px;
+
+            border-radius:10px;
+
+            border:
+                1px solid
+                rgba(139,92,246,.18);
+
+            background:
+                rgba(255,255,255,.035);
+
+            color:#c9c4d4;
+
+            text-align:right;
+
+            cursor:pointer;
+
+            font-family:inherit;
+
+        `;
+
+
+        button.onclick = ()=>{
+
+            showMusic(
+                index
+            );
+
+
+            playMusic();
+
+
+            createLoveParticles();
+
+        };
+
+
+        list.appendChild(
+            button
+        );
+
+
+    });
+
+
+    /*
+       نحاول تشغيل الأغنية بعد فتح الموقع
+       من خلال ضغطة دخول كلمة السر.
+    */
+
+    setTimeout(
+        ()=>{
+            playMusic();
+        },
+        150
+    );
+
+}
+
+
+
+function showMusic(
+    index
+){
+
+    if(!allMusic[index]){
+
+        return;
+
+    }
+
+
+    currentMusicIndex =
+        index;
+
+
+    const song =
+        allMusic[index];
+
+
+    const audio =
+        document
+        .getElementById(
+            "main-audio"
+        );
+
+
+    const name =
+        document
+        .getElementById(
+            "current-song-name"
+        );
+
+
+    const status =
+        document
+        .getElementById(
+            "music-status"
+        );
+
+
+    audio.src =
+
+        song.download_url ||
+
+        `${RAW_BASE}/music/${encodeURIComponent(song.name)}`;
+
+
+    name.textContent =
+        song.name;
+
+
+    status.textContent =
+
+        `الأغنية ${
+            index + 1
+        } من ${
+            allMusic.length
+        }`;
+
+
+    audio.load();
+
+}
+
+
+
+function playMusic(){
+
+    const audio =
+        document
+        .getElementById(
+            "main-audio"
+        );
+
+
+    if(!audio.src){
+
+        return;
+
+    }
+
+
+    audio.play()
+
+        .then(()=>{
+
+            document
+            .getElementById(
+                "music-mini-btn"
+            )
+            .textContent =
+                "❚❚";
+
+
+            document
+            .getElementById(
+                "music-mini-text"
+            )
+            .textContent =
+                "الموسيقى تعمل";
+
+        })
+
+        .catch(error=>{
+
+            console.log(
+                "Autoplay:",
+                error
+            );
+
+            document
+            .getElementById(
+                "music-mini-text"
+            )
+            .textContent =
+                "اضغطي ▶ لتشغيل الموسيقى";
+
+        });
+
+}
+
 
 
 function toggleMusic(){
 
-    if(music.paused){
+    const audio =
+        document
+        .getElementById(
+            "main-audio"
+        );
 
-        music.play()
-        .then(()=>{
 
-            document.getElementById("musicBtn")
-                .textContent="⏸";
+    if(audio.paused){
 
-            document.getElementById("musicStatus")
-                .textContent="تعمل الآن ❤️";
-
-        })
-        .catch(()=>{
-
-            showToast(
-                "اضغطي مرة أخرى لتشغيل الأغنية 🎵"
-            );
-
-        });
+        playMusic();
 
     }else{
 
-        music.pause();
+        audio.pause();
 
-        document.getElementById("musicBtn")
-            .textContent="▶";
 
-        document.getElementById("musicStatus")
-            .textContent="متوقفة مؤقتًا";
+        document
+        .getElementById(
+            "music-mini-btn"
+        )
+        .textContent =
+            "▶";
+
+
+        document
+        .getElementById(
+            "music-mini-text"
+        )
+        .textContent =
+            "الموسيقى متوقفة";
 
     }
 
 }
 
 
-/* ================================
-   عداد الحب
-================================ */
+
+document
+    .getElementById(
+        "main-audio"
+    )
+    .addEventListener(
+        "ended",
+        ()=>{
+
+
+        if(
+            allMusic.length > 1
+        ){
+
+            currentMusicIndex =
+
+                (
+                    currentMusicIndex + 1
+                )
+                %
+                allMusic.length;
+
+
+            showMusic(
+                currentMusicIndex
+            );
+
+
+            playMusic();
+
+        }
+
+
+    });
+
+
+
+/* =========================================================
+   QUOTES
+========================================================= */
+
+let quoteIndex =
+    0;
+
+
+function rotateQuote(){
+
+    const element =
+        document
+        .getElementById(
+            "quote-display"
+        );
+
+
+    element.style.opacity =
+        "0";
+
+
+    setTimeout(
+        ()=>{
+
+
+        element.textContent =
+            loveQuotes[
+                quoteIndex
+            ];
+
+
+        element.style.opacity =
+            "1";
+
+
+        quoteIndex =
+
+            (
+                quoteIndex + 1
+            )
+            %
+            loveQuotes.length;
+
+
+        },
+        350
+    );
+
+}
+
+
+
+/* =========================================================
+   MOOD
+========================================================= */
+
+function showMood(
+    mood
+){
+
+    const box =
+        document
+        .getElementById(
+            "mood-message"
+        );
+
+
+    const messages =
+        moodMessages[mood];
+
+
+    if(!messages){
+
+        return;
+
+    }
+
+
+    const message =
+        messages[
+            Math.floor(
+                Math.random()
+                *
+                messages.length
+            )
+        ];
+
+
+    box.style.opacity =
+        "0";
+
+
+    setTimeout(
+        ()=>{
+
+            box.innerHTML =
+                message;
+
+            box.style.opacity =
+                "1";
+
+        },
+        180
+    );
+
+
+    createLoveParticles();
+
+    showToast(
+        "رسالة صغيرة مخصوص ليكي ❤️"
+    );
+
+}
+
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
 
 function updateCounter(){
 
-    const now = new Date();
+    const start =
+        new Date(
+            "2024-08-26T00:00:00"
+        );
+
+
+    const now =
+        new Date();
+
+
+    if(now < start){
+
+        return;
+
+    }
+
 
     let years =
-        now.getFullYear() -
-        START_DATE.getFullYear();
+
+        now.getFullYear()
+        -
+        start.getFullYear();
+
 
     let months =
-        now.getMonth() -
-        START_DATE.getMonth();
+
+        now.getMonth()
+        -
+        start.getMonth();
+
 
     let days =
-        now.getDate() -
-        START_DATE.getDate();
+
+        now.getDate()
+        -
+        start.getDate();
+
 
     let hours =
-        now.getHours() -
-        START_DATE.getHours();
+
+        now.getHours()
+        -
+        start.getHours();
+
 
     let minutes =
-        now.getMinutes() -
-        START_DATE.getMinutes();
+
+        now.getMinutes()
+        -
+        start.getMinutes();
+
 
     let seconds =
-        now.getSeconds() -
-        START_DATE.getSeconds();
+
+        now.getSeconds()
+        -
+        start.getSeconds();
 
 
     if(seconds < 0){
 
         seconds += 60;
+
         minutes--;
 
     }
 
+
     if(minutes < 0){
 
         minutes += 60;
+
         hours--;
 
     }
 
+
     if(hours < 0){
 
         hours += 24;
+
         days--;
 
     }
 
+
     if(days < 0){
 
         months--;
+
 
         const previousMonth =
             new Date(
@@ -1603,269 +4602,99 @@ function updateCounter(){
                 0
             );
 
-        days += previousMonth.getDate();
+
+        days +=
+            previousMonth.getDate();
 
     }
+
 
     if(months < 0){
 
         months += 12;
+
         years--;
 
     }
 
 
-    document.getElementById("years")
-        .textContent=years;
-
-    document.getElementById("months")
-        .textContent=months;
-
-    document.getElementById("days")
-        .textContent=days;
-
-    document.getElementById("hours")
-        .textContent=hours;
-
-    document.getElementById("minutes")
-        .textContent=minutes;
-
-    document.getElementById("seconds")
-        .textContent=seconds;
-
-}
-
-setInterval(updateCounter,1000);
+    document
+        .getElementById("years")
+        .textContent =
+            years;
 
 
-/* ================================
-   رسائل الحب
-================================ */
-
-const quotes=[
-
-"أنتِ مش مجرد شخص بحبه... أنتِ ذكرى حلوة عايزها تفضل موجودة في قلبي دايمًا 💜",
-
-"في وسط كل الناس، فيه شخص واحد وجوده بيخلّي الدنيا أهدى... وإنتِ الشخص ده ❤️",
-
-"بسبوستي، مهما كتبت مش هقدر أوصف قد إيه وجودك له معنى جميل عندي 🦋",
-
-"أجمل حاجة في الذكريات إنها بتخلينا نبتسم حتى بعد ما اللحظة تعدي 🌹",
-
-"لو الدنيا بقت تقيلة عليكي يوم، افتكري إنك تستحقي أيام أهدى وأجمل 💜",
-
-"ابتسامتك من الحاجات اللي تستاهل الدنيا كلها تتعمل عشانها ❤️",
-
-"بعض الأشخاص بيعدوا في حياتنا... وبعضهم بيسيبوا أثر لا يروح. وإنتِ من النوع التاني 🦋",
-
-"كل صورة هنا مش مجرد صورة... دي لحظة كان فيها للقلب حكاية 💕",
-
-"أتمنى دايمًا أشوفك بخير ومبسوطة ومرتاحة 🌙",
-
-"لو احتجتي مكان تهربي له من الدنيا، اعتبري الموقع ده زاوية صغيرة ليكي 💜",
-
-"أوقات كلمة واحدة من الشخص الصح ممكن تغير يوم كامل... عشان كده: خليكي بخير ❤️",
-
-"يا بسبوستي، مهما تغيرت الأيام، الذكريات الحلوة تفضل حلوة 🌹"
-
-];
-
-let quoteIndex=0;
-
-function rotateQuote(){
-
-    const element =
-        document.getElementById("quote");
-
-    element.style.opacity="0";
-
-    setTimeout(()=>{
-
-        element.textContent =
-            quotes[quoteIndex];
-
-        element.style.opacity="1";
-
-        quoteIndex =
-            (quoteIndex+1)%quotes.length;
-
-    },300);
-
-}
-
-setInterval(rotateQuote,4000);
+    document
+        .getElementById("months")
+        .textContent =
+            months;
 
 
-/* ================================
-   المشاعر
-================================ */
-
-const feelings={
-
-sad:
-"لو زعلانة دلوقتي، خدي نفس طويل وافتكري إن الزعل مش بيدوم. أتمنى قلبك يهدى وتلاقي سبب صغير يخليكي تبتسمي تاني 🥺💜",
-
-miss:
-"لو وحشك حد، افتكري إن الاشتياق معناه إن فيه ذكرى جميلة لسه عايشة جواكي. افتكري أحلى لحظة وخليها تبتسمك ❤️",
-
-angry:
-"لو متضايقة، متاخديش أي قرار وإنتِ غضبانة. اهدي الأول، واشربي حاجة بتحبيها، وبعدها كل حاجة هتبان أوضح 🌙",
-
-mad:
-"لو غضبانة مني، حقك تعبري عن اللي جواكي. المهم متخليش لحظة غضب تمسح كل لحظة حلوة كانت موجودة قبلها 💜",
-
-need:
-"لو محتاجة حضن، تخيلي أكبر حضن دافي ومريح في الدنيا بيقولك: اهدي... أنا هنا 🫂❤️",
-
-happy:
-"لو مبسوطة، متخليش اللحظة تعدي من غير ما تستمتعي بيها. اضحكي، افرحي، وخلي يومك مليان نور 🥰✨",
-
-love:
-"لو قلبك مليان حب، خليه دايمًا حب هادي ومحترم وجميل. أجمل حاجة إننا نتمنى الخير للشخص اللي بنحبه ❤️",
-
-missme:
-"لو أنا وحشتك، افتكري أجمل موقف ضحكنا فيه سوا... يمكن تلاقي ابتسامة صغيرة ظهرت من غير ما تحسي 💜"
-
-};
+    document
+        .getElementById("days")
+        .textContent =
+            days;
 
 
-function showFeeling(type){
+    document
+        .getElementById("hours")
+        .textContent =
+            hours;
 
-    const box =
-        document.getElementById("feelingMessage");
 
-    box.style.opacity="0";
+    document
+        .getElementById("minutes")
+        .textContent =
+            minutes;
 
-    setTimeout(()=>{
 
-        box.textContent =
-            feelings[type];
-
-        box.style.opacity="1";
-
-    },200);
-
-    createLoveParticles(
-        window.innerWidth/2,
-        window.innerHeight/2,
-        12
-    );
+    document
+        .getElementById("seconds")
+        .textContent =
+            seconds;
 
 }
 
 
-/* ================================
-   المفاجأة
-================================ */
 
-const surprises=[
-
-"رسالة سرية: وجودك في حياة أي شخص ممكن يكون سبب في إن أيامه تبقى ألطف ❤️",
-
-"لو وصلتي هنا، يبقى عندك فضول تعرفي اللي جوا الموقع... والحقيقة إن أجمل حاجة فيه هي الذكريات نفسها 💜",
-
-"مفاجأة صغيرة: مهما كانت مشاعرك النهارده، أتمنى بكرة يكون أهدى وأجمل من النهارده 🦋",
-
-"رسالة مخصوص: إنتِ تستحقي كلام حلو، احترام، اهتمام، وراحة بال... مش مجرد كلام لحظي 🌹",
-
-"آخر مفاجأة: اقفلي عينك ثانيتين، خدي نفس، وابتسمي... أيوه كده 😌❤️"
-
-];
-
-function surprise(){
-
-    const text =
-        surprises[
-            Math.floor(
-                Math.random()*surprises.length
-            )
-        ];
-
-    document.getElementById("surpriseText")
-        .textContent=text;
-
-    createLoveParticles(
-        window.innerWidth/2,
-        window.innerHeight/2,
-        25
-    );
-
-}
-
-
-/* ================================
-   اللعبة
-================================ */
-
-function playGame(user){
-
-    const choices=[
-        "حجر",
-        "ورقة",
-        "مقص"
-    ];
-
-    const computer =
-        choices[
-            Math.floor(
-                Math.random()*3
-            )
-        ];
-
-    let result="";
-
-    if(user===computer){
-
-        result=
-        `إنتِ اخترتي ${user} وأنا اخترت ${computer} 😍 تعادل... بس برضه إنتِ كسبانة ❤️`;
-
-    }else{
-
-        result=
-        `إنتِ اخترتي ${user} وأنا اخترت ${computer} 😂 مهما كانت النتيجة، إنتِ كسبانة عندي أصلًا 💜`;
-
-    }
-
-    document.getElementById("gameResult")
-        .textContent=result;
-
-    createLoveParticles(
-        window.innerWidth/2,
-        window.innerHeight/2,
-        8
-    );
-
-}
-
-
-/* ================================
-   الرسائل المحلية
-================================ */
+/* =========================================================
+   SAVE MESSAGES
+========================================================= */
 
 function saveMessage(){
 
     const input =
-        document.getElementById("messageInput");
+        document
+        .getElementById(
+            "note-input"
+        );
+
 
     const text =
         input.value.trim();
 
+
     if(!text){
 
         showToast(
-            "اكتبي حاجة الأول يا بسبوستي ❤️"
+            "اكتبي الرسالة أولاً ❤️"
         );
 
         return;
 
     }
 
-    const messages =
+
+    let messages =
+
         JSON.parse(
             localStorage.getItem(
-                "basbostyMessages"
-            ) || "[]"
+                "banoty_messages"
+            )
+            ||
+            "[]"
         );
+
 
     messages.push({
 
@@ -1873,828 +4702,481 @@ function saveMessage(){
 
         date:
             new Date()
-            .toLocaleString("ar-EG")
+            .toLocaleString(
+                "ar-EG"
+            )
 
     });
+
 
     localStorage.setItem(
-        "basbostyMessages",
-        JSON.stringify(messages)
+
+        "banoty_messages",
+
+        JSON.stringify(
+            messages
+        )
+
     );
 
-    input.value="";
 
-    loadMessages();
-
-    showToast(
-        "رسالتك اتحفظت على الجهاز ❤️"
-    );
-
-}
-
-
-function loadMessages(){
-
-    const container =
-        document.getElementById(
-            "savedMessages"
-        );
-
-    const messages =
-        JSON.parse(
-            localStorage.getItem(
-                "basbostyMessages"
-            ) || "[]"
-        );
-
-    container.innerHTML="";
-
-    messages
-    .slice()
-    .reverse()
-    .forEach((msg,index)=>{
-
-        const item =
-            document.createElement("div");
-
-        item.className="savedItem";
-
-        item.textContent =
-            "💌 "+msg.text+
-            " — "+msg.date;
-
-        container.appendChild(item);
-
-    });
-
-}
-
-
-/* ================================
-   اكتشاف ملفات GitHub
-================================ */
-
-/*
-
-الكود يحاول معرفة:
-
-owner
-repo
-
-من عنوان GitHub Pages نفسه.
-
-مثال:
-
-https://USERNAME.github.io/REPOSITORY/
-
-وبعدها يستخدم GitHub API
-للحصول على الملفات الموجودة داخل:
-
-images
-video
-music
-
-وهذا أفضل من كتابة ph1/ph2 يدويًا.
-
-*/
-
-function getGitHubInfo(){
-
-    const host =
-        location.hostname;
-
-    const path =
-        location.pathname
-        .split("/")
-        .filter(Boolean);
-
-    if(
-        !host.endsWith(".github.io")
-    ){
-
-        return null;
-
-    }
-
-    const owner =
-        host.split(".")[0];
-
-    const repo =
-        path.length ?
-        path[0] :
+    input.value =
         "";
 
-    if(!owner || !repo){
 
-        return null;
+    loadSavedMessages();
 
-    }
 
-    return {
-        owner:owner,
-        repo:repo
-    };
+    showToast(
+        "تم حفظ رسالتك ❤️"
+    );
+
+
+    createLoveParticles();
 
 }
 
 
-async function getFolderFiles(folder){
 
-    const info =
-        getGitHubInfo();
+function loadSavedMessages(){
 
-    if(!info){
+    const list =
+        document
+        .getElementById(
+            "saved-list"
+        );
 
-        return [];
 
-    }
+    const messages =
 
-    const api =
-        `https://api.github.com/repos/`+
-        `${info.owner}/`+
-        `${info.repo}/contents/`+
-        `${folder}`;
-
-    try{
-
-        const response =
-            await fetch(api);
-
-        if(!response.ok){
-
-            throw new Error(
-                "GitHub API Error"
-            );
-
-        }
-
-        const data =
-            await response.json();
-
-        if(!Array.isArray(data)){
-
-            return [];
-
-        }
-
-        return data
-            .filter(item =>
-                item.type==="file"
+        JSON.parse(
+            localStorage.getItem(
+                "banoty_messages"
             )
-            .map(item => item.name);
-
-    }catch(error){
-
-        console.log(
-            "تعذر قراءة مجلد "+folder,
-            error
+            ||
+            "[]"
         );
 
-        return [];
+
+    list.innerHTML =
+        "";
+
+
+    if(
+        messages.length === 0
+    ){
+
+        list.innerHTML =
+
+            `<div
+                style="
+                    color:#777;
+                    font-size:13px
+                "
+            >
+                لا توجد رسائل محفوظة بعد.
+            </div>`;
+
+        return;
 
     }
 
-}
+
+    messages
+        .slice()
+        .reverse()
+        .forEach(
+            msg=>{
 
 
-/* ================================
-   تحميل الصور والفيديو
-================================ */
-
-const imageExtensions=[
-    ".jpg",
-    ".jpeg",
-    ".png",
-    ".webp",
-    ".gif",
-    ".bmp"
-];
-
-const videoExtensions=[
-    ".mp4",
-    ".webm",
-    ".mov",
-    ".m4v",
-    ".ogg"
-];
-
-
-function isImage(name){
-
-    return imageExtensions.some(
-        ext =>
-        name.toLowerCase()
-        .endsWith(ext)
-    );
-
-}
-
-
-function isVideo(name){
-
-    return videoExtensions.some(
-        ext =>
-        name.toLowerCase()
-        .endsWith(ext)
-    );
-
-}
-
-
-async function loadMedia(){
-
-    const imageGrid =
-        document.getElementById(
-            "imagesGrid"
-        );
-
-    const videoGrid =
-        document.getElementById(
-            "videosGrid"
-        );
-
-    imageGrid.innerHTML="";
-
-    videoGrid.innerHTML="";
-
-
-    let images =
-        await getFolderFiles("images");
-
-    let videos =
-        await getFolderFiles("video");
-
-
-    /*
-       في حالة عدم توفر GitHub API
-       نحاول الملفات الموجودة بالأسماء
-       المعتادة.
-    */
-
-    if(images.length===0){
-
-        images=[];
-
-        for(let i=1;i<=100;i++){
-
-            for(const ext of imageExtensions){
-
-                images.push(
-                    `ph${i}${ext}`
+            const div =
+                document
+                .createElement(
+                    "div"
                 );
 
-            }
 
-        }
-
-    }
+            div.className =
+                "saved-message";
 
 
-    if(videos.length===0){
+            div.innerHTML = `
 
-        videos=[];
+                <div>
+                    ${escapeHTML(msg.text)}
+                </div>
 
-        for(let i=1;i<=50;i++){
+                <small
+                    style="
+                        color:#777
+                    "
+                >
+                    ${escapeHTML(msg.date)}
+                </small>
 
-            for(const ext of videoExtensions){
-
-                videos.push(
-                    `v${i}${ext}`
-                );
-
-            }
-
-        }
-
-    }
+            `;
 
 
-    let validImages=[];
-
-
-    /*
-       تحميل الصور الموجودة فقط
-    */
-
-    for(const file of images){
-
-        if(!isImage(file)){
-            continue;
-        }
-
-        const url =
-            "images/"+file;
-
-        try{
-
-            await imageExists(url);
-
-            validImages.push(url);
-
-            addImageCard(
-                url,
-                validImages.length
+            list.appendChild(
+                div
             );
 
-        }catch(e){
 
-        }
-
-    }
-
-
-    /*
-       تحميل الفيديوهات
-    */
-
-    for(const file of videos){
-
-        if(!isVideo(file)){
-            continue;
-        }
-
-        const url =
-            "video/"+file;
-
-        addVideoCard(
-            url,
-            file
-        );
-
-    }
-
-
-    if(validImages.length>0){
-
-        setupSlider(validImages);
-
-    }else{
-
-        document.getElementById(
-            "sliderImage"
-        ).style.display="none";
-
-        document.getElementById(
-            "sliderText"
-        ).textContent=
-            "ضع الصور داخل مجلد images ❤️";
-
-    }
+        });
 
 }
 
 
-function imageExists(url){
 
-    return new Promise(
-        (resolve,reject)=>{
+/* =========================================================
+   LIGHTBOX
+========================================================= */
 
-            const img =
-                new Image();
-
-            img.onload=()=>resolve(true);
-
-            img.onerror=()=>reject(false);
-
-            img.src=url;
-
-        }
-    );
-
-}
-
-
-/* ================================
-   كروت الصور
-================================ */
-
-function addImageCard(url,index){
-
-    const grid =
-        document.getElementById(
-            "imagesGrid"
-        );
-
-    const card =
-        document.createElement("div");
-
-    card.className="mediaCard";
-
-    const img =
-        document.createElement("img");
-
-    img.src=url;
-
-    img.loading="lazy";
-
-    img.alt=
-        "ذكرى رقم "+index;
-
-    img.onclick=()=>{
-
-        document.getElementById(
-            "sliderImage"
-        ).src=url;
-
-        document.body.style.backgroundImage=
-            `radial-gradient(circle at center,rgba(5,3,10,.72),rgba(5,3,10,.98)),url("${url}")`;
-
-        document.body.style.backgroundSize=
-            "cover";
-
-        createLoveParticles(
-            window.innerWidth/2,
-            window.innerHeight/2,
-            15
-        );
-
-        showToast(
-            "اختيار جميل... الذكرى دي بقت خلفية الموقع 💜"
-        );
-
-    };
-
-
-    const text =
-        document.createElement("div");
-
-    text.className="mediaText";
-
-    text.innerHTML=`
-
-        <h3>
-            ذكرى رقم ${index} ❤️
-        </h3>
-
-        <p>
-            لحظة جميلة تستحق إنها تفضل
-            محفوظة في الذاكرة.
-            كل صورة لها حكاية،
-            وكل حكاية لها مكان خاص في القلب. 💜
-        </p>
-
-    `;
-
-
-    card.appendChild(img);
-
-    card.appendChild(text);
-
-    grid.appendChild(card);
-
-}
-
-
-/* ================================
-   كروت الفيديو
-================================ */
-
-function addVideoCard(url,name){
-
-    const grid =
-        document.getElementById(
-            "videosGrid"
-        );
-
-    const card =
-        document.createElement("div");
-
-    card.className="mediaCard";
-
-
-    const video =
-        document.createElement("video");
-
-    video.src=url;
-
-    video.controls=true;
-
-    video.preload="metadata";
-
-    video.playsInline=true;
-
-
-    const text =
-        document.createElement("div");
-
-    text.className="mediaText";
-
-    text.innerHTML=`
-
-        <h3>
-            🎬 ${escapeHTML(name)}
-        </h3>
-
-        <p>
-            لحظة متحركة من الذكريات...
-            اضغطي تشغيل واسترجعي الجو الجميل ❤️
-        </p>
-
-    `;
-
-
-    card.appendChild(video);
-
-    card.appendChild(text);
-
-    grid.appendChild(card);
-
-}
-
-
-/* منع HTML داخل أسماء الملفات */
-
-function escapeHTML(text){
-
-    return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* ================================
-   السلايدر
-================================ */
-
-let sliderImages=[];
-
-let sliderIndex=0;
-
-
-const sliderTexts=[
-
-"كل صورة هنا وراها حكاية جميلة ❤️",
-
-"فيه ذكريات مهما مر عليها الوقت تفضل قريبة من القلب 💜",
-
-"أجمل اللحظات هي اللي بنفتكرها ونبتسم من غير ما نحس 🦋",
-
-"الصورة لحظة... لكن الإحساس ممكن يفضل سنين 🌹",
-
-"هنا جزء صغير من الذكريات الجميلة ❤️"
-
-];
-
-
-function setupSlider(images){
-
-    sliderImages=images;
-
-    const dots =
-        document.getElementById(
-            "dots"
-        );
-
-    dots.innerHTML="";
-
-    images.forEach(
-        (img,index)=>{
-
-            const dot =
-                document.createElement("span");
-
-            dot.className="dot";
-
-            if(index===0){
-
-                dot.classList.add("active");
-
-            }
-
-            dots.appendChild(dot);
-
-        }
-    );
-
-    showSlide(0);
-
-}
-
-
-function showSlide(index){
-
-    if(!sliderImages.length){
-        return;
-    }
-
-    sliderIndex=index;
-
-    const image =
-        document.getElementById(
-            "sliderImage"
-        );
-
-    image.style.opacity="0";
-
-
-    setTimeout(()=>{
-
-        image.src=
-            sliderImages[index];
-
-        image.style.opacity="1";
-
-    },200);
-
-
-    const dots =
-        document.querySelectorAll(
-            ".dot"
-        );
-
-    dots.forEach(
-        d =>
-        d.classList.remove("active")
-    );
-
-    if(dots[index]){
-
-        dots[index]
-            .classList.add("active");
-
-    }
-
-
-    document.getElementById(
-        "sliderText"
-    ).textContent=
-        sliderTexts[
-            index %
-            sliderTexts.length
-        ];
-
-}
-
-
-setInterval(()=>{
-
-    if(sliderImages.length>1){
-
-        sliderIndex =
-            (sliderIndex+1) %
-            sliderImages.length;
-
-        showSlide(sliderIndex);
-
-    }
-
-},3000);
-
-
-/* ================================
-   قلوب وفراشات
-================================ */
-
-const particles=[
-    "❤️",
-    "💜",
-    "💙",
-    "🦋",
-    "🌹",
-    "🌸",
-    "💕",
-    "✨",
-    "💫"
-];
-
-
-function createLoveParticles(
-    x,
-    y,
-    amount=5
+function openLightbox(
+    url
 ){
 
-    for(let i=0;i<amount;i++){
-
-        const element =
-            document.createElement("div");
-
-        element.className="floating";
-
-        element.textContent =
-            particles[
-                Math.floor(
-                    Math.random()*
-                    particles.length
-                )
-            ];
-
-        element.style.left=
-            x+"px";
-
-        element.style.top=
-            y+"px";
-
-        element.style.setProperty(
-            "--x",
-            ((Math.random()-.5)*220)+"px"
+    const box =
+        document
+        .getElementById(
+            "lightbox"
         );
 
-        element.style.animationDelay=
-            (Math.random()*.3)+"s";
 
-        document.body.appendChild(
-            element
+    const img =
+        document
+        .getElementById(
+            "lightbox-image"
         );
 
-        setTimeout(
-            ()=>element.remove(),
-            2800
-        );
 
-    }
+    img.src =
+        url;
+
+
+    box.style.display =
+        "flex";
 
 }
 
 
-/*
-   عند الضغط في أي مكان
-*/
 
-document.addEventListener(
-    "click",
-    function(e){
+function closeLightbox(
+    event
+){
 
-        if(
-            e.target.closest(
-                "button,input,textarea,video"
+    if(
+
+        !event ||
+
+        event.target.id ===
+            "lightbox" ||
+
+        event.target.classList
+            .contains(
+                "close-lightbox"
             )
-        ){
-            createLoveParticles(
-                e.clientX,
-                e.clientY,
-                5
-            );
 
-            return;
-        }
+    ){
 
-        createLoveParticles(
-            e.clientX,
-            e.clientY,
-            3
-        );
+        document
+        .getElementById(
+            "lightbox"
+        )
+        .style.display =
+            "none";
 
     }
-);
-
-
-/* ================================
-   Toast
-================================ */
-
-function showToast(message){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-    toast.textContent=message;
-
-    toast.classList.add("show");
-
-    clearTimeout(
-        window.toastTimer
-    );
-
-    window.toastTimer =
-        setTimeout(()=>{
-
-            toast.classList.remove(
-                "show"
-            );
-
-        },3500);
 
 }
 
 
-/* ================================
-   التنقل
-================================ */
 
-function scrollToId(id){
+/* =========================================================
+   SCROLL
+========================================================= */
+
+function scrollToSection(
+    id
+){
 
     const element =
-        document.getElementById(id);
+        document
+        .getElementById(
+            id
+        );
+
 
     if(element){
 
         element.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
+
+            behavior:"smooth"
+
         });
 
     }
 
 }
 
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(
+    message
+){
+
+    const toast =
+        document
+        .getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        ()=>{
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
+
+}
+
+
+
+/* =========================================================
+   LOVE PARTICLES
+========================================================= */
+
+function createLoveParticles(){
+
+    const symbols = [
+
+        "❤️",
+        "💜",
+        "🩵",
+        "🦋",
+        "🌸",
+        "🌹",
+        "✨",
+        "💕",
+        "💐"
+
+    ];
+
+
+    for(
+        let i=0;
+        i<12;
+        i++
+    ){
+
+        setTimeout(
+            ()=>{
+
+
+            const particle =
+                document
+                .createElement(
+                    "div"
+                );
+
+
+            particle.className =
+                "love-particle";
+
+
+            particle.textContent =
+
+                symbols[
+                    Math.floor(
+                        Math.random()
+                        *
+                        symbols.length
+                    )
+                ];
+
+
+            particle.style.left =
+
+                (
+                    10
+                    +
+                    Math.random()
+                    *
+                    80
+                )
+                +
+                "%";
+
+
+            particle.style.bottom =
+                "25px";
+
+
+            particle.style.setProperty(
+
+                "--move",
+
+                (
+                    Math.random()
+                    *
+                    160
+                    -
+                    80
+                )
+                +
+                "px"
+
+            );
+
+
+            particle.style.fontSize =
+
+                (
+                    17
+                    +
+                    Math.random()
+                    *
+                    18
+                )
+                +
+                "px";
+
+
+            document.body.appendChild(
+                particle
+            );
+
+
+            setTimeout(
+                ()=>{
+
+                    particle.remove();
+
+                },
+                3000
+            );
+
+
+            },
+            i * 90
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(
+    text
+){
+
+    const div =
+        document
+        .createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =========================================================
+   VISIBILITY
+========================================================= */
+
+document.addEventListener(
+
+    "visibilitychange",
+
+    ()=>{
+
+
+        if(
+
+            document.visibilityState
+                === "visible"
+
+            &&
+
+            document
+                .getElementById(
+                    "main-content"
+                )
+                .style.display
+                !== "none"
+
+        ){
+
+            loadAllMedia();
+
+            loadMusic();
+
+        }
+
+    }
+
+);
+
+
+
+/* =========================================================
+   CLICK EFFECT
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.closest(
+                "button"
+            )
+            ||
+            event.target.closest(
+                ".media-card"
+            )
+        ){
+
+            createLoveParticles();
+
+        }
+
+    }
+);
+
+
 </script>
 
 </body>
+
 </html>
