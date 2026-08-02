@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مملكة العشق الأبدي - بسبوستى ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +14,7 @@
         }
 
         body {
-            background: #0f3460;
+            background: #1a0933;
             color: #fff;
             min-height: 100vh;
             overflow-x: hidden;
@@ -30,11 +31,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 12, 41, 0.85);
+            background: rgba(26, 9, 51, 0.88);
             z-index: 1;
         }
 
-        /* قبة النجوم الرومانسية (الفكرة رقم 3) */
+        /* قبة النجوم الرومانسية */
         #stars-container {
             position: fixed;
             top: 0;
@@ -53,7 +54,7 @@
             cursor: pointer;
             pointer-events: auto;
             animation: twinkle var(--duration) ease-in-out infinite;
-            box-shadow: 0 0 8px #ff69b4, 0 0 12px #ffffff;
+            box-shadow: 0 0 10px #b19cd9, 0 0 15px #ffffff;
         }
 
         @keyframes twinkle {
@@ -61,11 +62,11 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* تأثير القلوب المتحركة عند اللمس (الفكرة رقم 5) */
+        /* تأثير القلوب المتحركة عند اللمس */
         .click-heart {
             position: fixed;
-            color: #ff69b4;
-            font-size: 20px;
+            color: #d1b3ff;
+            font-size: 22px;
             user-select: none;
             pointer-events: none;
             z-index: 9999;
@@ -78,42 +79,58 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-80px) scale(1.5);
+                transform: translateY(-90px) scale(1.6);
                 opacity: 0;
             }
         }
 
-        /* شاشة تسجيل الدخول */
+        /* شاشة تسجيل الدخول مع خلفية صورة لنا سوا */
         #login-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 12, 41, 0.98);
+            background: url('imeges/couple.jpg') no-repeat center center;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
+        }
+
+        /* طبقة تظليل فوق خلفية شاشة الدخول لضمان وضوح الصندوق والكلمات */
+        #login-screen::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 9, 51, 0.75);
+            z-index: 1;
         }
 
         .login-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 105, 180, 0.4);
+            position: relative;
+            background: rgba(147, 112, 219, 0.12);
+            border: 2px solid rgba(186, 85, 211, 0.6);
             padding: 40px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 0 40px rgba(186, 85, 211, 0.5);
             max-width: 400px;
             width: 90%;
-            z-index: 1001;
+            z-index: 2;
+            backdrop-filter: blur(12px);
         }
 
         .login-box h2 {
             margin-bottom: 20px;
-            color: #ff69b4;
+            color: #e6ccff;
             font-size: 26px;
+            text-shadow: 0 0 10px rgba(186, 85, 211, 0.8);
         }
 
         .login-box input {
@@ -121,7 +138,7 @@
             padding: 12px;
             margin-bottom: 20px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #ff69b4;
+            border: 1px solid #ba55d3;
             border-radius: 8px;
             color: #fff;
             font-size: 18px;
@@ -130,7 +147,7 @@
         }
 
         .login-box button {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            background: linear-gradient(45deg, #9370db, #8a2be2);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -139,16 +156,16 @@
             cursor: pointer;
             transition: 0.3s;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
         }
 
         .login-box button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 20, 147, 0.8);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.9);
         }
 
         .error-msg {
-            color: #ff4d4d;
+            color: #ff9999;
             margin-top: 10px;
             font-size: 14px;
             display: none;
@@ -167,50 +184,119 @@
         header {
             text-align: center;
             padding: 30px 0;
-            border-bottom: 2px dashed rgba(255, 105, 180, 0.3);
+            border-bottom: 2px dashed rgba(186, 85, 211, 0.3);
             margin-bottom: 30px;
         }
 
         header h1 {
             font-size: 38px;
-            color: #ff69b4;
-            text-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+            color: #e6ccff;
+            text-shadow: 0 0 15px rgba(186, 85, 211, 0.7);
             margin-bottom: 10px;
         }
 
         header p {
             font-size: 18px;
-            color: #ffb6c1;
+            color: #d1b3ff;
+        }
+
+        /* شريط الصور المتحركة العلوي (Slideshow Header Banner) */
+        .top-slideshow-section {
+            background: rgba(147, 112, 219, 0.05);
+            border: 1px solid rgba(186, 85, 211, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 25px rgba(138, 43, 226, 0.2);
+        }
+
+        .top-slideshow-section h3 {
+            color: #d1b3ff;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid transparent;
+            background-image: linear-gradient(rgba(20, 5, 35, 0.8), rgba(20, 5, 35, 0.8)), linear-gradient(135deg, #da70d6, #8a2be2, #4b0082);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 0 20px rgba(186, 85, 211, 0.4);
+        }
+
+        .slideshow-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slideshow-slide.active {
+            opacity: 1;
+        }
+
+        .slideshow-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slideshow-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 9, 51, 0.85);
+            padding: 12px;
+            color: #f2e6ff;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border-top: 1px solid rgba(186, 85, 211, 0.4);
+            backdrop-filter: blur(5px);
         }
 
         /* رسالة الترحيب */
         .welcome-farewell-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 105, 180, 0.4);
+            background: rgba(147, 112, 219, 0.05);
+            border: 1px solid rgba(186, 85, 211, 0.4);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
             margin-bottom: 30px;
             backdrop-filter: blur(5px);
-            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.15);
         }
 
         .welcome-farewell-box h3 {
-            color: #ff69b4;
+            color: #d1b3ff;
             margin-bottom: 10px;
             font-size: 22px;
         }
 
         .welcome-farewell-box p {
-            color: #ffccd5;
+            color: #f2e6ff;
             font-size: 17px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         /* رسائل الحب المتغيرة */
         .love-quotes-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 105, 180, 0.3);
+            background: rgba(147, 112, 219, 0.05);
+            border: 1px solid rgba(186, 85, 211, 0.3);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
@@ -220,13 +306,13 @@
 
         .love-quote {
             font-size: 24px;
-            color: #ffb6c1;
+            color: #e6ccff;
             min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            text-shadow: 0 0 8px rgba(255, 182, 193, 0.4);
+            text-shadow: 0 0 10px rgba(218, 112, 214, 0.4);
             animation: fadeInOut 1s ease-in-out;
         }
 
@@ -237,8 +323,8 @@
 
         /* عداد الحب التفصيلي الدقيق */
         .love-counter-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 105, 180, 0.3);
+            background: rgba(147, 112, 219, 0.05);
+            border: 1px solid rgba(186, 85, 211, 0.3);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
@@ -247,7 +333,7 @@
         }
 
         .love-counter-section h3 {
-            color: #ff69b4;
+            color: #d1b3ff;
             margin-bottom: 15px;
             font-size: 22px;
         }
@@ -260,8 +346,8 @@
         }
 
         .counter-box-item {
-            background: rgba(255, 105, 180, 0.15);
-            border: 1px solid rgba(255, 105, 180, 0.4);
+            background: rgba(138, 43, 226, 0.15);
+            border: 1px solid rgba(186, 85, 211, 0.4);
             padding: 15px 10px;
             border-radius: 10px;
         }
@@ -269,19 +355,19 @@
         .counter-number {
             font-size: 26px;
             font-weight: bold;
-            color: #ffb6c1;
+            color: #e6ccff;
             margin-bottom: 5px;
         }
 
         .counter-label {
             font-size: 14px;
-            color: #fff;
+            color: #f2e6ff;
         }
 
-        /* قسم صندوق "افتح هذه الرسالة عندما..." (الفكرة رقم 1) */
+        /* قسم صندوق "افتح هذه الرسالة عندما..." */
         .open-when-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 105, 180, 0.3);
+            background: rgba(147, 112, 219, 0.05);
+            border: 1px solid rgba(186, 85, 211, 0.3);
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
@@ -290,7 +376,7 @@
         }
 
         .open-when-section h3 {
-            color: #ff69b4;
+            color: #d1b3ff;
             margin-bottom: 10px;
             font-size: 22px;
         }
@@ -303,9 +389,9 @@
         }
 
         .open-btn {
-            background: linear-gradient(45deg, rgba(255, 105, 180, 0.2), rgba(255, 20, 147, 0.3));
-            border: 1px solid #ff69b4;
-            color: #ffb6c1;
+            background: linear-gradient(45deg, rgba(147, 112, 219, 0.2), rgba(138, 43, 226, 0.3));
+            border: 1px solid #ba55d3;
+            color: #e6ccff;
             padding: 15px;
             border-radius: 10px;
             cursor: pointer;
@@ -315,10 +401,10 @@
         }
 
         .open-btn:hover {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            background: linear-gradient(45deg, #9370db, #8a2be2);
             color: white;
             transform: scale(1.03);
-            box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+            box-shadow: 0 0 15px rgba(186, 85, 211, 0.5);
         }
 
         /* نافذة منبثقة للرسائل العاطفية ونقاط النجوم */
@@ -337,14 +423,14 @@
         }
 
         .modal-content {
-            background: #1a1a2e;
-            border: 2px solid #ff69b4;
+            background: #25103f;
+            border: 2px solid #ba55d3;
             padding: 30px;
             border-radius: 15px;
             max-width: 400px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+            box-shadow: 0 0 30px rgba(186, 85, 211, 0.6);
             animation: modalScale 0.3s ease-in-out;
         }
 
@@ -354,20 +440,20 @@
         }
 
         .modal-content h3 {
-            color: #ff69b4;
+            color: #d1b3ff;
             margin-bottom: 15px;
             font-size: 20px;
         }
 
         .modal-content p {
-            color: #ffccd5;
+            color: #f2e6ff;
             font-size: 17px;
             line-height: 1.6;
             margin-bottom: 20px;
         }
 
         .close-modal-btn {
-            background: #ff69b4;
+            background: #9370db;
             color: white;
             border: none;
             padding: 10px 25px;
@@ -378,13 +464,13 @@
         }
 
         .close-modal-btn:hover {
-            background: #ff1493;
+            background: #8a2be2;
         }
 
         /* قسم الألعاب الترفيهية */
         .games-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 105, 180, 0.3);
+            background: rgba(147, 112, 219, 0.05);
+            border: 1px solid rgba(186, 85, 211, 0.3);
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
@@ -393,7 +479,7 @@
         }
 
         .games-section h3 {
-            color: #ff69b4;
+            color: #d1b3ff;
             margin-bottom: 15px;
         }
 
@@ -405,7 +491,7 @@
         }
 
         .game-btn {
-            background: #ff69b4;
+            background: #9370db;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -416,7 +502,7 @@
         }
 
         .game-btn:hover {
-            background: #ff1493;
+            background: #8a2be2;
             transform: scale(1.05);
         }
 
@@ -428,8 +514,8 @@
 
         /* معرض الصور والفيديوهات الديناميكي */
         .media-gallery {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 105, 180, 0.3);
+            background: rgba(147, 112, 219, 0.05);
+            border: 1px solid rgba(186, 85, 211, 0.3);
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
@@ -437,7 +523,7 @@
         }
 
         .media-gallery h3 {
-            color: #ff69b4;
+            color: #d1b3ff;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -445,43 +531,56 @@
         .media-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
 
         .media-card {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 10px;
+            background: rgba(20, 5, 35, 0.6);
+            border-radius: 15px;
             overflow: hidden;
-            border: 1px solid rgba(255, 105, 180, 0.2);
+            border: 3px solid transparent;
+            background-image: linear-gradient(rgba(20, 5, 35, 0.8), rgba(20, 5, 35, 0.8)), linear-gradient(135deg, #da70d6, #8a2be2, #4b0082);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
             padding: 15px;
-            text-align: center;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 15px;
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(186, 85, 211, 0.4);
         }
 
         .media-card img, .media-card video {
             width: 100%;
-            height: 220px;
+            height: 230px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            border-radius: 10px;
             cursor: pointer;
             transition: transform 0.3s;
+            border: 2px solid rgba(218, 112, 214, 0.4);
         }
 
         .media-card img:hover {
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
 
         .media-card p {
-            color: #ffb6c1;
+            color: #f2e6ff;
             font-size: 16px;
-            line-height: 1.5;
+            line-height: 1.6;
             font-weight: 500;
+            text-align: center;
         }
 
         /* صندوق رسائل بسبوستى */
         .message-box-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 105, 180, 0.3);
+            background: rgba(147, 112, 219, 0.05);
+            border: 1px solid rgba(186, 85, 211, 0.3);
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
@@ -490,15 +589,15 @@
         }
 
         .message-box-section h3 {
-            color: #ff69b4;
+            color: #d1b3ff;
             margin-bottom: 15px;
         }
 
         .message-box-section textarea {
             width: 100%;
             height: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #ff69b4;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #ba55d3;
             border-radius: 8px;
             padding: 12px;
             color: white;
@@ -509,7 +608,7 @@
         }
 
         .save-msg-btn {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            background: linear-gradient(45deg, #9370db, #8a2be2);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -535,36 +634,36 @@
         }
 
         .saved-msg-item {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(147, 112, 219, 0.1);
             padding: 8px;
             margin-bottom: 8px;
             border-radius: 5px;
             font-size: 14px;
-            color: #ffb6c1;
+            color: #e6ccff;
         }
 
         footer {
             text-align: center;
             padding: 25px;
-            color: #aaa;
+            color: #d1b3ff;
             font-size: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(186, 85, 211, 0.2);
         }
     </style>
 </head>
 <body>
 
-    <!-- قبة النجوم الرومانسية (الفكرة رقم 3) -->
+    <!-- قبة النجوم الرومانسية -->
     <div id="stars-container"></div>
 
-    <!-- شاشة تسجيل الدخول -->
+    <!-- شاشة تسجيل الدخول بخلفية صورة لنا سوا -->
     <div id="login-screen">
         <div class="login-box">
             <h2>🔒 أهلاً بكِ يا بسبوستى</h2>
-            <p style="margin-bottom: 15px; font-size: 14px; color: #ffb6c1;">أدخلي كلمة السر للوصول إلى الهدية الخاصة</p>
+            <p style="margin-bottom: 15px; font-size: 14px; color: #d1b3ff;">أدخلي كلمة السر للوصول إلى مملكة العشق الخاصة جداً</p>
             <input type="password" id="password-input" placeholder="اكتبي كلمة السر هنا (حمووودى)...">
-            <button onclick="checkPassword()">دخول الحب</button>
-            <div id="error-msg" class="error-msg">كلمة السر غير صحيحة، جربي مرة أخرى!</div>
+            <button onclick="checkPassword()">دخول واحة الحب</button>
+            <div id="error-msg" class="error-msg">كلمة السر غير صحيحة، جربي مرة أخرى يا روحي!</div>
         </div>
     </div>
 
@@ -573,11 +672,11 @@
         <div class="modal-content">
             <h3 id="modal-title">رسالة خاصة لكِ ❤️</h3>
             <p id="modal-text">نص الرسالة هنا...</p>
-            <button class="close-modal-btn" onclick="closeModal()">حفظ في قلبي وخروج</button>
+            <button class="close-modal-btn" onclick="closeModal()">حفظ في أعماق قلبي والخروج</button>
         </div>
     </div>
 
-    <!-- مشغل الصوت (يتكرر تلقائياً وبشكل مستمر) -->
+    <!-- مشغل الصوت -->
     <audio id="bg-music" loop>
         <source src="song.mp3" type="audio/mp3">
         <source src="song.MP3" type="audio/mp3">
@@ -587,24 +686,32 @@
     <!-- المحتوى الرئيسي للموقع -->
     <div id="main-content">
         <header>
-            <h1 id="welcome-title">مرحباً بكِ يا بسبوستى في مملكة حبنا ❤️</h1>
-            <p>هدية حب وعشق لا ينتهي مقدمة من حمووودى خصيصاً لكِ</p>
+            <h1 id="welcome-title">مرحباً بكِ يا بسبوستى في مملكة حبنا الأبدي ❤️</h1>
+            <p>واحة من العشق والسكينة مقدمة من حمووودى خصيصاً لعيونكِ الساحرتين</p>
         </header>
+
+        <!-- شريط الصور المتحركة العلوي (Slideshow Header Banner) -->
+        <section class="top-slideshow-section">
+            <h3>✨ شريط ذكرياتنا الساحرة المتتالية</h3>
+            <div class="slideshow-container" id="top-slideshow-box">
+                <!-- يتم توليد شرائح الصور تلقائياً هنا -->
+            </div>
+        </section>
 
         <!-- رسالة الترحيب -->
         <section class="welcome-farewell-box">
-            <h3>🌹 رسالة ترحيب خاصة لعيونكِ</h3>
-            <p>أهلاً ومرحباً بنور عيني وملكة قلبي "بسبوستى". دخلتِ الآن إلى مساحة خاصة جداً صنعها لكِ حمووودى بكل حب لتكون واحتنا الجميلة. كل كلمة هنا وكل صورة تروي قصة عشقنا الأبدي..</p>
+            <h3>🌹 نبض ترحيبي يلامس روحكِ</h3>
+            <p>أهلاً ومرحباً بنور عيني وملكة قلبي وسيدة أيامي "بسبوستى". لقد شيدت لكِ هذه المساحة الساحرة لتكوني فيها الملكة المتوجة.. كل قطرة حب هنا تروي قصة عشقنا الذي لا ينتهي، فحمووودى يعشقكِ حد الجنون ولا أملّ من تكرارها طوال العمر!</p>
         </section>
 
         <!-- رسائل الحب المتغيرة -->
         <section class="love-quotes-section">
-            <div id="quote-display" class="love-quote">جاري تحميل مشاعر العشق والكلمات الدافئة...</div>
+            <div id="quote-display" class="love-quote">جاري تحميل أطياف العشق والكلمات الدافئة لأجلكِ...</div>
         </section>
 
         <!-- عداد الحب الدقيق منذ 26/8/2024 -->
         <section class="love-counter-section">
-            <h3>⏳ الوقت الذي قضيناه سوياً منذ (26 / 8 / 2024)</h3>
+            <h3>⏳ عمر عشقنا الجميل منذ بدايته في (26 / 8 / 2024) وحتى هذه اللحظة</h3>
             <div class="counter-grid">
                 <div class="counter-box-item">
                     <div class="counter-number" id="years-val">0</div>
@@ -633,10 +740,10 @@
             </div>
         </section>
 
-        <!-- صندوق "افتحي هذه الرسالة عندما..." (الفكرة رقم 1 المضافة) -->
+        <!-- صندوق "افتحي هذه الرسالة عندما..." -->
         <section class="open-when-section">
-            <h3>💌 صندوق رسائل اللحظات الخاصة</h3>
-            <p style="color: #ffb6c1; font-size: 14px; margin-bottom: 10px;">اضغطي على الزر المناسب لحالتكِ الآن وسأكون دائماً بقربكِ:</p>
+            <h3>💌 صندوق رسائل اللحظات الخاصة جداً</h3>
+            <p style="color: #d1b3ff; font-size: 14px; margin-bottom: 10px;">اضغطي على الزر المناسب لحالتكِ الآن لتعلمي أن حمووودى دائماً بقربكِ:</p>
             <div class="open-when-grid">
                 <button class="open-btn" onclick="openLetter('angry')">😡 افتحي عندما تكونين غاضبة مني</button>
                 <button class="open-btn" onclick="openLetter('miss')">🥺 افتحي عندما تشتاقين لي بكثرة</button>
@@ -647,32 +754,32 @@
 
         <!-- قسم الألعاب الترفيهية -->
         <section class="games-section">
-            <h3>🎮 ركن التسلية والمرح معاً</h3>
+            <h3>🎮 ركن المرح والابتسامة معاً</h3>
             <div class="game-container">
-                <p>لعبة الحب (من يحب الثاني أكثر؟):</p>
+                <p>لعبة الحب الكلاسيكية (من يحب الثاني أكثر؟):</p>
                 <div>
                     <button class="game-btn" onclick="playGame('حجر')">🪨 حجر</button>
                     <button class="game-btn" onclick="playGame('ورقة')">📄 ورقة</button>
                     <button class="game-btn" onclick="playGame('مقص')">✂️ مقص</button>
                 </div>
-                <div id="rps-result">اضغطي على أحد الخيارات لنلعب ونبتسم معاً!</div>
+                <div id="rps-result">اضغطي على أحد الخيارات لنلعب معاً ونبتسم سوياً يا أغلى البشر!</div>
             </div>
         </section>
 
         <!-- معرض الصور والفيديوهات الديناميكي -->
         <section class="media-gallery">
-            <h3>📸 ذكرياتنا ولحظاتنا الساحرة</h3>
-            <p style="text-align: center; color: #ffb6c1; font-size: 14px; margin-bottom: 20px;">(اضغطي على أي صورة لتتحول فوراً لتكون خلفية الموقع وتعيشي جوها الرومانسي!)</p>
+            <h3>📸 ذكرياتنا ولحظاتنا الساحرة المتجددة</h3>
+            <p style="text-align: center; color: #d1b3ff; font-size: 14px; margin-bottom: 20px;">(كل صورة تضيفينها إلى مجلد imeges ستظهر هنا تلقائياً مع إطارها الساحر، واضغطي على أي صورة لتتحول فوراً لخلفية الموقع!)</p>
             <div class="media-grid" id="media-grid-container">
-                <!-- سيتم توليد الصور والفيديوهات تلقائياً -->
+                <!-- يتم توليد الصور والفيديوهات تلقائياً مع قراءة المجلد -->
             </div>
         </section>
 
         <!-- صندوق رسائل بسبوستى -->
         <section class="message-box-section">
-            <h3>✍️ اكتبي هنا ما ترغبين فيه يا بسبوستى</h3>
-            <textarea id="user-note-input" placeholder="اكتبي رسالتكِ أو ما يجول بخاطركِ هنا وسيتم حفظه خصيصاً لكِ..."></textarea>
-            <button class="save-msg-btn" onclick="saveUserMessage()">حفظ الرسالة في القلب</button>
+            <h3>✍️ اكتبي هنا ما يجول بخاطركِ يا بسبوستى</h3>
+            <textarea id="user-note-input" placeholder="اكتبي رسالتكِ الرقيقة هنا، وسيتم حفظها خصيصاً في قلب الموقع لأجلكِ وحدكِ..."></textarea>
+            <button class="save-msg-btn" onclick="saveUserMessage()">حفظ الرسالة في ذاكرة القلب</button>
             <div id="saved-messages-display">
                 <!-- الرسائل المحفوظة -->
             </div>
@@ -680,28 +787,28 @@
 
         <!-- رسالة الوداع الخاصة -->
         <section class="welcome-farewell-box">
-            <h3>🌙 رسالة وداع مؤقتة حتى لقائنا القادم</h3>
-            <p>إلى أن يلتقي قلبينا مجدداً يا بسبوستى، تذكري دائماً أن حمووودى يحبكِ بجنون وأن هذا الموقع سيبقى يذكركِ بعشقنا في كل دقيقة.. وداعاً يا أغلى الناس، وإلى لقاء قريب يجمعنا على خير!</p>
+            <h3>🌙 رسالة حب واشتياق حتى لقائنا القادم</h3>
+            <p>إلى أن يلتقي قلبينا مجدداً يا بسبوستى، تذكري دائماً أن حمووودى يعيش على أمل رؤيتكِ، وأن هذا الموقع سيبقى ينبض بحبنا في كل ثانية ودقيقة.. وداعاً يا أغلى الناس، وإلى لقاء قريب يجمعنا على أسمى معاني العشق!</p>
         </section>
 
         <footer>
-            <p>✨ صُنع بكل حب وعشق من حمووودى لأجل عيون بسبوستى ❤️</p>
+            <p>✨ صُنع بكل عشق وغرام من حمووودى لأجل عيون بسبوستى وحدها ❤️</p>
         </footer>
     </div>
 
     <script>
-        // توليد قبة النجوم الرومانسية (الفكرة رقم 3)
+        // قبة النجوم الرومانسية المتطورة
         const starWishes = [
-            "نجمة تقول: أنتِ النجمة الأكثر إشراقاً في سماء حياة حمووودى يا بسبوستى!",
-            "نجمة تقول: كل نجوم الكون تضيء فرحاً حين تبتسمين.",
-            "نجمة تقول: تذكري دائماً أن هناك قلباً ينبض باسمكِ في كل ثانية.",
-            "نجمة تقول: حبنا أعمق من البحار وأطول عمراً من النجوم نفسها.",
-            "نجمة تقول: أنتِ الملكة المتوجة على عرش قلب حمووودى للأبد."
+            "نجمة تقول: أنتِ النجمة الأكثر إشراقاً ودفئاً في سماء حياة حمووودى يا بسبوستى!",
+            "نجمة تقول: كل نجوم الكون تضيء فرحاً وسعادة حين تشرق ابتسامتكِ.",
+            "نجمة تقول: تذكري دائماً أن هناك قلباً ينبض باسمكِ في كل ثانية ودقيقة.",
+            "نجمة تقول: حبنا أعمق من بحار الأرض وأطول عمراً من النجوم نفسها.",
+            "نجمة تقول: أنتِ الملكة المتوجة على عرش قلب حمووودى حتى آخر عمره."
         ];
 
         function createStars() {
             const container = document.getElementById('stars-container');
-            const count = 40;
+            const count = 45;
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
@@ -714,7 +821,7 @@
                 
                 star.addEventListener('click', () => {
                     const randomWish = starWishes[Math.floor(Math.random() * starWishes.length)];
-                    document.getElementById('modal-title').textContent = "⭐ رسالة من نجوم السماء لكِ";
+                    document.getElementById('modal-title').textContent = "⭐ رسالة من نجوم السماء لعينيكِ";
                     document.getElementById('modal-text').textContent = randomWish;
                     document.getElementById('modal-overlay').style.display = 'flex';
                 });
@@ -724,14 +831,13 @@
         }
         createStars();
 
-        // تأثير القلوب المتطايرة عند اللمس في أي مكان بالموقع (الفكرة رقم 5)
+        // تأثير القلوب المتطايرة عند اللمس في أي مكان بالموقع
         document.addEventListener('click', function(e) {
-            // تجاهل النقر لو كان على نجمة عشان المودال يظهر صح
             if (e.target.classList.contains('star')) return;
 
             const heart = document.createElement('div');
             heart.className = 'click-heart';
-            heart.innerHTML = '❤️';
+            heart.innerHTML = '💜';
             heart.style.left = (e.clientX - 10) + 'px';
             heart.style.top = (e.clientY - 10) + 'px';
             document.body.appendChild(heart);
@@ -740,23 +846,23 @@
             }, 1000);
         });
 
-        // رسائل "افتحي هذه الرسالة عندما..." (الفكرة رقم 1)
+        // رسائل "افتحي هذه الرسالة عندما..."
         const specialLetters = {
             angry: {
-                title: "رسالة لحين غضبكِ منكِ ❤️",
-                text: "حقكِ عليا لو ضايقتكِ بحاجة يا بسبوستى.. أعلم أن قلبكِ الطيب أصفى من العسل، وحمووودى لا يقوى على زعلكِ أبداً، ابتسمي ولا تغضبي فضحكتكِ تساوي عندي الدنيا وما فيها!"
+                title: "رسالة لحين غضبكِ مني ❤️",
+                text: "حقكِ عليا لو بدر مني أي تقصير يا بسبوستى.. أعلم أن قلبكِ أطهر من الغيم، وحمووودى لا يطيق زعلكِ أبداً، ابتسمي لي ولا تغضبي فضحكتكِ تساوي عندي الدنيا بما فيها!"
             },
             miss: {
                 title: "رسالة حين تشتاقين لي 🥺",
-                text: "أنا أشتاق لكِ أضعاف ما تشتاقين لي يا روحي! تذكري دائماً أن روحي معكِ ولو كنتِ بعيدة عن نظري، وعما قريب سنلتقي وتكتمل سعادتي بوجودكِ."
+                text: "أنا أشتاق لكِ أضعاف أضعاف ما تشتاقين لي يا روحي! تذكري دائماً أن روحي معكِ في كل خطوة، وعما قريب سنلتقي وتكتمل سعادتي بوجودكِ بجانبي."
             },
             sad: {
                 title: "رسالة وقت الحزن والضيق 🌧️",
-                text: "يا ضحكة عمري ونور أيامي، لا تقلقي ولا تحزني فالله معنا وحمووودى يحميكِ بقلبه ودعائه دائماً. كل ضيق يزول وتبقى أنتِ السعادة الدائمة."
+                text: "يا ضحكة عمري ونور أيامي، لا تقلقي ولا تحزني فالله معنا وحمووودى يحيطكِ بقلبه ودعائه دائماً. كل ضيق سيزول وتبقى أنتِ السعادة الدائمة التي لا تنتهي."
             },
             smile: {
-                title: "رسالة لترسمي ابتسامة على وجهكِ ✨",
-                text: "أنتِ أجمل إنسانة عرفها تاريخ البشرية يا بسبوستى، تذكري دائماً أن هناك شخصاً في هذا الكون (حمووودى) يعشق أرضاً تمشين عليها ولا يتمنى سوى رؤيتكِ تبتسمين دائماً."
+                title: "رسالة لترسمي ابتسامة على وجهكِ الجميل ✨",
+                text: "أنتِ أجمل وأعظم إنسانة عرفها تاريخ البشرية يا بسبوستى، تذكري دائماً أن هناك شخصاً في هذا الكون الواسع (حمووودى) يعشق الأرض التي تمشين عليها ولا يتمنى سوى رؤيتكِ تبتسمين دائماً."
             }
         };
 
@@ -771,16 +877,16 @@
             document.getElementById('modal-overlay').style.display = 'none';
         }
 
-        // رسائل الحب المتغيرة الكثيرة
+        // عبارات رومانسية عديدة ومتنوعة
         const loveQuotes = [
-            "أنتِ أجمل صدفة في حياتي، وبكل روز ووردة في الكون أحبكِ يا بسبوستى.",
-            "وجودكِ بجانبي يغنيني عن العالم أجمع، دمتِ لي حباً لا ينتهي ولا يزول.",
-            "حمووودى يعشق كل تفصيلة فيكِ، ابتسامتكِ هي نور أيامي وسر سعادتي.",
-            "صوتكِ، عيونكِ، وكل ما فيكِ يسحر قلبي كل يوم من جديد كأننا التقينا للتو.",
-            "بسبوستى الغالية، أنتِ نبض القلب وروح الروح، وبدونكِ لا حياة لي.",
-            "كل ثانية أعيشها معكِ تزيدني عشقاً بكِ يا توأم روحي ورفيقة دربي.",
-            "أنتِ الحلم الجميل الذي تحقّق، وأجمل نعمة أكرمني بها الله في هذه الدنيا.",
-            "مهما تحدث الكلمات وتعبر الجمل، فلن توفي حق حبك الكبير في قلبي يا بسبوستى."
+            "أنتِ أجمل صدفة غيرت مجرى حياتي، وبكل نبضة في قلبي أحبكِ يا بسبوستى.",
+            "وجودكِ بجانبي يغنيني عن العالم أجمع، دمتِ لي حباً طاهراً لا ينتهي ولا يزول.",
+            "حمووودى يذوب عشقاً في كل تفصيلة فيكِ، ابتسامتكِ هي نور أيامي وسر سعادتي المطلقة.",
+            "صوتكِ، عيونكِ، وكل ما فيكِ يملك قلبي كل يوم من جديد كأننا التقينا للتو.",
+            "بسبوستى الغالية، أنتِ نبض القلب وروح الروح، وبدونكِ لا معنى لأي حياة.",
+            "كل ثانية أعيشها معكِ تزيدني تعلقاً وعشقاً بكِ يا توأم روحي ورفيقة دربي.",
+            "أنتِ الحلم الجميل الذي تحقّق على أرض الواقع، وأجمل نعمة أكرمني بها الله.",
+            "مهما تحدثت الكلمات وكتبت العلماء، فلن توفي حق حبك الكبير في قلبي يا بسبوستى."
         ];
 
         let quoteIndex = 0;
@@ -840,6 +946,7 @@
 
         let discoveredImages = [];
         let currentBgIndex = 0;
+        let slideshowInitialized = false;
 
         // التحقق من كلمة السر
         function checkPassword() {
@@ -871,26 +978,29 @@
             
             let resultText = `اخترتِ (${userChoice}) وحمووودى اختار (${randomChoice}) - `;
             if (userChoice === randomChoice) {
-                resultText += "تعادلنا يا قلبي، روحنا واحد!";
+                resultText += "تعادلنا يا روحي، فأرواحنا مترابطة وقلوبنا واحد!";
             } else {
-                resultText += "مهما كانت النتيجة، فوزكِ هو فوزي الأساسي يا بسبوستى! ❤️";
+                resultText += "مهما كانت النتيجة، ففوزكِ هو فوزي الأبدي يا بسبوستى العزيزة! 💜";
             }
             document.getElementById('rps-result').textContent = resultText;
         }
 
-        // جمل رومانسية لكل صورة
-        function getRomanticCaption(index) {
-            const captions = [
-                `صورة رقم ${index}: هذه اللحظة عشتها معكِ وكأن الوقت وقف تعبيراً عن روعة ابتسامتكِ يا بسبوستى. حمووودى يعشق هذه الإطلالة الساحرة! ❤️`,
-                `صورة رقم ${index}: عيونكِ فيها كل سحر الكون.. تبارك الله على جمالكِ الذي لا يُضاهى يا روحي.`,
-                `صورة رقم ${index}: في هذه الصورة تتجلى كل معاني الرقة والدلال. دمتِ لي أجمل أوراد العمر يا بسبوستى.`,
-                `صورة رقم ${index}: ذكرياتنا معاً كنز لا يُقدر بثمن، وكل صورة معكِ هي صفحة جديدة من رواية عشقنا الأبدي.`,
-                `صورة رقم ${index}: لا توجد كلمات تمجد جمال هذه اللحظة، فحمووودى يذوب حنيناً وعشقاً كلما رآها.`
-            ];
-            return captions[(index - 1) % captions.length];
+        // جمل رومانسية غنية ومتنوعة للصور
+        const romanticCaptions = [
+            "هذه اللحظة عشتها معكِ وكأن الزمن توقف تعبيراً عن روعة ابتسامتكِ الساحرة يا بسبوستى. حمووودى يعشق كل إطلالة تنبعث منكِ! ❤️",
+            "عيونكِ فيها كل سحر الكون ودفء الحياة.. تبارك الله على جمالكِ الذي لا يُضاهى يا روحي.",
+            "في هذه اللحظة تتجلى كل معاني الرقة والدلال والنقاء. دمتِ لي أجمل أوراد العمر يا بسبوستى.",
+            "ذكرياتنا معاً كنز لا يُقدر بثمن، وكل صورة معكِ هي صفحة مضيئة من رواية عشقنا الأبدي.",
+            "لا توجد كلمات في قواميس العالم تمجد جمال هذه اللحظة، فحمووودى يذوب حنيناً وعشقاً كلما تأملها.",
+            "بجانبكِ أدركتُ تماماً معنى السعادة الحقيقية والدفء الذي يعمر الروح. أحبكِ بكل ما أملك يا بسبوستى.",
+            "أنتِ النور الذي يضيء عتمة أيامي، والبسمة التي لا تفارق خاطري أبداً مهما ابتعدنا."
+        ];
+
+        function getRandomCaption() {
+            return romanticCaptions[Math.floor(Math.random() * romanticCaptions.length)];
         }
 
-        // نظام الاكتشاف والتحميل التلقائي للصور والفيديوهات من مجلد imeges
+        // نظام الاكتشاف والتحميل التلقائي للملفات من مجلد imeges
         function scanAndLoadFolderMedia() {
             const container = document.getElementById('media-grid-container');
             container.innerHTML = "";
@@ -898,22 +1008,22 @@
             const imageExtensions = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'webp', 'WEBP', 'gif', 'GIF'];
             const videoExtensions = ['mp4', 'MP4', 'webm', 'WEBM', 'mov', 'MOV', 'ogg', 'OGG'];
 
-            for (let i = 1; i <= 25; i++) {
+            for (let i = 1; i <= 100; i++) {
                 imageExtensions.forEach(ext => {
                     const path = `imeges/ph${i}.${ext}`;
-                    testAndAddMedia(path, 'image', i);
+                    testAndAddMedia(path, 'image');
                 });
             }
 
-            for (let i = 1; i <= 25; i++) {
+            for (let i = 1; i <= 100; i++) {
                 videoExtensions.forEach(ext => {
                     const path = `imeges/v${i}.${ext}`;
-                    testAndAddMedia(path, 'video', i);
+                    testAndAddMedia(path, 'video');
                 });
             }
         }
 
-        function testAndAddMedia(url, type, index) {
+        function testAndAddMedia(url, type) {
             const container = document.getElementById('media-grid-container');
             
             if (type === 'image') {
@@ -921,17 +1031,22 @@
                 img.src = url;
                 img.onload = function() {
                     discoveredImages.push(url);
+                    
+                    // تعيين أول صورة خلفية رئيسية وتفعيل الشريط العلوي المتحرك
                     if (discoveredImages.length === 1) {
                         document.body.style.backgroundImage = `url('${url}')`;
                         startBackgroundCycler();
                     }
+                    
+                    // تحديث شريط الصور العلوي تلقائياً مع اكتشاف الصور الجديدة
+                    updateTopSlideshow();
 
-                    const caption = getRomanticCaption(index);
+                    const caption = getRandomCaption();
                     const card = document.createElement('div');
                     card.className = 'media-card';
                     card.innerHTML = `
-                        <img src="${url}" alt="صورة ${index}" onclick="changeSiteBackground('${url}')" title="اضغطي لتصبح خلفية الموقع!">
                         <p>${caption}</p>
+                        <img src="${url}" alt="صورة ذكرى رومانسية" onclick="changeSiteBackground('${url}')" title="اضغطي لتصبح خلفية الموقع الساحرة!">
                     `;
                     container.appendChild(card);
                 };
@@ -942,12 +1057,45 @@
                     const card = document.createElement('div');
                     card.className = 'media-card';
                     card.innerHTML = `
+                        <p>لحظات حية تنبض بالحياة والحب والذكريات الجميلة بيننا يا بسبوستى، كل ثانية معكِ عيد لا يُعوض ❤️</p>
                         <video controls src="${url}"></video>
-                        <p>فيديو رقم ${index}: لحظات حية تنبض بالحب والذكريات الجميلة بيننا يا بسبوستى ❤️</p>
                     `;
                     container.appendChild(card);
                 };
             }
+        }
+
+        // تحديث شريط الصور المتحرك العلوي
+        function updateTopSlideshow() {
+            const slideshowBox = document.getElementById('top-slideshow-box');
+            slideshowBox.innerHTML = "";
+
+            discoveredImages.forEach((imgUrl, index) => {
+                const slide = document.createElement('div');
+                slide.className = `slideshow-slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <img src="${imgUrl}" alt="شريط ذكرياتنا">
+                    <div class="slideshow-caption">✨ أجمل ذكرياتنا معاً يا بسبوستى وحدكِ ❤️</div>
+                `;
+                slideshowBox.appendChild(slide);
+            });
+
+            if (!slideshowInitialized && discoveredImages.length > 0) {
+                slideshowInitialized = true;
+                startTopSlideshowTimer();
+            }
+        }
+
+        function startTopSlideshowTimer() {
+            let currentSlideIndex = 0;
+            setInterval(() => {
+                const slides = document.querySelectorAll('.slideshow-slide');
+                if (slides.length === 0) return;
+                
+                slides[currentSlideIndex].classList.remove('active');
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                slides[currentSlideIndex].classList.add('active');
+            }, 3500);
         }
 
         function changeSiteBackground(url) {
@@ -977,12 +1125,12 @@
 
             noteInput.value = "";
             loadSavedMessages();
-            alert("تم حفظ رسالتكِ بنجاح في قلب الموقع وفي ذاكرته! ❤️");
+            alert("تم حفظ رسالتكِ بنجاح في قلب الموقع وذاكرته الأبدية! 💜");
         }
 
         function loadSavedMessages() {
             const display = document.getElementById('saved-messages-display');
-            display.innerHTML = "<h4 style='color: #ff69b4; margin-bottom: 8px; font-size: 14px;'>رسائلكِ المحفوظة هنا:</h4>";
+            display.innerHTML = "<h4 style='color: #d1b3ff; margin-bottom: 8px; font-size: 14px;'>رسائلكِ الخالدة هنا:</h4>";
             
             let savedMsgs = JSON.parse(localStorage.getItem('basbosty_messages') || '[]');
             if (savedMsgs.length === 0) {
@@ -993,7 +1141,7 @@
             savedMsgs.forEach((msg, index) => {
                 const item = document.createElement('div');
                 item.className = 'saved-msg-item';
-                item.innerHTML = `<strong>(${index + 1})</strong> ${msg.text} <span style='font-size: 10px; color: #888; float: left;'>${msg.date}</span>`;
+                item.innerHTML = `<strong>(${index + 1})</strong> ${msg.text} <span style='font-size: 10px; color: #bbb; float: left;'>${msg.date}</span>`;
                 display.appendChild(item);
             });
         }
