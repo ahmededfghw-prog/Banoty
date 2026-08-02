@@ -1,1602 +1,254 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>مملكة بسبوستى ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:'Cairo',Tahoma,sans-serif;
-}
-
-body{
-    background:#18082f;
-    color:#fff;
-    min-height:100vh;
-    overflow-x:hidden;
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-    transition:background-image 1.5s ease;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:rgba(24,8,47,.86);
-    z-index:0;
-    pointer-events:none;
-}
-
-#stars-container{
-    position:fixed;
-    inset:0;
-    z-index:1;
-    pointer-events:none;
-    overflow:hidden;
-}
-
-.star{
-    position:absolute;
-    background:white;
-    border-radius:50%;
-    pointer-events:auto;
-    cursor:pointer;
-    box-shadow:0 0 10px #d8b4ff,0 0 18px white;
-    animation:twinkle var(--duration) infinite ease-in-out;
-}
-
-@keyframes twinkle{
-    0%,100%{opacity:.3;transform:scale(.8)}
-    50%{opacity:1;transform:scale(1.3)}
-}
-
-.click-heart{
-    position:fixed;
-    z-index:9999;
-    pointer-events:none;
-    font-size:24px;
-    animation:heartUp 1s forwards;
-}
-
-@keyframes heartUp{
-    from{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-    to{
-        opacity:0;
-        transform:translateY(-100px) scale(1.7);
-    }
-}
-
-/* LOGIN */
-
-#login-screen{
-    position:fixed;
-    inset:0;
-    z-index:5000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:url("imeges/ph1.jpg") center/cover no-repeat;
-}
-
-#login-screen::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(20,4,40,.78);
-}
-
-.login-box{
-    position:relative;
-    z-index:2;
-    width:90%;
-    max-width:420px;
-    padding:35px 25px;
-    text-align:center;
-    border-radius:25px;
-    background:rgba(120,70,180,.15);
-    border:2px solid rgba(210,130,255,.5);
-    backdrop-filter:blur(15px);
-    box-shadow:0 0 45px rgba(180,80,255,.5);
-}
-
-.login-box h2{
-    color:#f1d7ff;
-    margin-bottom:15px;
-    font-size:27px;
-}
-
-.login-box p{
-    color:#dfc3f5;
-    margin-bottom:18px;
-}
-
-.login-box input{
-    width:100%;
-    padding:14px;
-    border-radius:10px;
-    border:1px solid #c477ee;
-    background:rgba(255,255,255,.1);
-    color:white;
-    outline:none;
-    text-align:center;
-    font-size:17px;
-    margin-bottom:15px;
-}
-
-.login-box button{
-    border:0;
-    padding:13px 25px;
-    border-radius:10px;
-    color:white;
-    background:linear-gradient(45deg,#8d55d9,#b02be8);
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-#error-msg{
-    display:none;
-    color:#ffaaaa;
-    margin-top:12px;
-}
-
-/* MAIN */
-
-#main-content{
-    display:none;
-    position:relative;
-    z-index:3;
-    max-width:1050px;
-    margin:auto;
-    padding:20px;
-}
-
-header{
-    text-align:center;
-    padding:35px 0;
-    border-bottom:1px dashed rgba(200,120,255,.4);
-}
-
-header h1{
-    color:#f0d7ff;
-    font-size:38px;
-    text-shadow:0 0 18px #a94ee8;
-    margin-bottom:10px;
-}
-
-header p{
-    color:#d9b8f3;
-    font-size:18px;
-}
-
-/* SECTIONS */
-
-section{
-    background:rgba(120,70,180,.06);
-    border:1px solid rgba(200,120,255,.3);
-    border-radius:18px;
-    padding:25px;
-    margin:25px 0;
-    backdrop-filter:blur(6px);
-    box-shadow:0 8px 30px rgba(100,30,160,.15);
-}
-
-section h3{
-    text-align:center;
-    color:#e0b9ff;
-    margin-bottom:18px;
-}
-
-/* SLIDESHOW */
-
-.slideshow-container{
-    position:relative;
-    height:330px;
-    overflow:hidden;
-    border-radius:15px;
-    border:3px solid #a84de0;
-    box-shadow:0 0 30px rgba(180,70,240,.4);
-}
-
-.slideshow-slide{
-    position:absolute;
-    inset:0;
-    opacity:0;
-    transition:opacity 1s;
-}
-
-.slideshow-slide.active{
-    opacity:1;
-}
-
-.slideshow-slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.slideshow-caption{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    padding:13px;
-    background:rgba(20,5,40,.8);
-    text-align:center;
-    color:#fff;
-}
-
-/* LOVE TEXT */
-
-.love-quote{
-    min-height:90px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:#f1d5ff;
-    font-size:23px;
-    font-weight:bold;
-    animation:quoteIn .7s;
-}
-
-@keyframes quoteIn{
-    from{
-        opacity:0;
-        transform:translateY(15px) scale(.95);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-/* COUNTER */
-
-.counter-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(105px,1fr));
-    gap:12px;
-}
-
-.counter-box-item{
-    background:rgba(130,60,210,.18);
-    border:1px solid rgba(210,130,255,.35);
-    border-radius:12px;
-    padding:15px 8px;
-    text-align:center;
-}
-
-.counter-number{
-    color:#efd5ff;
-    font-size:25px;
-    font-weight:bold;
-}
-
-.counter-label{
-    color:#e4d1f0;
-    font-size:13px;
-}
-
-/* LETTERS */
-
-.open-when-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-    gap:15px;
-}
-
-.open-btn{
-    border:1px solid #c06be8;
-    background:linear-gradient(45deg,rgba(140,70,210,.25),rgba(190,50,230,.2));
-    color:#f0d6ff;
-    padding:15px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.open-btn:hover{
-    transform:translateY(-4px) scale(1.02);
-    background:linear-gradient(45deg,#8050ce,#a72bd9);
-}
-
-/* MEDIA */
-
-.media-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-    gap:22px;
-}
-
-.media-card{
-    background:rgba(15,3,30,.65);
-    border-radius:17px;
-    padding:13px;
-    border:2px solid rgba(190,90,235,.45);
-    overflow:hidden;
-    box-shadow:0 8px 25px rgba(130,40,180,.25);
-    transition:.4s;
-}
-
-.media-card:hover{
-    transform:translateY(-7px);
-}
-
-.media-card img,
-.media-card video{
-    width:100%;
-    height:240px;
-    object-fit:cover;
-    border-radius:12px;
-    display:block;
-    cursor:pointer;
-}
-
-.media-card p{
-    position:relative;
-    padding:15px 8px;
-    color:#f0d9ff;
-    text-align:center;
-    line-height:1.8;
-    font-size:15px;
-    animation:captionPop .8s ease;
-}
-
-@keyframes captionPop{
-    0%{
-        opacity:0;
-        transform:translateY(20px) scale(.9);
-    }
-    70%{
-        transform:translateY(-4px) scale(1.02);
-    }
-    100%{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-/* VIDEO */
-
-.video-title{
-    color:#e8c7ff;
-    text-align:center;
-    font-size:24px;
-    margin-bottom:8px;
-}
-
-.video-subtitle{
-    text-align:center;
-    color:#cdb2df;
-    margin-bottom:20px;
-}
-
-/* GAME */
-
-.game-container{
-    text-align:center;
-}
-
-.game-btn{
-    border:0;
-    padding:11px 20px;
-    margin:5px;
-    border-radius:9px;
-    background:#8c59d5;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-/* MESSAGE */
-
-textarea{
-    width:100%;
-    height:120px;
-    resize:none;
-    background:rgba(255,255,255,.08);
-    border:1px solid #bd68e8;
-    border-radius:10px;
-    color:white;
-    padding:12px;
-    outline:none;
-}
-
-.save-msg-btn{
-    margin-top:12px;
-    padding:12px 25px;
-    border:0;
-    border-radius:9px;
-    background:linear-gradient(45deg,#8955d2,#ae32df);
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.saved-msg-item{
-    margin-top:10px;
-    padding:10px;
-    background:rgba(130,60,190,.15);
-    border-radius:8px;
-    color:#e8d2f5;
-}
-
-/* MODAL */
-
-#modal-overlay{
-    position:fixed;
-    inset:0;
-    z-index:6000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(6px);
-}
-
-.modal-content{
-    width:90%;
-    max-width:450px;
-    padding:30px;
-    border-radius:18px;
-    background:#25103f;
-    border:2px solid #bd68e8;
-    text-align:center;
-    box-shadow:0 0 40px rgba(190,80,240,.6);
-    animation:modalIn .3s;
-}
-
-@keyframes modalIn{
-    from{
-        transform:scale(.7);
-        opacity:0;
-    }
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-}
-
-.modal-content h3{
-    color:#e6c1ff;
-    margin-bottom:15px;
-}
-
-.modal-content p{
-    color:#f0dff7;
-    line-height:1.8;
-    margin-bottom:20px;
-}
-
-.close-modal-btn{
-    border:0;
-    padding:10px 20px;
-    border-radius:8px;
-    background:#8f5bd3;
-    color:white;
-    cursor:pointer;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#d9b9ed;
-}
-</style>
-</head>
-
-<body>
-
-<div id="stars-container"></div>
-
-<!-- LOGIN -->
-<div id="login-screen">
-    <div class="login-box">
-        <h2>🔐 أهلاً بكِ يا بسبوستى ❤️</h2>
-
-        <p>
-            مملكة صغيرة معمولة مخصوص علشانكِ يا بنوتي الجميلة 🌹
-        </p>
-
-        <input
-            type="password"
-            id="password-input"
-            placeholder="اكتبي كلمة السر..."
-        >
-
-        <button onclick="checkPassword()">
-            دخول إلى مملكة الحب ❤️
-        </button>
-
-        <div id="error-msg">
-            كلمة السر غير صحيحة يا روحي 🥺
-        </div>
-    </div>
-</div>
-
-<!-- MODAL -->
-<div id="modal-overlay">
-    <div class="modal-content">
-        <h3 id="modal-title"></h3>
-        <p id="modal-text"></p>
-        <button class="close-modal-btn" onclick="closeModal()">
-            رجوع إلى مملكة الحب ❤️
-        </button>
-    </div>
-</div>
-
-<!-- MUSIC -->
-<audio id="bg-music" loop preload="auto">
-    <source src="song.mp3" type="audio/mpeg">
-</audio>
-
-<div id="main-content">
-
-<header>
-    <h1>مرحباً بكِ يا بسبوستى في مملكة حبنا ❤️</h1>
-    <p>
-        هنا كل حاجة معمولة علشان بنوتي وحبيبتي وأجمل حاجة حصلت في حياتي 💜
-    </p>
-</header>
-
-<!-- SLIDESHOW -->
-<section>
-    <h3>✨ شريط ذكرياتنا</h3>
-
-    <div class="slideshow-container" id="top-slideshow-box"></div>
-</section>
-
-<!-- WELCOME -->
-<section>
-    <h3>🌹 إلى بنوتي الجميلة</h3>
-
-    <p style="text-align:center;line-height:2;color:#eedcff">
-        يا بسبوستى يا حبيبتي يا بنوتي الجميلة،
-        عملتلك المكان ده علشان كل ما تدخليه تحسي قد إيه إنتِ غالية عندي.
-        وجودك في حياتي له معنى كبير،
-        وابتسامتك قادرة تغير يومي كله.
-        ربنا يخليكي ليا ويفضل بينا دايماً حب وحنان وراحة بال ❤️
-    </p>
-</section>
-
-<!-- QUOTES -->
-<section>
-    <div id="quote-display" class="love-quote">
-        بحبك يا بسبوستى ❤️
-    </div>
-</section>
-
-<!-- COUNTER -->
-<section>
-    <h3>⏳ عمر حبنا منذ 26 / 8 / 2024</h3>
-
-    <div class="counter-grid">
-
-        <div class="counter-box-item">
-            <div class="counter-number" id="years-val">0</div>
-            <div class="counter-label">سنوات</div>
-        </div>
-
-        <div class="counter-box-item">
-            <div class="counter-number" id="months-val">0</div>
-            <div class="counter-label">أشهر</div>
-        </div>
-
-        <div class="counter-box-item">
-            <div class="counter-number" id="days-val">0</div>
-            <div class="counter-label">أيام</div>
-        </div>
-
-        <div class="counter-box-item">
-            <div class="counter-number" id="hours-val">0</div>
-            <div class="counter-label">ساعات</div>
-        </div>
-
-        <div class="counter-box-item">
-            <div class="counter-number" id="mins-val">0</div>
-            <div class="counter-label">دقائق</div>
-        </div>
-
-        <div class="counter-box-item">
-            <div class="counter-number" id="secs-val">0</div>
-            <div class="counter-label">ثواني</div>
-        </div>
-
-    </div>
-</section>
-
-<!-- LETTERS -->
-<section>
-    <h3>💌 افتحي الرسالة حسب حالتكِ</h3>
-
-    <div class="open-when-grid">
-
-        <button class="open-btn" onclick="openLetter('angry')">
-            😡 زعلانة مني؟
-        </button>
-
-        <button class="open-btn" onclick="openLetter('miss')">
-            🥺 وحشتك؟
-        </button>
-
-        <button class="open-btn" onclick="openLetter('sad')">
-            🌧️ حاسة بحزن؟
-        </button>
-
-        <button class="open-btn" onclick="openLetter('smile')">
-            ✨ عايزة تبتسمي؟
-        </button>
-
-    </div>
-</section>
-
-<!-- PHOTOS -->
-<section>
-    <h3>📸 صورنا وذكرياتنا ❤️</h3>
-
-    <p style="text-align:center;color:#cdb5dd;margin-bottom:20px">
-        كل الصور الموجودة باسم ph داخل مجلد imeges هتظهر هنا تلقائياً.
-    </p>
-
-    <div class="media-grid" id="media-grid-container"></div>
-</section>
-
-<!-- VIDEOS -->
-<section>
-    <div class="video-title">
-        🎬 لحظاتنا بالفيديو ❤️
-    </div>
-
-    <div class="video-subtitle">
-        كل فيديوهات v الموجودة داخل مجلد imeges هتظهر هنا تلقائياً 💜
-    </div>
-
-    <div class="media-grid" id="video-grid-container"></div>
-</section>
-
-<!-- GAME -->
-<section>
-    <h3>🎮 لعبة حبيبتي وحمووودى</h3>
-
-    <div class="game-container">
-
-        <p style="margin-bottom:12px">
-            اختاري يا بنوتي وأنا ألعب معاكي ❤️
-        </p>
-
-        <button class="game-btn" onclick="playGame('حجر')">
-            🪨 حجر
-        </button>
-
-        <button class="game-btn" onclick="playGame('ورقة')">
-            📄 ورقة
-        </button>
-
-        <button class="game-btn" onclick="playGame('مقص')">
-            ✂️ مقص
-        </button>
-
-        <p id="rps-result" style="margin-top:15px;color:#e7d1f5">
-            مستني اختيار حبيبتي 😍
-        </p>
-
-    </div>
-</section>
-
-<!-- MESSAGE -->
-<section>
-    <h3>✍️ اكتبيلي حاجة من قلبكِ</h3>
-
-    <textarea
-        id="user-note-input"
-        placeholder="اكتبيلي كلام من قلبك يا بنوتي ❤️"
-    ></textarea>
-
-    <button class="save-msg-btn" onclick="saveUserMessage()">
-        💜 احفظي رسالتك
-    </button>
-
-    <div id="saved-messages-display"></div>
-</section>
-
-<!-- END -->
-<section>
-    <h3>🌙 قبل ما تمشي</h3>
-
-    <p style="text-align:center;line-height:2;color:#ead5f5">
-        لو خرجتي من الموقع، افتكري إن فيه حد بيحبك،
-        وبيفرح لما يشوفك مبسوطة،
-        وبيعتبر ضحكتك أجمل حاجة في الدنيا.
-        خليكي دايماً بخير يا بسبوستى يا بنوتي ❤️
-    </p>
-</section>
-
-<footer>
-    ❤️ صُنع بكل الحب والحنان من حمووودى لبسبوستى ❤️
-</footer>
-
-</div>
-
 <script>
+function scanAndLoadFolderMedia() {
+    const container = document.getElementById('media-grid-container');
+    container.innerHTML = "";
 
-/* =========================
-   النجوم
-========================= */
+    discoveredImages = [];
 
-const starWishes = [
-    "يا بسبوستى، إنتِ أجمل نجمة في سماء حمووودى ❤️",
-    "ابتسامتك قادرة تنور الدنيا كلها يا بنوتي ✨",
-    "فيه قلب هنا بيحبك وبيفرح بكل لحظة تكوني فيها مبسوطة 💜",
-    "إنتِ مش مجرد حبيبة، إنتِ راحة وحنان وأمان ❤️",
-    "يا أجمل بنوتة، ربنا يخلي ضحكتك دايماً منورة الدنيا 🌹"
-];
+    /*
+      ============================
+      الصور داخل مجلد imeges
+      ============================
+    */
 
-function createStars(){
+    const imageExtensions = [
+        'jpg', 'jpeg', 'png', 'webp', 'gif',
+        'JPG', 'JPEG', 'PNG', 'WEBP', 'GIF'
+    ];
 
-    const container =
-        document.getElementById("stars-container");
-
-    for(let i=0;i<50;i++){
-
-        const star =
-            document.createElement("div");
-
-        star.className="star";
-
-        const size =
-            Math.random()*4+2;
-
-        star.style.width=size+"px";
-        star.style.height=size+"px";
-
-        star.style.top=
-            Math.random()*100+"%";
-
-        star.style.left=
-            Math.random()*100+"%";
-
-        star.style.setProperty(
-            "--duration",
-            Math.random()*3+2+"s"
-        );
-
-        star.onclick=function(){
-
-            document.getElementById(
-                "modal-title"
-            ).textContent=
-            "⭐ رسالة لبسبوستى";
-
-            document.getElementById(
-                "modal-text"
-            ).textContent=
-            starWishes[
-                Math.floor(
-                    Math.random()*starWishes.length
-                )
-            ];
-
-            document.getElementById(
-                "modal-overlay"
-            ).style.display="flex";
-        };
-
-        container.appendChild(star);
-    }
-}
-
-createStars();
-
-
-/* =========================
-   قلوب عند الضغط
-========================= */
-
-document.addEventListener("click",function(e){
-
-    if(
-        e.target.classList.contains("star") ||
-        e.target.tagName==="VIDEO" ||
-        e.target.tagName==="BUTTON" ||
-        e.target.tagName==="INPUT" ||
-        e.target.tagName==="TEXTAREA"
-    ){
-        return;
+    for (let i = 1; i <= 200; i++) {
+        imageExtensions.forEach(ext => {
+            testAndAddMedia(`imeges/ph${i}.${ext}`, 'image');
+        });
     }
 
-    const heart =
-        document.createElement("div");
+    /*
+      ============================
+      الفيديوهات خارج imeges
+      بجانب index.html
+      ============================
+    */
 
-    heart.className="click-heart";
-    heart.textContent=
-        ["❤️","💜","💕","💗","💖"][
-            Math.floor(Math.random()*5)
-        ];
+    const videoExtensions = [
+        'mp4', 'MP4',
+        'webm', 'WEBM',
+        'mov', 'MOV',
+        'ogg', 'OGG',
+        'm4v', 'M4V'
+    ];
 
-    heart.style.left=
-        e.clientX+"px";
-
-    heart.style.top=
-        e.clientY+"px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(
-        ()=>heart.remove(),
-        1000
-    );
-});
-
-
-/* =========================
-   الرسائل
-========================= */
-
-const specialLetters={
-
-    angry:{
-        title:"🥺 لو زعلانة مني",
-        text:
-        "حقك عليا يا بنوتي لو زعلتك في يوم. آخر حاجة أتمنى أشوفها إنك تكوني زعلانة. تعالي نتصالح ونرجع نضحك تاني يا حبيبتي ❤️"
-    },
-
-    miss:{
-        title:"🥺 لو وحشتك",
-        text:
-        "عارفة إيه؟ إنتِ كمان وحشتيني. مهما حاولت أنشغل، دايماً فيه جزء من قلبي بيفتكر بسبوستى وابتسامتها وكلامها الحلو 💜"
-    },
-
-    sad:{
-        title:"🌧️ لو حاسة بحزن",
-        text:
-        "ماتشيليش الدنيا لوحدك يا روحي. خدي نفس عميق وافتكري إن الأيام الصعبة بتعدي. أهم حاجة أشوف بنوتي بخير ومبتسمة ❤️"
-    },
-
-    smile:{
-        title:"✨ علشان تبتسمي",
-        text:
-        "إنتِ عارفة إنك بنوتي المدللة؟ 😍 طيب ابتسمي كده، لأن ابتسامتك أجمل حاجة ممكن يشوفها حمووودى في يومه كله ❤️"
+    for (let i = 1; i <= 200; i++) {
+        videoExtensions.forEach(ext => {
+            testAndAddMedia(`v${i}.${ext}`, 'video');
+        });
     }
 
-};
+    /*
+      ============================
+      فيديوهات بأسماء مختلفة
+      لو عندك مثلاً:
+      video.mp4
+      video2.MP4
+      love.MP4
+      ============================
+    */
 
-function openLetter(type){
+    const extraVideos = [
+        'video.mp4',
+        'video.MP4',
+        'video1.mp4',
+        'video1.MP4',
+        'video2.mp4',
+        'video2.MP4',
+        'love.mp4',
+        'love.MP4'
+    ];
 
-    document.getElementById(
-        "modal-title"
-    ).textContent=
-        specialLetters[type].title;
-
-    document.getElementById(
-        "modal-text"
-    ).textContent=
-        specialLetters[type].text;
-
-    document.getElementById(
-        "modal-overlay"
-    ).style.display="flex";
-}
-
-function closeModal(){
-
-    document.getElementById(
-        "modal-overlay"
-    ).style.display="none";
+    extraVideos.forEach(file => {
+        testAndAddMedia(file, 'video');
+    });
 }
 
 
-/* =========================
-   كلام الحب
-========================= */
+function testAndAddMedia(url, type) {
 
-const loveQuotes=[
+    const container = document.getElementById('media-grid-container');
 
-    "يا بسبوستى، وجودك في حياتي نعمة كبيرة ❤️",
+    /*
+      ============================
+      اختبار الصور
+      ============================
+    */
 
-    "يا بنوتي الجميلة، ضحكتك عندي بالدنيا وما فيها 💜",
+    if (type === 'image') {
 
-    "بحب تفاصيلك الصغيرة قبل الكبيرة، وبحب وجودك جنبي ❤️",
+        const img = new Image();
 
-    "إنتِ الحنية اللي كنت محتاجها والابتسامة اللي بتفرحني 🌹",
-
-    "كل يوم بتأكد أكتر إنك من أجمل الناس اللي دخلوا حياتي 💕",
-
-    "يا حبيبتي، مهما كتبت كلام مش هيكفي أقولك إنتِ غالية عندي قد إيه ❤️",
-
-    "بسبوستى، خليكي دايماً مبتسمة علشان الدنيا بتحلو بيكي ✨",
-
-    "بنوتي الجميلة، ربنا يحفظ قلبك ويبعد عنك أي حزن 💜",
-
-    "أجمل حاجة في يومي إني أعرف إنك بخير ❤️",
-
-    "إنتِ مش بس حبيبتي، إنتِ قطعة جميلة من أيامي 🌹"
-
-];
-
-let quoteIndex=0;
-
-function rotateQuotes(){
-
-    const box=
-        document.getElementById(
-            "quote-display"
-        );
-
-    box.style.opacity=0;
-
-    setTimeout(()=>{
-
-        box.textContent=
-            loveQuotes[quoteIndex];
-
-        box.style.opacity=1;
-
-        quoteIndex=
-            (quoteIndex+1)%
-            loveQuotes.length;
-
-    },300);
-}
-
-
-/* =========================
-   العداد
-========================= */
-
-function updateLoveTimer(){
-
-    const start=
-        new Date("2024-08-26T00:00:00");
-
-    const now=new Date();
-
-    let years=
-        now.getFullYear()-
-        start.getFullYear();
-
-    let months=
-        now.getMonth()-
-        start.getMonth();
-
-    let days=
-        now.getDate()-
-        start.getDate();
-
-    let hours=
-        now.getHours()-
-        start.getHours();
-
-    let mins=
-        now.getMinutes()-
-        start.getMinutes();
-
-    let secs=
-        now.getSeconds()-
-        start.getSeconds();
-
-    if(secs<0){
-        secs+=60;
-        mins--;
-    }
-
-    if(mins<0){
-        mins+=60;
-        hours--;
-    }
-
-    if(hours<0){
-        hours+=24;
-        days--;
-    }
-
-    if(days<0){
-
-        months--;
-
-        const previousMonth=
-            new Date(
-                now.getFullYear(),
-                now.getMonth(),
-                0
-            );
-
-        days+=
-            previousMonth.getDate();
-    }
-
-    if(months<0){
-        months+=12;
-        years--;
-    }
-
-    document.getElementById("years-val").textContent=years;
-    document.getElementById("months-val").textContent=months;
-    document.getElementById("days-val").textContent=days;
-    document.getElementById("hours-val").textContent=hours;
-    document.getElementById("mins-val").textContent=mins;
-    document.getElementById("secs-val").textContent=secs;
-}
-
-
-/* =========================
-   تسجيل الدخول + الموسيقى
-========================= */
-
-function checkPassword(){
-
-    const pass=
-        document.getElementById(
-            "password-input"
-        ).value.trim();
-
-    if(pass==="حمووودى"){
-
-        document.getElementById(
-            "login-screen"
-        ).style.display="none";
-
-        document.getElementById(
-            "main-content"
-        ).style.display="block";
-
-        const music=
-            document.getElementById(
-                "bg-music"
-            );
-
-        /*
-          الأغنية موجودة بجانب index.html
-          وليست داخل imeges
-        */
-
-        music.volume=.7;
-
-        music.play().catch(()=>{
+        img.onload = function() {
 
             /*
-              بعض إصدارات Safari/iPhone
-              قد تمنع الصوت التلقائي.
-              المحاولة تمت بعد ضغطة الدخول.
+              منع تكرار الصورة
             */
 
-            console.log(
-                "المتصفح منع التشغيل التلقائي للصوت."
-            );
-
-        });
-
-        rotateQuotes();
-        updateLoveTimer();
-
-        scanImages();
-        scanVideos();
-
-        loadSavedMessages();
-
-    }else{
-
-        document.getElementById(
-            "error-msg"
-        ).style.display="block";
-    }
-}
-
-
-/* =========================
-   الصور
-========================= */
-
-const imageExtensions=[
-    "jpg","JPG",
-    "jpeg","JPEG",
-    "png","PNG",
-    "webp","WEBP",
-    "gif","GIF"
-];
-
-let discoveredImages=[];
-let currentBgIndex=0;
-
-function scanImages(){
-
-    discoveredImages=[];
-
-    const container=
-        document.getElementById(
-            "media-grid-container"
-        );
-
-    container.innerHTML="";
-
-    for(let i=1;i<=100;i++){
-
-        imageExtensions.forEach(ext=>{
-
-            const url=
-                `imeges/ph${i}.${ext}`;
-
-            const img=
-                new Image();
-
-            img.onload=function(){
-
-                if(discoveredImages.includes(url))
-                    return;
-
-                discoveredImages.push(url);
-
-                createImageCard(url);
-
-                updateSlideshow();
-
-                if(
-                    discoveredImages.length===1
-                ){
-
-                    document.body.style.backgroundImage=
-                        `url("${url}")`;
-                }
-
-            };
-
-            img.src=url;
-        });
-    }
-}
-
-
-/* =========================
-   بطاقة الصورة
-========================= */
-
-const romanticCaptions=[
-
-    "أجمل صورة لبنوتي الجميلة ❤️",
-
-    "يا جمالك يا بسبوستى، الصورة دي لوحدها بتفرحني 💜",
-
-    "كل صورة ليكي بتحكي حكاية جميلة في قلبي 🌹",
-
-    "ابتسامتك هنا أجمل من ألف كلمة ❤️",
-
-    "ذكريات حلوة مع أجمل بنوتة في الدنيا 💕",
-
-    "يا حبيبتي، جمالك في الصورة مش محتاج أي كلام ✨",
-
-    "الصورة دي محتاجة حضن كبير لبسبوستى ❤️"
-
-];
-
-function createImageCard(url){
-
-    const container=
-        document.getElementById(
-            "media-grid-container"
-        );
-
-    const card=
-        document.createElement("div");
-
-    card.className="media-card";
-
-    const caption=
-        romanticCaptions[
-            Math.floor(
-                Math.random()*
-                romanticCaptions.length
-            )
-        ];
-
-    card.innerHTML=`
-
-        <p>
-            ✨ ${caption}
-        </p>
-
-        <img
-            src="${url}"
-            alt="ذكرى جميلة"
-            onclick="changeBackground('${url}')"
-        >
-
-    `;
-
-    container.appendChild(card);
-}
-
-
-/* =========================
-   الفيديوهات
-========================= */
-
-const videoExtensions=[
-
-    "mp4","MP4",
-
-    "webm","WEBM",
-
-    "mov","MOV",
-
-    "ogg","OGG"
-
-];
-
-function scanVideos(){
-
-    const container=
-        document.getElementById(
-            "video-grid-container"
-        );
-
-    container.innerHTML="";
-
-    let foundVideos=0;
-
-    for(let i=1;i<=100;i++){
-
-        videoExtensions.forEach(ext=>{
-
-            const url=
-                `imeges/v${i}.${ext}`;
-
-            const video=
-                document.createElement("video");
-
-            video.preload="metadata";
-
-            video.src=url;
-
-            video.onloadedmetadata=function(){
-
-                if(
-                    video.dataset.added==="yes"
-                )
-                    return;
-
-                video.dataset.added="yes";
-
-                foundVideos++;
-
-                const card=
-                    document.createElement("div");
-
-                card.className=
-                    "media-card";
-
-                card.innerHTML=`
-
-                    <p>
-                        🎬 لحظة جميلة من ذكرياتنا
-                        يا بسبوستى ❤️
-                    </p>
-
-                    <video
-                        controls
-                        playsinline
-                        preload="metadata"
-                        src="${url}"
-                    ></video>
-
-                `;
-
-                container.appendChild(card);
-
-            };
+            if (discoveredImages.includes(url)) {
+                return;
+            }
+
+            discoveredImages.push(url);
 
             /*
-              منع ظهور خطأ للمستخدم
-              إذا كان الملف غير موجود
+              أول صورة تصبح خلفية
             */
 
-            video.onerror=function(){};
+            if (discoveredImages.length === 1) {
 
-            video.load();
+                document.body.style.backgroundImage =
+                    `url("${url}")`;
 
-        });
+                startBackgroundCycler();
+            }
 
-    }
-}
+            /*
+              تحديث شريط الذكريات
+            */
 
+            updateTopSlideshow();
 
-/* =========================
-   شريط الذكريات
-========================= */
+            /*
+              إنشاء بطاقة الصورة
+            */
 
-let slideshowTimerStarted=false;
+            const card = document.createElement('div');
 
-function updateSlideshow(){
+            card.className = 'media-card';
 
-    const box=
-        document.getElementById(
-            "top-slideshow-box"
-        );
-
-    box.innerHTML="";
-
-    discoveredImages.forEach(
-        (url,index)=>{
-
-            const slide=
-                document.createElement("div");
-
-            slide.className=
-                "slideshow-slide"+
-                (index===0?" active":"");
-
-            slide.innerHTML=`
+            card.innerHTML = `
+                <div class="media-love-text">
+                    <span>💜</span>
+                    <span>
+                        ${getRandomCaption()}
+                    </span>
+                    <span>💜</span>
+                </div>
 
                 <img
                     src="${url}"
-                    alt="ذكرى"
+                    alt="ذكرى جميلة"
+                    loading="lazy"
+                    onclick="changeSiteBackground('${url}')"
                 >
 
-                <div class="slideshow-caption">
-                    ❤️ أجمل ذكريات بسبوستى وحمووودى ❤️
+                <div class="photo-heart">
+                    ❤️ بسبوستى وبنوتى وحبيبتى ❤️
                 </div>
-
             `;
 
-            box.appendChild(slide);
-        }
-    );
+            container.appendChild(card);
+        };
 
-    if(
-        !slideshowTimerStarted &&
-        discoveredImages.length>1
-    ){
+        img.onerror = function() {
+            // الملف غير موجود، نتجاهله
+        };
 
-        slideshowTimerStarted=true;
+        img.src = url;
+    }
 
-        let index=0;
 
-        setInterval(()=>{
+    /*
+      ============================
+      اختبار الفيديوهات
+      ============================
+    */
 
-            const slides=
-                document.querySelectorAll(
-                    ".slideshow-slide"
-                );
+    else if (type === 'video') {
 
-            if(!slides.length)
+        const video = document.createElement('video');
+
+        video.preload = 'metadata';
+
+        video.onloadedmetadata = function() {
+
+            /*
+              منع تكرار الفيديو
+            */
+
+            if (
+                [...container.querySelectorAll('video')]
+                .some(v => v.dataset.src === url)
+            ) {
                 return;
+            }
 
-            slides[index].classList.remove(
-                "active"
-            );
+            const card = document.createElement('div');
 
-            index=
-                (index+1)%
-                slides.length;
+            card.className = 'media-card video-card';
 
-            slides[index].classList.add(
-                "active"
-            );
+            card.innerHTML = `
+                <div class="media-love-text">
+                    <span>🎬</span>
+                    <span>
+                        لحظة من أجمل لحظاتنا يا بسبوستى،
+                        كل ثانية في الفيديو ده بتفكرني
+                        قد إيه وجودك في حياتي نعمة ❤️
+                    </span>
+                    <span>🎬</span>
+                </div>
 
-        },3500);
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    data-src="${url}"
+                    src="${url}"
+                ></video>
+
+                <div class="photo-heart">
+                    💕 بنوتى الجميلة وحبيبتى وروح قلبى 💕
+                </div>
+            `;
+
+            container.appendChild(card);
+        };
+
+        video.onerror = function() {
+            // الملف غير موجود أو الامتداد غير مدعوم
+        };
+
+        video.src = url;
     }
 }
 
 
-/* =========================
-   خلفية الموقع
-========================= */
+/*
+  تغيير خلفية الموقع عند الضغط على صورة
+*/
 
-function changeBackground(url){
+function changeSiteBackground(url) {
 
-    document.body.style.backgroundImage=
+    document.body.style.backgroundImage =
         `url("${url}")`;
-
-}
-
-
-/* =========================
-   اللعبة
-========================= */
-
-function playGame(userChoice){
-
-    const choices=[
-        "حجر",
-        "ورقة",
-        "مقص"
-    ];
-
-    const hamoudChoice=
-        choices[
-            Math.floor(
-                Math.random()*3
-            )
-        ];
-
-    let result=
-        `إنتِ اخترتي ${userChoice}
-        وحمووودى اختار ${hamoudChoice} ❤️ `;
-
-    if(userChoice===hamoudChoice){
-
-        result+=
-        "تعادل يا بنوتي 😍";
-
-    }else{
-
-        result+=
-        "بس بصراحة فوزك أهم عندي من اللعبة كلها 😂❤️";
-    }
-
-    document.getElementById(
-        "rps-result"
-    ).textContent=result;
-}
-
-
-/* =========================
-   الرسائل المحفوظة
-========================= */
-
-function saveUserMessage(){
-
-    const input=
-        document.getElementById(
-            "user-note-input"
-        );
-
-    const text=
-        input.value.trim();
-
-    if(!text){
-
-        alert(
-            "اكتبي حاجة الأول يا بنوتي ❤️"
-        );
-
-        return;
-    }
-
-    let messages=
-        JSON.parse(
-            localStorage.getItem(
-                "basbosty_messages"
-            )||"[]"
-        );
-
-    messages.push({
-
-        text:text,
-
-        date:
-            new Date()
-            .toLocaleDateString(
-                "ar-EG"
-            )
-
-    });
-
-    localStorage.setItem(
-        "basbosty_messages",
-        JSON.stringify(messages)
-    );
-
-    input.value="";
-
-    loadSavedMessages();
-
-    alert(
-        "رسالتك اتحفظت في ذاكرة الموقع ❤️"
-    );
-}
-
-function loadSavedMessages(){
-
-    const display=
-        document.getElementById(
-            "saved-messages-display"
-        );
-
-    display.innerHTML="";
-
-    const messages=
-        JSON.parse(
-            localStorage.getItem(
-                "basbosty_messages"
-            )||"[]"
-        );
-
-    if(!messages.length){
-
-        display.innerHTML=
-        `<p style="color:#aaa;margin-top:15px">
-            لسه مفيش رسائل محفوظة ❤️
-        </p>`;
-
-        return;
-    }
-
-    messages.forEach(
-        (msg,index)=>{
-
-            const item=
-                document.createElement(
-                    "div"
-                );
-
-            item.className=
-                "saved-msg-item";
-
-            item.innerHTML=
-                `❤️ ${index+1} -
-                 ${escapeHtml(msg.text)}
-                 <small style="float:left">
-                 ${msg.date}
-                 </small>`;
-
-            display.appendChild(item);
-        }
-    );
 }
 
 
 /*
-  حماية بسيطة عند عرض الرسائل
+  تشغيل شريط الخلفية
 */
 
-function escapeHtml(text){
+function startBackgroundCycler() {
 
-    const div=
-        document.createElement("div");
-
-    div.textContent=text;
-
-    return div.innerHTML;
-}
-
-
-/* =========================
-   تشغيل الأنظمة
-========================= */
-
-setInterval(
-    rotateQuotes,
-    4000
-);
-
-setInterval(
-    updateLoveTimer,
-    1000
-);
-
-updateLoveTimer();
-
-
-/*
-  السماح بالضغط على Enter
-  لإدخال كلمة السر
-*/
-
-document.getElementById(
-    "password-input"
-).addEventListener(
-    "keydown",
-    function(e){
-
-        if(e.key==="Enter"){
-            checkPassword();
-        }
-
+    if (discoveredImages.length <= 1) {
+        return;
     }
-);
 
+    setInterval(() => {
+
+        currentBgIndex =
+            (currentBgIndex + 1) %
+            discoveredImages.length;
+
+        document.body.style.backgroundImage =
+            `url("${discoveredImages[currentBgIndex]}")`;
+
+    }, 10000);
+}
 </script>
-
-</body>
-</html>
