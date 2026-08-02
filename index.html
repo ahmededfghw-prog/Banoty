@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عالم الحب الرومانسي - بسبوستى</title>
+    <title>مملكة العشق الأبدي - بسبوستى ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,11 +13,25 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            background: #0f3460;
             color: #fff;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            transition: background-image 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 12, 41, 0.85);
+            z-index: 1;
         }
 
         /* خلفية العصافير والطيور والورد المتحركة */
@@ -28,7 +42,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
             opacity: 0.25;
             background-image: 
                 radial-gradient(circle, #ff69b4 10px, transparent 11px),
@@ -50,7 +64,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 12, 41, 0.95);
+            background: rgba(15, 12, 41, 0.98);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -118,7 +132,7 @@
         #main-content {
             display: none;
             position: relative;
-            z-index: 2;
+            z-index: 3;
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
@@ -132,18 +146,42 @@
         }
 
         header h1 {
-            font-size: 36px;
+            font-size: 38px;
             color: #ff69b4;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
             margin-bottom: 10px;
         }
 
         header p {
             font-size: 18px;
-            color: #ddd;
+            color: #ffb6c1;
         }
 
-        /* قسم رسائل الحب المتغيرة */
+        /* رسالة الترحيب والوداع */
+        .welcome-farewell-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 105, 180, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+        }
+
+        .welcome-farewell-box h3 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .welcome-farewell-box p {
+            color: #ffccd5;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* قسم رسائل الحب المتغيرة بكثرة */
         .love-quotes-section {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 105, 180, 0.3);
@@ -151,22 +189,67 @@
             padding: 25px;
             text-align: center;
             margin-bottom: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(5px);
         }
 
         .love-quote {
-            font-size: 22px;
+            font-size: 24px;
             color: #ffb6c1;
-            min-height: 70px;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 182, 193, 0.4);
             animation: fadeInOut 1s ease-in-out;
         }
 
         @keyframes fadeInOut {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* عداد الحب التفصيلي الدقيق (سنوات، أشهر، أيام، ساعات، دقائق، ثواني) */
+        .love-counter-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .love-counter-section h3 {
+            color: #ff69b4;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .counter-box-item {
+            background: rgba(255, 105, 180, 0.15);
+            border: 1px solid rgba(255, 105, 180, 0.4);
+            padding: 15px 10px;
+            border-radius: 10px;
+        }
+
+        .counter-number {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ffb6c1;
+            margin-bottom: 5px;
+        }
+
+        .counter-label {
+            font-size: 14px;
+            color: #fff;
         }
 
         /* قسم الألعاب الترفيهية */
@@ -177,6 +260,7 @@
             padding: 25px;
             margin-bottom: 30px;
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
         .games-section h3 {
@@ -204,6 +288,7 @@
 
         .game-btn:hover {
             background: #ff1493;
+            transform: scale(1.05);
         }
 
         #rps-result {
@@ -212,13 +297,14 @@
             color: #fff;
         }
 
-        /* معرض الصور والفيديوهات الديناميكي الذكي */
+        /* معرض الصور والفيديوهات الديناميكي */
         .media-gallery {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 105, 180, 0.3);
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
+            backdrop-filter: blur(5px);
         }
 
         .media-gallery h3 {
@@ -234,7 +320,7 @@
         }
 
         .media-card {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid rgba(255, 105, 180, 0.2);
@@ -248,14 +334,22 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .media-card img:hover {
+            transform: scale(1.03);
         }
 
         .media-card p {
             color: #ffb6c1;
             font-size: 16px;
+            line-height: 1.5;
+            font-weight: 500;
         }
 
-        /* قسم رسائل بسبوستى */
+        /* صندوق رسائل بسبوستى */
         .message-box-section {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 105, 180, 0.3);
@@ -263,6 +357,7 @@
             padding: 25px;
             margin-bottom: 30px;
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
         .message-box-section h3 {
@@ -321,9 +416,9 @@
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             color: #aaa;
-            font-size: 14px;
+            font-size: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
@@ -338,7 +433,7 @@
         <div class="login-box">
             <h2>🔒 أهلاً بكِ يا بسبوستى</h2>
             <p style="margin-bottom: 15px; font-size: 14px; color: #ffb6c1;">أدخلي كلمة السر للوصول إلى الهدية الخاصة</p>
-            <input type="password" id="password-input" placeholder="اكتبي كلمة السر هنا...">
+            <input type="password" id="password-input" placeholder="اكتبي كلمة السر هنا (حمووودى)...">
             <button onclick="checkPassword()">دخول الحب</button>
             <div id="error-msg" class="error-msg">كلمة السر غير صحيحة، جربي مرة أخرى!</div>
         </div>
@@ -351,63 +446,110 @@
         متصفحك لا يدعم مشغل الصوت.
     </audio>
 
-    <!-- المحتوى الرئيسي -->
+    <!-- المحتوى الرئيسي للموقع -->
     <div id="main-content">
         <header>
             <h1 id="welcome-title">مرحباً بكِ يا بسبوستى في مملكة حبنا ❤️</h1>
-            <p>هذه الهدية مقدمة بكل حب وعشق من حمووودى</p>
+            <p>هدية حب وعشق لا ينتهي مقدمة من حمووودى خصيصاً لكِ</p>
         </header>
 
-        <!-- عبارات الحب المتغيرة -->
+        <!-- رسالة الترحيب -->
+        <section class="welcome-farewell-box">
+            <h3>🌹 رسالة ترحيب خاصة لعيونكِ</h3>
+            <p>أهلاً ومرحباً بنور عيني وملكة قلبي "بسبوستى". دخلتِ الآن إلى مساحة خاصة جداً صنعها لكِ حمووودى بكل حب لتكون واحتنا الجميلة. كل كلمة هنا وكل صورة تروي قصة عشقنا الأبدي..</p>
+        </section>
+
+        <!-- رسائل الحب المتغيرة بكثرة -->
         <section class="love-quotes-section">
-            <div id="quote-display" class="love-quote">جاري تحميل مشاعر الحب...</div>
+            <div id="quote-display" class="love-quote">جاري تحميل مشاعر العشق والكلمات الدافئة...</div>
+        </section>
+
+        <!-- عداد الحب الدقيق منذ 26/8/2024 -->
+        <section class="love-counter-section">
+            <h3>⏳ الوقت الذي قضيناه سوياً منذ (26 / 8 / 2024)</h3>
+            <div class="counter-grid">
+                <div class="counter-box-item">
+                    <div class="counter-number" id="years-val">0</div>
+                    <div class="counter-label">سنوات</div>
+                </div>
+                <div class="counter-box-item">
+                    <div class="counter-number" id="months-val">0</div>
+                    <div class="counter-label">أشهر</div>
+                </div>
+                <div class="counter-box-item">
+                    <div class="counter-number" id="days-val">0</div>
+                    <div class="counter-label">أيام</div>
+                </div>
+                <div class="counter-box-item">
+                    <div class="counter-number" id="hours-val">0</div>
+                    <div class="counter-label">ساعات</div>
+                </div>
+                <div class="counter-box-item">
+                    <div class="counter-number" id="mins-val">0</div>
+                    <div class="counter-label">دقائق</div>
+                </div>
+                <div class="counter-box-item">
+                    <div class="counter-number" id="secs-val">0</div>
+                    <div class="counter-label">ثواني</div>
+                </div>
+            </div>
         </section>
 
         <!-- قسم الألعاب الترفيهية -->
         <section class="games-section">
-            <h3>🎮 ركن التسلية والألعاب</h3>
+            <h3>🎮 ركن التسلية والمرح معاً</h3>
             <div class="game-container">
-                <p>لعبة حجر ورقة مقص (مين يحب تاني أكتر؟):</p>
+                <p>لعبة الحب (من يحب الثاني أكثر؟):</p>
                 <div>
                     <button class="game-btn" onclick="playGame('حجر')">🪨 حجر</button>
                     <button class="game-btn" onclick="playGame('ورقة')">📄 ورقة</button>
                     <button class="game-btn" onclick="playGame('مقص')">✂️ مقص</button>
                 </div>
-                <div id="rps-result">اضغطي على أحد الخيارات لنلعب معاً!</div>
+                <div id="rps-result">اضغطي على أحد الخيارات لنلعب ونبتسم معاً!</div>
             </div>
         </section>
 
-        <!-- معرض الصور والفيديوهات الديناميكي الذكي -->
+        <!-- معرض الصور والفيديوهات الديناميكي مع كلام رومانسى لكل صورة وتغيير الخلفية -->
         <section class="media-gallery">
-            <h3>📸 ذكرياتنا ولحظاتنا الحلوة</h3>
+            <h3>📸 ذكرياتنا ولحظاتنا الساحرة</h3>
+            <p style="text-align: center; color: #ffb6c1; font-size: 14px; margin-bottom: 20px;">(اضغطي على أي صورة لتتحول فوراً لتكون خلفية الموقع وتعيشي جوها الرومانسي!)</p>
             <div class="media-grid" id="media-grid-container">
-                <!-- سيتم توليد الصور والفيديوهات تلقائياً هنا بناءً على المجلد imeges وبصيغ ph و v -->
+                <!-- سيتم توليد الصور والفيديوهات تلقائياً مع تعليقات حب خاصة لكل صورة وخلفيات متغيرة -->
             </div>
         </section>
 
         <!-- صندوق رسائل بسبوستى -->
         <section class="message-box-section">
-            <h3>💌 اكتبي هنا ما ترغبين فيه يا بسبوستى</h3>
-            <textarea id="user-note-input" placeholder="اكتبي رسالتك أو خاطرتك هنا وسيتم حفظها خصيصاً لكِ..."></textarea>
-            <button class="save-msg-btn" onclick="saveUserMessage()">حفظ الرسالة</button>
+            <h3>✍️ اكتبي هنا ما ترغبين فيه يا بسبوستى</h3>
+            <textarea id="user-note-input" placeholder="اكتبي رسالتكِ أو ما يجول بخاطركِ هنا وسيتم حفظه خصيصاً لكِ..."></textarea>
+            <button class="save-msg-btn" onclick="saveUserMessage()">حفظ الرسالة في القلب</button>
             <div id="saved-messages-display">
                 <!-- الرسائل المحفوظة -->
             </div>
         </section>
 
+        <!-- رسالة الوداع الخاصة -->
+        <section class="welcome-farewell-box">
+            <h3>🌙 رسالة وداع مؤقتة حتى لقائنا القادم</h3>
+            <p>إلى أن يلتقي قلبينا مجدداً يا بسبوستى، تذكري دائماً أن حمووودى يحبكِ بجنون وأن هذا الموقع سيبقى يذكركِ بعشقنا في كل دقيقة.. وداعاً يا أغلى الناس، وإلى لقاء قريب يجمعنا على خير!</p>
+        </section>
+
         <footer>
-            <p id="farewell-text">مع كل الحب والتقدير - تمت البرمجة بحب لأجلك يا بسبوستى ❤️ وداعاً حتى لقاءٍ قادم!</p>
+            <p>✨ صُنع بكل حب وعشق من حمووودى لأجل عيون بسبوستى ❤️</p>
         </footer>
     </div>
 
     <script>
-        // رسائل الحب المتغيرة
+        // رسائل الحب المتغيرة الكثيرة
         const loveQuotes = [
             "أنتِ أجمل صدفة في حياتي، وبكل روز ووردة في الكون أحبكِ يا بسبوستى.",
-            "وجودكِ بجانبي يغنيني عن العالم أجمع، دمتِ لي حباً لا ينتهي.",
-            "حمووودى يعشق كل تفصيلة فيكِ، ابتسامتكِ هي نور أيامي.",
-            "صوتكِ، عيونكِ، وكل ما فيكِ يسحر قلبي كل يوم من جديد.",
-            "بسبوستى الغالية، أنتِ نبض القلب وروح الروح."
+            "وجودكِ بجانبي يغنيني عن العالم أجمع، دمتِ لي حباً لا ينتهي ولا يزول.",
+            "حمووودى يعشق كل تفصيلة فيكِ، ابتسامتكِ هي نور أيامي وسر سعادتي.",
+            "صوتكِ، عيونكِ، وكل ما فيكِ يسحر قلبي كل يوم من جديد كأننا التقينا للتو.",
+            "بسبوستى الغالية، أنتِ نبض القلب وروح الروح، وبدونكِ لا حياة لي.",
+            "كل ثانية أعيشها معكِ تزيدني عشقاً بكِ يا توأم روحي ورفيقة دربي.",
+            "أنتِ الحلم الجميل الذي تحقّق، وأجمل نعمة أكرمني بها الله في هذه الدنيا.",
+            "مهما تحدث الكلمات وتعبر الجمل، فلن توفي حق حبك الكبير في قلبي يا بسبوستى."
         ];
 
         let quoteIndex = 0;
@@ -420,7 +562,55 @@
                 quoteIndex = (quoteIndex + 1) % loveQuotes.length;
             }, 300);
         }
-        setInterval(rotateQuotes, 5000);
+        setInterval(rotateQuotes, 4000);
+
+        // عداد الوقت الدقيق منذ 26/8/2024
+        function updateLoveTimer() {
+            const startDate = new Date('2024-08-26T00:00:00');
+            const now = new Date();
+            
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+            let hours = now.getHours() - startDate.getHours();
+            let mins = now.getMinutes() - startDate.getMinutes();
+            let secs = now.getSeconds() - startDate.getSeconds();
+
+            if (secs < 0) {
+                secs += 60;
+                mins--;
+            }
+            if (mins < 0) {
+                mins += 60;
+                hours--;
+            }
+            if (hours < 0) {
+                hours += 24;
+                days--;
+            }
+            if (days < 0) {
+                months--;
+                // حساب عدد الأيام في الشهر السابق بدقة
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
+
+            document.getElementById('years-val').textContent = years;
+            document.getElementById('months-val').textContent = months;
+            document.getElementById('days-val').textContent = days;
+            document.getElementById('hours-val').textContent = hours;
+            document.getElementById('mins-val').textContent = mins;
+            document.getElementById('secs-val').textContent = secs;
+        }
+        setInterval(updateLoveTimer, 1000);
+
+        // مصفوفة لتخزين روابط الصور المكتشفة وتدوير الخلفية تلقائياً
+        let discoveredImages = [];
+        let currentBgIndex = 0;
 
         // التحقق من كلمة السر
         function checkPassword() {
@@ -438,6 +628,7 @@
                 });
 
                 rotateQuotes();
+                updateLoveTimer();
                 scanAndLoadFolderMedia();
                 loadSavedMessages();
             } else {
@@ -445,7 +636,7 @@
             }
         }
 
-        // لعبة التسلية
+        // لعبة التسلية والرومانسية
         function playGame(userChoice) {
             const hamoudChoices = ['حجر', 'ورقة', 'مقص'];
             const randomChoice = hamoudChoices[Math.floor(Math.random() * hamoudChoices.length)];
@@ -454,12 +645,24 @@
             if (userChoice === randomChoice) {
                 resultText += "تعادلنا يا قلبي، روحنا واحد!";
             } else {
-                resultText += "مهما كانت النتيجة، فوزكِ هو فوزي يا بسبوستى! ❤️";
+                resultText += "مهما كانت النتيجة، فوزكِ هو فوزي الأساسي يا بسبوستى! ❤️";
             }
             document.getElementById('rps-result').textContent = resultText;
         }
 
-        // نظام الاكتشاف والتحميل التلقائي للصور والفيديوهات من مجلد imeges (يدعم ph و v مع كل الامتدادات الكابيتال والسمول)
+        // جمل رومانسية لكل صورة
+        function getRomanticCaption(index) {
+            const captions = [
+                `صورة رقم ${index}: هذه اللحظة عشتها معكِ وكأن الوقت وقف تعبيراً عن روعة ابتسامتكِ يا بسبوستى. حمووودى يعشق هذه الإطلالة الساحرة! ❤️`,
+                `صورة رقم ${index}: عيونكِ فيها كل سحر الكون.. تبارك الله على جمالكِ الذي لا يُضاهى يا روحي.`,
+                `صورة رقم ${index}: في هذه الصورة تتجلى كل معاني الرقة والدلال. دمتِ لي أجمل أوراد العمر يا بسبوستى.`,
+                `صورة رقم ${index}: ذكرياتنا معاً كنز لا يُقدر بثمن، وكل صورة معكِ هي صفحة جديدة من رواية عشقنا الأبدي.`,
+                `صورة رقم ${index}: لا توجد كلمات تمجد جمال هذه اللحظة، فحمووودى يذوب حنيناً وعشقاً كلما رآها.`
+            ];
+            return captions[(index - 1) % captions.length];
+        }
+
+        // نظام الاكتشاف والتحميل التلقائي للصور والفيديوهات من مجلد imeges
         function scanAndLoadFolderMedia() {
             const container = document.getElementById('media-grid-container');
             container.innerHTML = "";
@@ -467,43 +670,45 @@
             const imageExtensions = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'webp', 'WEBP', 'gif', 'GIF'];
             const videoExtensions = ['mp4', 'MP4', 'webm', 'WEBM', 'mov', 'MOV', 'ogg', 'OGG'];
 
-            let mediaFoundCount = 0;
-
-            // فحص الصور من ph1 إلى ph20 (أو أي عدد تقوم برفعه تدريجياً)
-            for (let i = 1; i <= 20; i++) {
+            for (let i = 1; i <= 25; i++) {
                 imageExtensions.forEach(ext => {
                     const path = `imeges/ph${i}.${ext}`;
-                    testAndAddMedia(path, 'image', `لحظة حلوة تجمعنا - صورة رقم ${i}`);
+                    testAndAddMedia(path, 'image', i);
                 });
             }
 
-            // فحص الفيديوهات من v1 إلى v20
-            for (let i = 1; i <= 20; i++) {
+            for (let i = 1; i <= 25; i++) {
                 videoExtensions.forEach(ext => {
                     const path = `imeges/v${i}.${ext}`;
-                    testAndAddMedia(path, 'video', `فيديو ذكرياتنا الرومانسية - فيديو رقم ${i}`);
+                    testAndAddMedia(path, 'video', i);
                 });
             }
         }
 
-        // اختبار الملف عبر الفحص المسبق لتجنب أي أخطاء فتح صفحة جديدة وعرض الموجود فقط بذكاء
-        function testAndAddMedia(url, type, caption) {
+        // اختبار الملفات وعرضها وتغيير الخلفية بالنقر عليها
+        function testAndAddMedia(url, type, index) {
             const container = document.getElementById('media-grid-container');
             
             if (type === 'image') {
                 const img = new Image();
                 img.src = url;
                 img.onload = function() {
+                    discoveredImages.push(url);
+                    if (discoveredImages.length === 1) {
+                        document.body.style.backgroundImage = `url('${url}')`;
+                        startBackgroundCycler();
+                    }
+
+                    const caption = getRomanticCaption(index);
                     const card = document.createElement('div');
                     card.className = 'media-card';
                     card.innerHTML = `
-                        <img src="${url}" alt="${caption}">
+                        <img src="${url}" alt="صورة ${index}" onclick="changeSiteBackground('${url}')" title="اضغطي لتصبح خلفية الموقع!">
                         <p>${caption}</p>
                     `;
                     container.appendChild(card);
                 };
             } else if (type === 'video') {
-                // اختبار وجود الفيديو عبر التحقق من تحميل البيانات الوصفية له
                 const videoTest = document.createElement('video');
                 videoTest.src = url;
                 videoTest.onloadedmetadata = function() {
@@ -511,14 +716,26 @@
                     card.className = 'media-card';
                     card.innerHTML = `
                         <video controls src="${url}"></video>
-                        <p>${caption}</p>
+                        <p>فيديو رقم ${index}: لحظات حية تنبض بالحب والذكريات الجميلة بيننا يا بسبوستى ❤️</p>
                     `;
                     container.appendChild(card);
                 };
             }
         }
 
-        // حفظ رسائل بسبوستى محلياً داخل المتصفح
+        function changeSiteBackground(url) {
+            document.body.style.backgroundImage = `url('${url}')`;
+        }
+
+        function startBackgroundCycler() {
+            if (discoveredImages.length <= 1) return;
+            setInterval(() => {
+                currentBgIndex = (currentBgIndex + 1) % discoveredImages.length;
+                document.body.style.backgroundImage = `url('${discoveredImages[currentBgIndex]}')`;
+            }, 10000);
+        }
+
+        // حفظ رسائل بسبوستى محلياً
         function saveUserMessage() {
             const noteInput = document.getElementById('user-note-input');
             const text = noteInput.value.trim();
@@ -533,7 +750,7 @@
 
             noteInput.value = "";
             loadSavedMessages();
-            alert("تم حفظ رسالتكِ بنجاح في قلب الموقع! ❤️");
+            alert("تم حفظ رسالتكِ بنجاح في قلب الموقع وفي ذاكرته! ❤️");
         }
 
         function loadSavedMessages() {
