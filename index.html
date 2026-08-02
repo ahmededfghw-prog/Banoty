@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عالمنا الخاص ❤️✨</title>
+    <title>عالمنا الخاص - بسملة قلبي ❤️✨</title>
     <style>
         :root {
-            --primary-color: #ff4d6d;
-            --accent-color: #c9184a;
-            --card-bg: rgba(255, 255, 255, 0.88);
-            --text-color: #4a0e17;
+            --primary-color: #8338ec;
+            --accent-color: #ff006e;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-color: #2b0938;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -19,16 +19,18 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            background-color: #1a000c;
+            background-color: #12001a;
+            transition: background 1.5s ease;
         }
 
-        #bg-slideshow {
+        /* خلفية تتغير بالكامل كل 5 ثواني */
+        #dynamic-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2;
             background-size: cover;
             background-position: center;
-            transition: background-image 2s ease-in-out;
+            transition: background-image 1.5s ease-in-out;
             filter: blur(8px) brightness(0.55);
             transform: scale(1.05);
         }
@@ -37,20 +39,13 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, rgba(255, 117, 140, 0.3), rgba(199, 24, 74, 0.4));
-            animation: colorShift 12s infinite alternate ease-in-out;
-        }
-
-        @keyframes colorShift {
-            0% { background: rgba(255, 77, 109, 0.25); }
-            50% { background: rgba(128, 15, 47, 0.35); }
-            100% { background: rgba(255, 182, 193, 0.3); }
+            background: linear-gradient(135deg, rgba(131, 56, 236, 0.4), rgba(255, 0, 110, 0.3));
         }
 
         #lock-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            background: linear-gradient(135deg, #7209b7, #3a0b5e);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -62,30 +57,30 @@
         }
 
         .lock-box {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
             padding: 35px 25px;
             border-radius: 25px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.3);
             max-width: 360px;
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .lock-box h2 { margin-bottom: 15px; font-size: 1.7rem; }
+        .lock-box h2 { margin-bottom: 15px; font-size: 1.8rem; color: #ff70a6; }
         .lock-box input {
             width: 100%; padding: 14px; border-radius: 25px; border: none;
             text-align: center; font-size: 1.1rem; margin-bottom: 15px; outline: none;
         }
         .lock-box button {
-            background: var(--primary-color); color: white; border: none;
+            background: var(--accent-color); color: white; border: none;
             padding: 12px 35px; border-radius: 25px; font-size: 1.1rem;
             cursor: pointer; font-weight: bold; transition: 0.3s;
         }
         .lock-box button:hover { transform: scale(1.05); }
 
         .floating-effect {
-            position: fixed; top: -10vh; font-size: 1.6rem; user-select: none;
+            position: fixed; top: -10vh; font-size: 1.8rem; user-select: none;
             pointer-events: none; animation: fall linear infinite; z-index: 100;
         }
         @keyframes fall {
@@ -103,57 +98,100 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         header { text-align: center; margin: 25px 0; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; color: #fff; }
+        header h1 { font-size: 2.5rem; margin-bottom: 8px; color: #ff70a6; }
+        header p { font-size: 1.1rem; opacity: 0.95; }
+
+        /* أزرار التنقل */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            padding: 12px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--text-color);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(255, 0, 110, 0.4);
+        }
+
+        .content-section { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .content-section.active-section { display: block; }
 
         .love-counter-box {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 25px 15px;
-            border-radius: 25px;
-            text-align: center;
-            margin-bottom: 35px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            background: var(--card-bg); backdrop-filter: blur(10px);
+            padding: 25px 15px; border-radius: 25px; text-align: center;
+            margin-bottom: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             border: 1px solid rgba(255,255,255,0.6);
         }
-
         .love-counter-box h3 { color: var(--accent-color); margin-bottom: 15px; font-size: 1.4rem; }
-
-        #counter-display {
-            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 15px;
-        }
-
+        #counter-display { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 15px; }
         .time-card {
-            background: linear-gradient(135deg, #ff4d6d, #c9184a);
+            background: linear-gradient(135deg, #8338ec, #ff006e);
             color: white; padding: 12px 18px; border-radius: 16px; min-width: 75px;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3); display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 5px 15px rgba(131, 56, 236, 0.3); display: flex; flex-direction: column; align-items: center;
         }
-
-        .time-card span { font-size: 1.6rem; font-weight: bold; font-family: monospace; }
+        .time-card span { font-size: 1.5rem; font-weight: bold; font-family: monospace; }
         .time-card label { font-size: 0.85rem; margin-top: 2px; opacity: 0.9; }
-        .counter-quote { font-size: 1rem; font-weight: 600; color: #ff4d6d; margin-top: 10px; }
+        .counter-quote { font-size: 1rem; font-weight: 600; color: #7209b7; margin-top: 10px; line-height: 1.5; }
+
+        /* قسم الكلام المتجدد بالتغزل في بسملة */
+        .compliment-box {
+            background: var(--card-bg); backdrop-filter: blur(12px);
+            padding: 25px; border-radius: 22px; text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15); margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        .compliment-box h3 { color: #8338ec; margin-bottom: 15px; }
+        #compliment-display {
+            font-size: 1.2rem; font-weight: bold; color: #ff006e; min-height: 60px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 15px; padding: 0 10px;
+        }
+        .magic-btn {
+            background: linear-gradient(135deg, #8338ec, #ff006e); color: white; border: none;
+            padding: 12px 30px; border-radius: 25px; font-size: 1rem; font-weight: bold;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(255,0,110,0.3); transition: 0.3s;
+        }
+        .magic-btn:hover { transform: scale(1.05); }
 
         .audio-container {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 15px;
-            border-radius: 50px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: var(--card-bg); backdrop-filter: blur(10px);
+            padding: 12px; border-radius: 50px; text-align: center;
+            margin-bottom: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
-        audio { width: 100%; max-width: 420px; height: 38px; }
+        audio { width: 100%; max-width: 400px; height: 35px; }
 
-        .section-header {
-            text-align: center; margin: 45px 0 25px 0;
-            background: rgba(255, 77, 109, 0.85); color: white;
+        .section-title {
+            text-align: center; margin-bottom: 25px;
+            background: rgba(131, 56, 236, 0.9); color: white;
             padding: 12px 25px; border-radius: 30px; display: inline-block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-size: 1.4rem;
         }
         .center-wrapper { text-align: center; }
 
         .gallery-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 22px; margin-bottom: 40px;
+            gap: 22px; margin-bottom: 30px;
         }
 
         .photo-card {
@@ -163,12 +201,32 @@
             display: flex; flex-direction: column; justify-content: space-between;
             border: 1px solid rgba(255,255,255,0.6);
         }
-        .photo-card:hover { transform: translateY(-7px) scale(1.02); box-shadow: 0 12px 25px rgba(255, 77, 109, 0.3); }
+        .photo-card:hover { transform: translateY(-7px) scale(1.02); box-shadow: 0 12px 25px rgba(131, 56, 236, 0.4); }
 
         .media-holder { overflow: hidden; border-radius: 12px; height: 260px; background: #000; }
         .photo-card img, .photo-card video { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-
         .caption { margin-top: 10px; font-size: 0.95rem; font-weight: 600; color: var(--text-color); line-height: 1.4; }
+
+        /* قسم الألعاب والترفيه */
+        .games-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; margin-bottom: 30px;
+        }
+        .game-card {
+            background: var(--card-bg); backdrop-filter: blur(10px);
+            padding: 25px; border-radius: 22px; text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.6);
+        }
+        .game-card h3 { color: #8338ec; margin-bottom: 10px; }
+        .game-canvas {
+            width: 100%; height: 220px; background: linear-gradient(135deg, #2b0938, #4a155c);
+            border-radius: 16px; position: relative; overflow: hidden; margin-top: 15px; cursor: pointer;
+        }
+        .target-heart {
+            position: absolute; font-size: 2.3rem; user-select: none;
+            animation: pulseHeart 0.8s infinite alternate;
+        }
+        @keyframes pulseHeart { from { transform: scale(1); } to { transform: scale(1.25); } }
 
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -182,33 +240,33 @@
         .message-box {
             background: var(--card-bg); backdrop-filter: blur(10px);
             padding: 30px; border-radius: 22px; box-shadow: 0 6px 25px rgba(0,0,0,0.15);
-            text-align: center; margin-bottom: 40px;
+            text-align: center; margin-bottom: 30px;
         }
         textarea {
             width: 100%; padding: 15px; border-radius: 14px;
-            border: 2px solid #ffccd5; font-size: 1rem; outline: none; resize: none; margin-bottom: 18px;
+            border: 2px solid #d8b4fe; font-size: 1rem; outline: none; resize: none; margin-bottom: 18px;
         }
         .send-btn {
-            background: var(--primary-color); color: white; border: none;
+            background: var(--accent-color); color: white; border: none;
             padding: 14px 40px; border-radius: 30px; font-size: 1.05rem; font-weight: bold; cursor: pointer; transition: 0.3s;
         }
         .send-btn:hover { transform: scale(1.05); }
 
-        footer { text-align: center; font-size: 0.95rem; color: white; padding: 25px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        footer { text-align: center; font-size: 0.95rem; color: white; padding: 20px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-    <div id="bg-slideshow"></div>
+    <div id="dynamic-bg"></div>
     <div id="bg-overlay"></div>
 
     <div id="lock-screen">
         <div class="lock-box">
-            <h2>🔒 عالمنا الخاص</h2>
+            <h2>🔒 عالم بسملة الخاص</h2>
             <p style="margin-bottom: 18px; font-size: 0.95rem;">أدخلي كلمة السر لفتح المفاجأة ❤️</p>
             <input type="password" id="pass-input" placeholder="كلمة السر...">
             <button onclick="checkPassword()">دخول ✨</button>
-            <p id="error-msg" style="color: #fff; margin-top: 12px; font-size: 0.9rem; display: none;">كلمة السر خاطئة! ❌</p>
+            <p id="error-msg" style="color: #ffccd5; margin-top: 12px; font-size: 0.9rem; display: none;">كلمة السر خاطئة يا بسبوستى! ❌</p>
         </div>
     </div>
 
@@ -219,155 +277,238 @@
 
     <div id="main-content">
         <header>
-            <h1>أجمل عالم وأحلى ذكريات ❤️✨</h1>
-            <p>كل تفصيلة هنا صُنعت بحب عشاني وعشانك</p>
+            <h1>عالمنا الخاص وحكايتنا أنا وبسملة ❤️✨</h1>
+            <p>بنوتى وسكر دنيتي، كل تفصيلة هنا صُنعت بحب عشانك يا بسبوستى</p>
         </header>
 
-        <div class="love-counter-box">
-            <h3>💖 مع بعض بقالنا:</h3>
-            <div id="counter-display">
-                <div class="time-card"><span id="days">0</span><label>يوم</label></div>
-                <div class="time-card"><span id="hours">0</span><label>ساعة</label></div>
-                <div class="time-card"><span id="minutes">0</span><label>دقيقة</label></div>
-                <div class="time-card"><span id="seconds">0</span><label>ثانية</label></div>
+        <!-- أزرار التنقل الرئيسية -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('home-section')">🏠 الرئيسية</button>
+            <button class="tab-btn" onclick="switchTab('photos-section')">🖼️ صور بسبوستى</button>
+            <button class="tab-btn" onclick="switchTab('videos-section')">🎥 فيديوهاتنا</button>
+            <button class="tab-btn" onclick="switchTab('games-section')">🎮 العاب وترفيه</button>
+            <button class="tab-btn" onclick="switchTab('messages-section')">💌 رسائلك لي</button>
+        </div>
+
+        <!-- 1. الرئيسية مع الكلام المتجدد والأغنية -->
+        <div id="home-section" class="content-section active-section">
+            <div class="love-counter-box">
+                <h3>💖 مع بعض بقالنا يا بنوتى:</h3>
+                <div id="counter-display">
+                    <div class="time-card"><span id="days">0</span><label>يوم</label></div>
+                    <div class="time-card"><span id="hours">0</span><label>ساعة</label></div>
+                    <div class="time-card"><span id="minutes">0</span><label>دقيقة</label></div>
+                    <div class="time-card"><span id="seconds">0</span><label>ثانية</label></div>
+                </div>
+                <p class="counter-quote">"26 أغسطس 2024.. اليوم اللي دخلت فيه بسبوستى حياتي ونورت كل أيامي وخلت طعم الدنيا أحلى ❤️"</p>
             </div>
-            <p class="counter-quote">"26 أغسطس 2024.. اليوم اللي بدأت فيه أحلى وأجمل حكاية في حياتي ❤️"</p>
+
+            <!-- زر الكلام المتجدد للتغزل في بسملة -->
+            <div class="compliment-box">
+                <h3>🌹 كلمات حب وتغزل في عيون بسملة</h3>
+                <div id="compliment-display">"اضعي على الزرار أدناه لتسمعي أحلى كلام حب وخطاب لعيونك يا بسبوستى ❤️"</div>
+                <button class="magic-btn" onclick="getRandomCompliment()">اضغطي هنا لكلام حب جديد ✨</button>
+            </div>
+
+            <div class="audio-container">
+                <p style="margin-bottom: 8px; font-weight: bold; color: #7209b7;">🎵 أغنيتنا الخاصة:</p>
+                <audio id="love-song" controls loop preload="auto">
+                    <source src="song.mp3" type="audio/mpeg">
+                    متصفحك لا يدعم تشغيل الصوت. تأكد من وضع ملف song.mp3 في المجلد.
+                </audio>
+            </div>
         </div>
 
-        <div class="audio-container">
-            <p style="margin-bottom: 10px; font-weight: bold; color: #ff4d6d;">🎵 أغنيتنا المفضلة:</p>
-            <audio id="love-song" controls loop preload="auto">
-                <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-sky-111030.mp3" type="audio/mpeg">
-            </audio>
+        <!-- 2. صور بسبوستى -->
+        <div id="photos-section" class="content-section">
+            <div class="center-wrapper">
+                <h2 class="section-title">🖼️ معرض صور بسبوستى الملكية</h2>
+            </div>
+            <div class="gallery-grid" id="photos-gallery"></div>
         </div>
 
-        <div class="center-wrapper">
-            <h2 class="section-header">👑 ذكرياتنا وملكة قلبي (الصور وفيديوهاتنا)</h2>
-        </div>
-        <div class="gallery-grid" id="main-gallery"></div>
-
-        <div class="message-box">
-            <h2>💌 اكتبيلي رسالة</h2>
-            <p style="color: #800f2f; margin-bottom: 15px; font-size: 0.95rem;">أي رسالة تكتبيها هنا هتوصلي على التلجرام فوراً ❤️</p>
-            <form id="love-form">
-                <textarea id="love-message" rows="4" placeholder="اكتبي كل اللي في قلبك هنا..." required></textarea>
-                <button type="submit" class="send-btn">إرسال الرسالة 🚀</button>
-            </form>
+        <!-- 3. الفيديوهات -->
+        <div id="videos-section" class="content-section">
+            <div class="center-wrapper">
+                <h2 class="section-title">🎥 فيديوهاتنا وذكرياتنا المتحركة</h2>
+            </div>
+            <div class="gallery-grid" id="videos-gallery"></div>
         </div>
 
-        <footer>صُنع بحب من حمووودى لكِ أنتِ فقط 💖</footer>
+        <!-- 4. الألعاب والترفيه -->
+        <div id="games-section" class="content-section">
+            <div class="games-grid">
+                <div class="game-card">
+                    <h3>🎯 صيد القلوب السحرية</h3>
+                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;">اضغطي على القلب المتحرك واجمعي نقط!</p>
+                    <p style="font-weight: bold; font-size: 1.1rem; color: #ff006e;">النقاط: <span id="score">0</span> ❤️</p>
+                    <div class="game-canvas" id="game-canvas" onclick="catchHeart(event)">
+                        <div class="target-heart" id="active-heart" onclick="clickHeart(event)" style="top: 40%; left: 40%;">💖</div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <h3>✨ بوكس السعادة لبسملة</h3>
+                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px;">كل ضغطة بتفتحلك مفاجأة ومدح جديد في جمالك!</p>
+                    <div id="box-message" style="background: rgba(131,56,236,0.1); padding: 15px; border-radius: 12px; font-weight: bold; color: #8338ec; min-height: 70px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                        "اضعي الزرار لتحصلي على مفاجأة 🎁"
+                    </div>
+                    <button class="magic-btn" onclick="openBox()">افتحي المفاجأة 🌸</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. رسائل الحب -->
+        <div id="messages-section" class="content-section">
+            <div class="message-box">
+                <h2>💌 اكتبيلي رسالة يا بسبوستى</h2>
+                <p style="color: #4a155c; margin-bottom: 15px; font-size: 0.95rem;">أي رسالة تكتبيها هنا هتوصلي على التلجرام فوراً ❤️</p>
+                <form id="love-form">
+                    <textarea id="love-message" rows="4" placeholder="اكتبي كل اللي في قلبك ليا هنا يا بنوتى..." required></textarea>
+                    <button type="submit" class="send-btn">إرسال الرسالة 🚀</button>
+                </form>
+            </div>
+        </div>
+
+        <footer>صُنع بحب من حمووودى لملكة قلبي بسملة 💖</footer>
     </div>
 
     <script>
         const SECRET_PASS = "حمووودى";
-
         const startDate = new Date("2024-08-26T00:00:00");
 
         function updateLoveCounter() {
             const now = new Date();
             const diff = now - startDate;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-            document.getElementById("seconds").innerText = seconds;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            document.getElementById("minutes").innerText = Math.floor((diff / 1000 / 60) % 60);
+            document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
         }
         setInterval(updateLoveCounter, 1000);
 
-        // قائمة ملفاتك مع الكلام الرومانسي الجميل لكل صورة وفيديو
-        const exactFiles = [
-            { name: "0913DBA0-6A2F-4CE5-B368-A5E6050BB411 2.JPG", text: "كل صورة لينا سوا بتبين قد إيه إحنا بنكمل بعض وبنور حياة بعض ❤️✨" },
-            { name: "10abfff6-f71e-4146-8b5b-a0691fa5d4a7.JPG", text: "جمالك وضحكتك ملهمش أي بديل يا سكر دنيتي وأجمل حاجة حصلتلي 🌹" },
-            { name: "167731ce-6526-40c0-a7bd-9955c54c5359.JPG", text: "يا أنقى وأرق بنوتة شافتها عيني، وجودك بيفرح قلبي دايماً 💖" },
-            { name: "1b85a8b3-5ccc-423c-82b1-1382c68adcb5.JPG", text: "ضحكتك بتنور في قلبي ألف شمعة وبتخليني أعشقك أكتر كل يوم 🌸" },
-            { name: "1dcf911c-350a-480a-85cb-e92dd78ecf0d 2.JPG", text: "ربنا ما يحرمني من أماني وسندي وضحكتك اللي بالدنيا وما فيها ✨" },
-            { name: "1dd610a2-511c-46f4-9105-87bdb3d871e2 2.JPG", text: "ملكة متوجة في قلبي وفي نظري، وعيوني مش بتشوف غير حلاوتك ❤️" },
-            { name: "2DDB1201-F69D-49E6-9561-98DE1DF2B04E 2.JPG", text: "أجمل اللحظات هي اللي بتكوني فيها جنبي وفي حضني 🦋" },
-            { name: "2abc4b2c-e5e0-45b8-bfdd-179755ecb04c.JPG", text: "حكايتنا أجمل حكاية اتكتبت بحب ورضا وسعادة ملوش حدود 🌹" },
-            { name: "2f3d283b-158a-4064-a55d-7d12cda182af 2.JPG", text: "كل خطوة بناخدها سوا هي بداية لراحة بال وسعادة أبدية معاكي 💖" },
-            { name: "32E63936-9702-47F8-9987-22AC52C44CFC 2.JPG", text: "ضحكتنا سوا بتسوى الدنيا وما فيها يا أجمل هدية من ربنا ✨" },
-            { name: "4139183E-4665-43ED-A61E-5AC7902CD79F 2.JPG", text: "بحب تفاصيلك وكل كلمة بتقوليها، إنتِ ملكة قلبي وعيوني ❤️" },
-            { name: "4cf9c57a-75a6-47e8-9525-dbef0d55f14f.JPG", text: "يا رب يديم وجودنا سند وظهر لبعض العمر كله وما يفرقناش أبداً 🌸" },
-            { name: "55dfe29b-314c-40ca-b1d4-35dc47aa420a 2.JPG", text: "يا سكر حياتي وسبب ضحكتي، بحبك حب ملوش وصف ولا وصفه كلام 🌹" },
-            { name: "5d7d4cc1-6db9-4992-b509-e9dfdc87ef67 2.JPG", text: "العيون اللي بتسحرني بجمالها ورقتها، ربنا يحفظك ليا يا عمري ✨" },
-            { name: "5ea61ee0-8685-4ef4-be1d-24f77c9f6c03 2.JPG", text: "كل يوم بيعدي وأنا معاكي بتأكد إنك أحلى اختيار في حياتي كلها 💖" },
-            { name: "67ba5ff2-a9d4-4e09-b65c-cebe38c1005f.JPG", text: "حبيبتي وأميرتي وسر سعادتي، ربنا يخليكي ليا وما يحرمني منك أبداً ❤️" },
-            { name: "71D8C3C9-0A07-465F-9756-5639F0A7B0CD 2.JPG", text: "وجودك جنبي هو الحاجة الوحيدة اللي بتخلي الدنيا حلوة في عيني 🌸" },
-            { name: "891ce01b-4078-4022-9d99-8e7d99cefb60 2.JPG", text: "يا أجمل وأطيبة قلب، بحبك قد الكوكب واللي فيه يا نور عيوني ✨" },
-            { name: "91a0371e-19c4-463f-96f0-2f06697f5f48 2.JPG", text: "رقتك وجمالك بيخلوني تايه في حبك كل يوم أكتر من اللي قبله 🌹" },
-            { name: "9d650f7f-676b-40ce-9dae-3c0fdfb477ef.JPG", text: "مهما الكلام كتر مش هقدر أوصف قد إبحب قلبتك وقربك ليا 💖" },
-            { name: "9e434ac1-99fa-4665-8c41-a659c44c58f7 2.JPG", text: "ضحكتك دي هي الطاقة اللي بتخليني أعدي أي يوم صعب بكل حب ❤️" },
-            { name: "9ee0c8aa-8d27-4fa1-a208-8358f222fa2e 2.JPG", text: "يا أحلى ملاك ماشي على الأرض، منور حياتي كلها بوجودك ✨" },
-            { name: "D0C506FC-8EC6-4010-B838-565E5E5C8D3B.JPG", text: "أميرة قلبي وسلطانة أيامي، بحبك لحد ما مالوش آخر 🌸" },
-            { name: "DB162C07-D8BC-4485-BE39-FB00429EAF65 2.JPG", text: "كل ذكرياتي معاكي محفورة جوه قلبي ومش ممكن أنساها أبداً 🌹" },
-            { name: "DC215074-3B76-4E32-A1D8-D540C7D56146 2.jpg", text: "يا عمري اللي جاي واللي رايح، إنتِ النور اللي منور طريقي 💖" },
-            { name: "E94A03B2-0987-4354-9AD5-2DB4C81AD70D 2.jpg", text: "أنتِ الحب اللي دخل حياتي وقلبها أحلى قلب في الدنيا كلها ❤️" },
-            { name: "IMG_8352 2.JPG", text: "ضحكتك وبريق عيونك هما أجمل منظر يشرح الصدر ويسعد القلب ✨" },
-            { name: "IMG_8466.jpg", text: "يا رب يجمعنا في بيت واحد وفي حلالك قريباً يا أجمل عروسة 🌸" },
-            { name: "IMG_8475 2.jpg", text: "وجودك في دنيتي خلى للحياة طعم تاني خالص، بحبك بجنون 🌹" },
-            { name: "IMG_9455 2.PNG", text: "كل تفصيلة فيكي بتخليني أعشقك أكتر وأكتر من الأول 💖" },
-            { name: "ca2f7853-8a7e-4024-aa64-20991bd657ad.JPG", text: "حكايتنا مع بعض هي الرواية الوحيدة اللي أتمنى إنها متخلصش أبداً ❤️" },
-            { name: "d17fe48b-de40-4902-b93e-c3ed1004ce62 2.JPG", text: "يا رب يديم عليا ضحكتك وسعادتك اللي بتسوى الدنيا وما فيها ✨" },
-            { name: "d63a7234-57ef-4e13-8604-f8f892081fb2.JPG", text: "إنتِ الأمان اللي طرقت بابه ففتحت لي أبواب السعادة كلها 🌸" },
-            { name: "db8e7d2f-6035-491a-8c46-9cad1d5fb603.jpg", text: "بحبك بكل مفي فيكي من رقة وطيبة وأخلاق تخليني أفتخر بيكي دايماً 🌹" },
-            { name: "dd16dbb9-3f33-4d28-8e4b-3b8dd16eaa44.JPG", text: "أجمل صدفة في عمري كله هي اليوم اللي عرفتك فيه يا غالية 💖" },
-            { name: "f757cfb5-9a60-4399-9088-9984a4584340.JPG", text: "قلبي اختارك ومش هيرضى بغيرك أبداً لحد آخر العمر ❤️" },
-            { name: "f7e809b9-c958-4ddb-8b12-651015f8661e 2.JPG", text: "يا أجمل هدية ربنا رزقني بيها، بحبك يا نور عيوني ✨" },
-            { name: "f8214cdb-5508-47ba-a5cc-40653262cef0 2.JPG", text: "حبك في قلبي بيزيد كل ثانية وكل دقيقة من غير توقف 🌸" },
-            { name: "love 1.MP4", text: "🎥 فيديو لأجمل وأحلى لحظة عشتها معاكي.. ذكرى لا تُنسى ❤️" },
-            { name: "love 2.JPG", text: "الصورة دي فيها حكاية عشق لوحدها، ربنا ما يحرمني منك 🌹" },
-            { name: "v2.MP4", text: "🎥 لقطة تحفة من أحلى أوقاتنا وذكرياتنا الرومانسية مع بعض 💖" }
+        function switchTab(tabId) {
+            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active-section'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active-section');
+            event.currentTarget.classList.add('active');
+        }
+
+        // قائمة كلامات حب وتغزل في بسملة تتجدد بالأزرار
+        const compliments = [
+            "يا أجمل بنوتة في الكون، عيونك دول هما السحر كله اللي مدوخني ❤️✨",
+            "بسبوستى وسكر دنيتي، ضحكتك بتنور طريقي وبتخلي الدنيا أمل وسعادة 🌹",
+            "يا أنقى ملاك ماشي على الأرض، ربنا ما يحرم قلبي من حنانك وقربك 💖",
+            "بنوتى الغالية، إنتِ مش بس حبيبتي.. إنتِ عمري كله اللي جاي واللي رايح 🌸",
+            "سحر عيونك وجمال رقتك بيخلوني تايه في حبك كل ثانية وكل دقيقة ✨",
+            "يا أجمل هدية ربنا رزقني بيها، بحبك لحد مالوش آخر ولا وصف ❤️"
         ];
+
+        function getRandomCompliment() {
+            const randomIndex = Math.floor(Math.random() * compliments.length);
+            document.getElementById('compliment-display').innerText = compliments[randomIndex];
+        }
+
+        const boxMessages = [
+            "🎁 مفاجأة: عيونك أحمل حاجة خلقها ربنا في الكون ده كله!",
+            "🎁 مفاجأة: بسبوستى القمر، ربنا يحفظك ليا وما يحرمني من ضحكتك أبداً!",
+            "🎁 مفاجأة: بنوتى الغالية، إنتِ ملكة قلبي وسلطانة أيامي!",
+            "🎁 مفاجأة: كل لحظة وأنا معاكي بتسوى الدنيا وما فيها يا أغلى الناس!"
+        ];
+
+        function openBox() {
+            const rand = Math.floor(Math.random() * boxMessages.length);
+            document.getElementById('box-message').innerText = boxMessages[rand];
+        }
 
         let bgImagesList = [];
 
-        function buildGalleryItems() {
-            let items = [];
-            
-            exactFiles.forEach(file => {
-                let lower = file.name.toLowerCase();
-                let isVid = lower.endsWith('.mp4');
-                items.push({
-                    type: isVid ? "video" : "image",
-                    filename: file.name,
-                    caption: file.text
-                });
+        function renderGalleries() {
+            const photosContainer = document.getElementById('photos-gallery');
+            const videosContainer = document.getElementById('videos-gallery');
+            photosContainer.innerHTML = '';
+            videosContainer.innerHTML = '';
 
-                if (!isVid && bgImagesList.length < 5) {
-                    bgImagesList.push(file.name);
-                }
-            });
-
-            // تتبع الفيديوهات الجديدة من v1 لحد v20 تلقائياً
-            for(let i=1; i<=20; i++) {
-                ['.mp4', '.MP4', '.MOV'].forEach(ext => {
-                    items.push({ type: "video", filename: `v${i}${ext}`, caption: "🎥 فيديو جديد مضاف لذكرياتنا الجميلة ✨", isAuto: true });
+            // الفحص التلقائي للصور من ph1 لحد ph200 بكافة الامتدادات والحروف الكبيرة/الصغيرة
+            for(let i = 1; i <= 200; i++) {
+                ['ph', 'PH', 'Ph', 'pH'].forEach(prefix => {
+                    ['.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG'].forEach(ext => {
+                        let filename = `${prefix}${i}${ext}`;
+                        createCard(photosContainer, filename, `💖 بسبوستى الجميلة: ضحكتك منورة دايماً ✨`, "image", true);
+                    });
                 });
             }
 
-            // تتبع الصور الجديدة من ph1 لحد ph100 تلقائياً
-            for(let i=1; i<=100; i++) {
-                ['.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG'].forEach(ext => {
-                    items.push({ type: "image", filename: `ph${i}${ext}`, caption: "صورة جديدة لأحلى بنوتة في الكون، منورة دايماً 💖", isAuto: true });
+            // الفحص التلقائي للفيديوهات من v1 لحد v50
+            for(let i = 1; i <= 50; i++) {
+                ['v', 'V'].forEach(prefix => {
+                    ['.mp4', '.MP4', '.MOV', '.mov'].forEach(ext => {
+                        let filename = `${prefix}${i}${ext}`;
+                        createCard(videosContainer, filename, `🎥 فيديو رقم (${i}) من ذكرياتنا الساحرة يا بنوتى 🌸`, "video", true);
+                    });
                 });
             }
-
-            return items;
         }
 
+        function createCard(container, filename, captionText, type, isAuto) {
+            const fullSrc = `images/${filename}`;
+            const cardId = `card-${filename}`;
+            if(document.getElementById(cardId)) return;
+
+            const card = document.createElement('div');
+            card.className = 'photo-card';
+            card.id = cardId;
+
+            const mediaHolder = document.createElement('div');
+            mediaHolder.className = 'media-holder';
+
+            let mediaElem;
+            if (type === 'image') {
+                mediaElem = document.createElement('img');
+                mediaElem.src = fullSrc;
+                mediaElem.loading = "lazy";
+                mediaElem.onerror = function() { card.remove(); }; 
+                
+                // جمع الصور لخلفية الموقع المتحركة
+                if(!bgImagesList.includes(filename)) {
+                    bgImagesList.push(filename);
+                }
+            } else {
+                mediaElem = document.createElement('video');
+                mediaElem.src = fullSrc;
+                mediaElem.controls = true;
+                mediaElem.setAttribute('playsinline', '');
+                mediaElem.setAttribute('webkit-playsinline', '');
+                mediaElem.preload = "metadata";
+                mediaElem.onerror = function() { card.remove(); };
+            }
+
+            mediaHolder.appendChild(mediaElem);
+            card.appendChild(mediaHolder);
+
+            const caption = document.createElement('div');
+            caption.className = 'caption';
+            caption.innerText = captionText;
+            card.appendChild(caption);
+
+            card.onclick = (e) => {
+                if (e.target.tagName !== 'VIDEO') {
+                    openLightbox(fullSrc, type, captionText);
+                }
+            };
+
+            container.appendChild(card);
+        }
+
+        // تغيير شكل وخلفية الموقع تلقائياً كل 5 ثوانٍ باستخدام الصور المتاحة
         let currentBgIndex = 0;
-        function changeBackground() {
-            const bgContainer = document.getElementById('bg-slideshow');
+        function changeBackgroundEvery5Seconds() {
+            const bgContainer = document.getElementById('dynamic-bg');
             if (bgContainer && bgImagesList.length > 0) {
                 bgContainer.style.backgroundImage = `url('images/${encodeURIComponent(bgImagesList[currentBgIndex])}')`;
                 currentBgIndex = (currentBgIndex + 1) % bgImagesList.length;
             }
         }
-        setInterval(changeBackground, 4500);
+        setInterval(changeBackgroundEvery5Seconds, 5000);
 
         function checkPassword() {
             const input = document.getElementById('pass-input').value.trim();
@@ -376,20 +517,20 @@
                 document.getElementById('main-content').style.display = 'block';
                 
                 const song = document.getElementById('love-song');
-                if(song) {
-                    song.play().catch(e => console.log("الصوت محظور:", e));
-                }
+                if(song) song.play().catch(e => console.log("الصوت محظور متصفحياً:", e));
 
                 updateLoveCounter();
-                changeBackground();
                 startEffects();
+                renderGalleries();
+                setTimeout(changeBackgroundEvery5Seconds, 500);
             } else {
                 document.getElementById('error-msg').style.display = 'block';
             }
         }
 
+        // تأثير الورود والقلوب الطايرة في الخلفية
         function startEffects() {
-            const icons = ['❤️', '💖', '🦋', '✨', '🌸', '🌹'];
+            const icons = ['❤️', '💖', '🦋', '✨', '🌸', '🌹', '🌷'];
             setInterval(() => {
                 const item = document.createElement('div');
                 item.classList.add('floating-effect');
@@ -398,62 +539,30 @@
                 item.style.animationDuration = (Math.random() * 3 + 3) + 's';
                 document.body.appendChild(item);
                 setTimeout(() => item.remove(), 6000);
-            }, 350);
+            }, 300);
         }
 
-        function renderGallery() {
-            const container = document.getElementById('main-gallery');
-            container.innerHTML = '';
-            const allItems = buildGalleryItems();
-
-            allItems.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'photo-card';
-
-                const mediaHolder = document.createElement('div');
-                mediaHolder.className = 'media-holder';
-
-                let mediaElem;
-                const fullSrc = `images/${item.filename}`;
-
-                if (item.type === 'image') {
-                    mediaElem = document.createElement('img');
-                    mediaElem.src = fullSrc;
-                    mediaElem.loading = "lazy";
-                    if (item.isAuto) {
-                        mediaElem.onerror = function() { card.remove(); };
-                    }
-                } else {
-                    mediaElem = document.createElement('video');
-                    mediaElem.src = fullSrc;
-                    mediaElem.controls = true;
-                    mediaElem.setAttribute('playsinline', '');
-                    mediaElem.setAttribute('webkit-playsinline', '');
-                    mediaElem.preload = "metadata";
-                    if (item.isAuto) {
-                        mediaElem.onerror = function() { card.remove(); };
-                    }
-                }
-
-                mediaHolder.appendChild(mediaElem);
-                card.appendChild(mediaHolder);
-
-                const caption = document.createElement('div');
-                caption.className = 'caption';
-                caption.innerText = item.caption;
-                card.appendChild(caption);
-
-                card.onclick = (e) => {
-                    if (e.target.tagName !== 'VIDEO') {
-                        openLightbox(fullSrc, item.type, item.caption);
-                    }
-                };
-
-                container.appendChild(card);
-            });
+        // لعبة صيد القلوب
+        let score = 0;
+        function clickHeart(event) {
+            event.stopPropagation();
+            score++;
+            document.getElementById('score').innerText = score;
+            moveHeart();
         }
 
-        renderGallery();
+        function moveHeart() {
+            const heart = document.getElementById('active-heart');
+            const canvas = document.getElementById('game-canvas');
+            if(!canvas) return;
+            const maxX = canvas.clientWidth - 50;
+            const maxY = canvas.clientHeight - 50;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            heart.style.left = randomX + 'px';
+            heart.style.top = randomY + 'px';
+        }
+        setInterval(moveHeart, 1600);
 
         function openLightbox(src, type, caption) {
             const lightbox = document.getElementById('lightbox');
@@ -480,14 +589,14 @@
             const botToken = "8624749284:AAEMvDKtk_N5QR0Iiq3E2DTo5ErKb_dt0fM";
             const chatId = "1658368856";
 
-            const text = `💌 رسالة حب جديدة من الموقع:\n\n"${msg}"`;
+            const text = `💌 رسالة حب جديدة من بسبوستى:\n\n"${msg}"`;
             const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
 
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
                     if (data.ok) {
-                        alert("وصلتني رسالتك يا حبيبتي! ❤️✨");
+                        alert("وصلتني رسالتك يا أحلى بسبوستى في الكون! ❤️✨");
                         document.getElementById('love-message').value = '';
                     } else { alert("حدث خطأ بسيط."); }
                 })
