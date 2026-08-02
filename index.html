@@ -34,8 +34,8 @@
             z-index: 1;
         }
 
-        /* خلفية العصافير والطيور والورد المتحركة */
-        .nature-bg {
+        /* قبة النجوم الرومانسية (الفكرة رقم 3) */
+        #stars-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -43,18 +43,44 @@
             height: 100%;
             pointer-events: none;
             z-index: 2;
-            opacity: 0.25;
-            background-image: 
-                radial-gradient(circle, #ff69b4 10px, transparent 11px),
-                radial-gradient(circle, #ff1493 8px, transparent 9px),
-                radial-gradient(circle, #ffffff 5px, transparent 6px);
-            background-size: 150px 150px, 200px 200px, 100px 100px;
-            animation: floatNature 20s linear infinite;
+            overflow: hidden;
         }
 
-        @keyframes floatNature {
-            0% { background-position: 0 0, 0 0, 0 0; }
-            100% { background-position: 0 500px, 500px 0, 250px 250px; }
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: auto;
+            animation: twinkle var(--duration) ease-in-out infinite;
+            box-shadow: 0 0 8px #ff69b4, 0 0 12px #ffffff;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* تأثير القلوب المتحركة عند اللمس (الفكرة رقم 5) */
+        .click-heart {
+            position: fixed;
+            color: #ff69b4;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatUpHeart 1s ease-out forwards;
+        }
+
+        @keyframes floatUpHeart {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-80px) scale(1.5);
+                opacity: 0;
+            }
         }
 
         /* شاشة تسجيل الدخول */
@@ -157,7 +183,7 @@
             color: #ffb6c1;
         }
 
-        /* رسالة الترحيب والوداع */
+        /* رسالة الترحيب */
         .welcome-farewell-box {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 105, 180, 0.4);
@@ -181,7 +207,7 @@
             line-height: 1.6;
         }
 
-        /* قسم رسائل الحب المتغيرة بكثرة */
+        /* رسائل الحب المتغيرة */
         .love-quotes-section {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 105, 180, 0.3);
@@ -209,7 +235,7 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* عداد الحب التفصيلي الدقيق (سنوات، أشهر، أيام، ساعات، دقائق، ثواني) */
+        /* عداد الحب التفصيلي الدقيق */
         .love-counter-section {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 105, 180, 0.3);
@@ -250,6 +276,109 @@
         .counter-label {
             font-size: 14px;
             color: #fff;
+        }
+
+        /* قسم صندوق "افتح هذه الرسالة عندما..." (الفكرة رقم 1) */
+        .open-when-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .open-when-section h3 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .open-when-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .open-btn {
+            background: linear-gradient(45deg, rgba(255, 105, 180, 0.2), rgba(255, 20, 147, 0.3));
+            border: 1px solid #ff69b4;
+            color: #ffb6c1;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .open-btn:hover {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+        }
+
+        /* نافذة منبثقة للرسائل العاطفية ونقاط النجوم */
+        #modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 2px solid #ff69b4;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+            animation: modalScale 0.3s ease-in-out;
+        }
+
+        @keyframes modalScale {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            color: #ff69b4;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .modal-content p {
+            color: #ffccd5;
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .close-modal-btn {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .close-modal-btn:hover {
+            background: #ff1493;
         }
 
         /* قسم الألعاب الترفيهية */
@@ -425,8 +554,8 @@
 </head>
 <body>
 
-    <!-- الخلفية الطبيعية -->
-    <div class="nature-bg"></div>
+    <!-- قبة النجوم الرومانسية (الفكرة رقم 3) -->
+    <div id="stars-container"></div>
 
     <!-- شاشة تسجيل الدخول -->
     <div id="login-screen">
@@ -436,6 +565,15 @@
             <input type="password" id="password-input" placeholder="اكتبي كلمة السر هنا (حمووودى)...">
             <button onclick="checkPassword()">دخول الحب</button>
             <div id="error-msg" class="error-msg">كلمة السر غير صحيحة، جربي مرة أخرى!</div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة للرسائل العاطفية ونقاط النجوم -->
+    <div id="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title">رسالة خاصة لكِ ❤️</h3>
+            <p id="modal-text">نص الرسالة هنا...</p>
+            <button class="close-modal-btn" onclick="closeModal()">حفظ في قلبي وخروج</button>
         </div>
     </div>
 
@@ -459,7 +597,7 @@
             <p>أهلاً ومرحباً بنور عيني وملكة قلبي "بسبوستى". دخلتِ الآن إلى مساحة خاصة جداً صنعها لكِ حمووودى بكل حب لتكون واحتنا الجميلة. كل كلمة هنا وكل صورة تروي قصة عشقنا الأبدي..</p>
         </section>
 
-        <!-- رسائل الحب المتغيرة بكثرة -->
+        <!-- رسائل الحب المتغيرة -->
         <section class="love-quotes-section">
             <div id="quote-display" class="love-quote">جاري تحميل مشاعر العشق والكلمات الدافئة...</div>
         </section>
@@ -495,6 +633,18 @@
             </div>
         </section>
 
+        <!-- صندوق "افتحي هذه الرسالة عندما..." (الفكرة رقم 1 المضافة) -->
+        <section class="open-when-section">
+            <h3>💌 صندوق رسائل اللحظات الخاصة</h3>
+            <p style="color: #ffb6c1; font-size: 14px; margin-bottom: 10px;">اضغطي على الزر المناسب لحالتكِ الآن وسأكون دائماً بقربكِ:</p>
+            <div class="open-when-grid">
+                <button class="open-btn" onclick="openLetter('angry')">😡 افتحي عندما تكونين غاضبة مني</button>
+                <button class="open-btn" onclick="openLetter('miss')">🥺 افتحي عندما تشتاقين لي بكثرة</button>
+                <button class="open-btn" onclick="openLetter('sad')">🌧️ افتحي عندما تشعرين بالحزن أو الضيق</button>
+                <button class="open-btn" onclick="openLetter('smile')">✨ افتحي عندما تريدين الابتسام فقط</button>
+            </div>
+        </section>
+
         <!-- قسم الألعاب الترفيهية -->
         <section class="games-section">
             <h3>🎮 ركن التسلية والمرح معاً</h3>
@@ -509,12 +659,12 @@
             </div>
         </section>
 
-        <!-- معرض الصور والفيديوهات الديناميكي مع كلام رومانسى لكل صورة وتغيير الخلفية -->
+        <!-- معرض الصور والفيديوهات الديناميكي -->
         <section class="media-gallery">
             <h3>📸 ذكرياتنا ولحظاتنا الساحرة</h3>
             <p style="text-align: center; color: #ffb6c1; font-size: 14px; margin-bottom: 20px;">(اضغطي على أي صورة لتتحول فوراً لتكون خلفية الموقع وتعيشي جوها الرومانسي!)</p>
             <div class="media-grid" id="media-grid-container">
-                <!-- سيتم توليد الصور والفيديوهات تلقائياً مع تعليقات حب خاصة لكل صورة وخلفيات متغيرة -->
+                <!-- سيتم توليد الصور والفيديوهات تلقائياً -->
             </div>
         </section>
 
@@ -540,6 +690,87 @@
     </div>
 
     <script>
+        // توليد قبة النجوم الرومانسية (الفكرة رقم 3)
+        const starWishes = [
+            "نجمة تقول: أنتِ النجمة الأكثر إشراقاً في سماء حياة حمووودى يا بسبوستى!",
+            "نجمة تقول: كل نجوم الكون تضيء فرحاً حين تبتسمين.",
+            "نجمة تقول: تذكري دائماً أن هناك قلباً ينبض باسمكِ في كل ثانية.",
+            "نجمة تقول: حبنا أعمق من البحار وأطول عمراً من النجوم نفسها.",
+            "نجمة تقول: أنتِ الملكة المتوجة على عرش قلب حمووودى للأبد."
+        ];
+
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            const count = 40;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 4 + 2;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                
+                star.addEventListener('click', () => {
+                    const randomWish = starWishes[Math.floor(Math.random() * starWishes.length)];
+                    document.getElementById('modal-title').textContent = "⭐ رسالة من نجوم السماء لكِ";
+                    document.getElementById('modal-text').textContent = randomWish;
+                    document.getElementById('modal-overlay').style.display = 'flex';
+                });
+                
+                container.appendChild(star);
+            }
+        }
+        createStars();
+
+        // تأثير القلوب المتطايرة عند اللمس في أي مكان بالموقع (الفكرة رقم 5)
+        document.addEventListener('click', function(e) {
+            // تجاهل النقر لو كان على نجمة عشان المودال يظهر صح
+            if (e.target.classList.contains('star')) return;
+
+            const heart = document.createElement('div');
+            heart.className = 'click-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = (e.clientX - 10) + 'px';
+            heart.style.top = (e.clientY - 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        });
+
+        // رسائل "افتحي هذه الرسالة عندما..." (الفكرة رقم 1)
+        const specialLetters = {
+            angry: {
+                title: "رسالة لحين غضبكِ منكِ ❤️",
+                text: "حقكِ عليا لو ضايقتكِ بحاجة يا بسبوستى.. أعلم أن قلبكِ الطيب أصفى من العسل، وحمووودى لا يقوى على زعلكِ أبداً، ابتسمي ولا تغضبي فضحكتكِ تساوي عندي الدنيا وما فيها!"
+            },
+            miss: {
+                title: "رسالة حين تشتاقين لي 🥺",
+                text: "أنا أشتاق لكِ أضعاف ما تشتاقين لي يا روحي! تذكري دائماً أن روحي معكِ ولو كنتِ بعيدة عن نظري، وعما قريب سنلتقي وتكتمل سعادتي بوجودكِ."
+            },
+            sad: {
+                title: "رسالة وقت الحزن والضيق 🌧️",
+                text: "يا ضحكة عمري ونور أيامي، لا تقلقي ولا تحزني فالله معنا وحمووودى يحميكِ بقلبه ودعائه دائماً. كل ضيق يزول وتبقى أنتِ السعادة الدائمة."
+            },
+            smile: {
+                title: "رسالة لترسمي ابتسامة على وجهكِ ✨",
+                text: "أنتِ أجمل إنسانة عرفها تاريخ البشرية يا بسبوستى، تذكري دائماً أن هناك شخصاً في هذا الكون (حمووودى) يعشق أرضاً تمشين عليها ولا يتمنى سوى رؤيتكِ تبتسمين دائماً."
+            }
+        };
+
+        function openLetter(type) {
+            const letter = specialLetters[type];
+            document.getElementById('modal-title').textContent = letter.title;
+            document.getElementById('modal-text').textContent = letter.text;
+            document.getElementById('modal-overlay').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').style.display = 'none';
+        }
+
         // رسائل الحب المتغيرة الكثيرة
         const loveQuotes = [
             "أنتِ أجمل صدفة في حياتي، وبكل روز ووردة في الكون أحبكِ يا بسبوستى.",
@@ -590,7 +821,6 @@
             }
             if (days < 0) {
                 months--;
-                // حساب عدد الأيام في الشهر السابق بدقة
                 const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
                 days += prevMonth.getDate();
             }
@@ -608,7 +838,6 @@
         }
         setInterval(updateLoveTimer, 1000);
 
-        // مصفوفة لتخزين روابط الصور المكتشفة وتدوير الخلفية تلقائياً
         let discoveredImages = [];
         let currentBgIndex = 0;
 
@@ -621,7 +850,6 @@
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 
-                // تشغيل الأغنية فوراً وتكرارها بشكل دائم
                 const music = document.getElementById('bg-music');
                 music.play().catch(error => {
                     console.log("تم تفعيل التشغيل الصوتي بنجاح.");
@@ -685,7 +913,6 @@
             }
         }
 
-        // اختبار الملفات وعرضها وتغيير الخلفية بالنقر عليها
         function testAndAddMedia(url, type, index) {
             const container = document.getElementById('media-grid-container');
             
